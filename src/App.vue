@@ -1,24 +1,39 @@
 <script setup lang="ts">
-import HelloWorld from '@/components/HelloWorld.vue'
+import { ref } from 'vue'
+
+const leftDrawer = ref(true)
+const rightDrawer = ref(false)
+
+const toggleLeftDrawer = () => {
+	leftDrawer.value = !leftDrawer.value
+}
+
+const toggleRightDrawer = () => {
+	rightDrawer.value = !rightDrawer.value
+}
 </script>
 
 <template lang="pug">
-div
-	a(href="https://vitejs.dev" target="_blank")
-	img(src="/vite.svg" class="logo" alt="Vite logo")
-	HelloWorld(msg="Vite + Vue")
+q-layout(view='hHh LpR fFf')
+	q-header
+		q-toolbar
+			q-btn(dense flat round icon='mdi-menu' @click='toggleLeftDrawer')
+			q-toolbar-title
+			q-btn(dense flat round icon='mdi-menu' @click='toggleRightDrawer')
+
+	q-drawer(v-model='leftDrawer' show-if-above behavior="desktop" side='left' bordered)
+		div fuck
+		div fuck
+	
+	q-drawer(v-model='rightDrawer' side='right' overlay bordered)
+		div fuck
+
+	q-page-container
+		router-view(v-slot="{ Component, route }")
+			transition(name="fade")
+				component(:is="Component")
+
+
 </template>
 
-<style scoped>
-.logo {
-	height: 6em;
-	padding: 1.5em;
-	will-change: filter;
-}
-.logo:hover {
-	filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-	filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+<style scoped lang="scss"></style>

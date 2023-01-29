@@ -5,6 +5,7 @@ import '@quasar/extras/roboto-font/roboto-font.css'
 import '@quasar/extras/mdi-v6/mdi-v6.css'
 import 'quasar/src/css/index.sass'
 import '@/assets/styles/style.css'
+import { router } from '@/router/router'
 
 import App from '@/App.vue'
 
@@ -27,5 +28,5 @@ app.use(Quasar, {
   */
 })
 
-// Assumes you have a <div id="app"></div> in your index.html
+app.use(router)
 app.mount('#app')

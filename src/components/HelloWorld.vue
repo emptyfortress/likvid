@@ -13,7 +13,7 @@ div
 	.card
 		button(type="button" @click="count++") count is {{ count }}
 		p Edit
-		q-btn(unelevated color="primary" label="Отмена") 
+		q-btn(unelevated icon="mdi-information" color="primary" label="Отмена") 
 </template>
 
 <style scoped lang="scss">
