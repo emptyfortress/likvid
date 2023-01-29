@@ -1,18 +1,35 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "strict": true,
-    "jsx": "preserve",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext", "DOM"],
-    "skipLibCheck": true,
-    "noEmit": true
-  },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "ESNext",
+        "useDefineForClassFields": true
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.d.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue"
+    ],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ],
+    "vueCompilerOptions": {
+        "plugins": [
+            "@volar/vue-language-plugin-pug"
+        ]
+    }
 }
