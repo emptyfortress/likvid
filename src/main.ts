@@ -6,9 +6,10 @@ import '@quasar/extras/mdi-v6/mdi-v6.css'
 import 'quasar/src/css/index.sass'
 import '@/assets/styles/style.css'
 import { router } from '@/router/router'
-
+import { createPinia } from 'pinia'
 import App from '@/App.vue'
 
+const pinia = createPinia()
 const app = createApp(App)
 
 app.use(Quasar, {
@@ -29,4 +30,5 @@ app.use(Quasar, {
 })
 
 app.use(router)
+app.use(pinia)
 app.mount('#app')
