@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Drawer from '@/components/Drawer.vue'
+import RDrawer from '@/components/RDrawer.vue'
 
 const leftDrawer = ref(true)
 const rightDrawer = ref(false)
@@ -23,15 +24,12 @@ q-layout(view='hHh LpR fFf')
 			q-btn(dense flat round icon='mdi-menu' @click='toggleRightDrawer')
 
 	Drawer(v-model="leftDrawer")
-	
-	q-drawer(v-model='rightDrawer' side='right' overlay bordered)
-		div fuck
+	RDrawer(v-model="rightDrawer")
 
 	q-page-container
 		router-view(v-slot="{ Component, route }")
 			transition(name="fade")
 				component(:is="Component")
-
 
 </template>
 
