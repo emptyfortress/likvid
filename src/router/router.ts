@@ -20,12 +20,12 @@ export const router = createRouter({
 			path: '/',
 			name: 'home',
 			component: Home,
-			meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 	],
 })
 
-const DEFAULT_TITLE = 'Title'
+const DEFAULT_TITLE = 'DV prototype'
 router.beforeEach((to) => {
 	document.title = to.meta.title || DEFAULT_TITLE
 })

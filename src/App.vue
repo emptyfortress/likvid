@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Drawer from '@/components/Drawer.vue'
 
 const leftDrawer = ref(true)
 const rightDrawer = ref(false)
@@ -15,15 +16,13 @@ const toggleRightDrawer = () => {
 
 <template lang="pug">
 q-layout(view='hHh LpR fFf')
-	q-header
+	q-header.head
 		q-toolbar
 			q-btn(dense flat round icon='mdi-menu' @click='toggleLeftDrawer')
 			q-toolbar-title
 			q-btn(dense flat round icon='mdi-menu' @click='toggleRightDrawer')
 
-	q-drawer(v-model='leftDrawer' show-if-above behavior="desktop" side='left' bordered)
-		div fuck
-		div fuck
+	Drawer(v-model="leftDrawer")
 	
 	q-drawer(v-model='rightDrawer' side='right' overlay bordered)
 		div fuck
@@ -36,4 +35,13 @@ q-layout(view='hHh LpR fFf')
 
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+@import '@/assets/styles/myvariables.scss';
+
+.head {
+	color: $text-bright;
+	background: rgba(0, 0, 0, 0.07);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+}
+</style>

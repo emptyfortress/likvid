@@ -1,0 +1,91 @@
+@import '@/assets/styles/myvariables.scss';
+@import '@/assets/styles/animation.scss';
+
+body {
+	font-size: $font-size;
+	color: $text-color;
+	background-color: $bgMain;
+}
+
+.container {
+	padding-left: 1rem;
+	padding-right: 1rem;
+	max-width: 1200px;
+	margin: 0 auto;
+	// @media screen and (max-width: 1850px) {
+	// 	max-width: 1200px;
+	// 	margin: 0 auto;
+	// }
+	.zag {
+		font-size: 1.2rem;
+	}
+}
+.rel {
+	position: relative;
+}
+
+.q-drawer {
+	background: $bgMain;
+	// .noti {
+	// 	background: #f8f8f6;
+	// }
+	// .rd {
+	// 	padding: 1rem;
+	// 	box-shadow: -1px 0 3px rgba(0, 0, 0, 0.3);
+	// 	&.speech {
+	// 		background: $blue-grey-9;
+	// 	}
+	// }
+}
+
+.q-item--active {
+	background: $bgSelection;
+}
+
+.q-card {
+	border-radius: $radius-md;
+	box-shadow: $card-shadow;
+	cursor: pointer;
+}
+.q-card--flat {
+	border: 1px solid $bgHead;
+}
+.notifications {
+	transition: all 0.3s ease;
+}
+.q-chip {
+	// background: $accent2;
+	background: $bgHead;
+	.inf {
+		display: none;
+	}
+}
+.q-chip--selected {
+	background: $primary;
+	color: white;
+	.q-chip__icon {
+		color: inherit;
+	}
+	.inf {
+		display: block;
+	}
+}
+
+.table {
+	box-shadow: $card-shadow;
+	border-radius: $radius-md;
+	tr.selected td::after {
+		background: transparent;
+	}
+	tr.selected {
+		background: $bgSelection;
+	}
+	td {
+		white-space: normal;
+	}
+}
+
+.pink {
+	background: pink;
+	color: darkred;
+}

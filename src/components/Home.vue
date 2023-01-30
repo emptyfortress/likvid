@@ -6,9 +6,6 @@ q-page
 </template>
 
 <style scoped lang="scss">
-.q-page {
-	background: pink;
-}
 h2 {
 	margin: 0;
 }
