@@ -14,7 +14,7 @@ const toggleLeftDrawer = () => {
 const toggleRightDrawer = () => {
 	rightDrawer.value = !rightDrawer.value
 }
-const addDialog = ref(true)
+const addDialog = ref(false)
 
 const showDialog = () => {
 	addDialog.value = !addDialog.value
@@ -22,13 +22,13 @@ const showDialog = () => {
 </script>
 
 <template lang="pug">
-q-layout(view='hHh LpR fFf')
+q-layout(view="hHh LpR fFf")
 	q-header.head
 		q-toolbar
-			q-btn(dense flat round icon='mdi-menu' @click='toggleLeftDrawer')
+			q-btn(dense flat round icon="mdi-menu" @click="toggleLeftDrawer" color="primary")
 			q-toolbar-title
-			q-btn(dense flat round icon='mdi-plus-box-multiple' @click='showDialog')
-			q-btn(dense flat round icon='mdi-menu' @click='toggleRightDrawer')
+			q-btn(dense flat round icon="mdi-plus-box-multiple" @click="showDialog" color="primary")
+			q-btn(dense flat round icon="mdi-menu" @click="toggleRightDrawer" color="primary")
 
 	Drawer(v-model="leftDrawer")
 	RDrawer(v-model="rightDrawer")

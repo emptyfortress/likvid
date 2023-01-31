@@ -54,6 +54,6 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="mystore.mini" :width
 .q-item--active,
 .q-item.q-router-link--active {
 	background: $accent1;
-	color: $blue-9;
+	color: $primary;
 }
 </style>
