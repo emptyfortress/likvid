@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Drawer from '@/components/Drawer.vue'
 import RDrawer from '@/components/RDrawer.vue'
+import AddDialog from '@/components/AddDialog.vue'
 
 const leftDrawer = ref(true)
 const rightDrawer = ref(false)
@@ -13,6 +14,11 @@ const toggleLeftDrawer = () => {
 const toggleRightDrawer = () => {
 	rightDrawer.value = !rightDrawer.value
 }
+const addDialog = ref(true)
+
+const showDialog = () => {
+	addDialog.value = !addDialog.value
+}
 </script>
 
 <template lang="pug">
@@ -21,6 +27,7 @@ q-layout(view='hHh LpR fFf')
 		q-toolbar
 			q-btn(dense flat round icon='mdi-menu' @click='toggleLeftDrawer')
 			q-toolbar-title
+			q-btn(dense flat round icon='mdi-plus-box-multiple' @click='showDialog')
 			q-btn(dense flat round icon='mdi-menu' @click='toggleRightDrawer')
 
 	Drawer(v-model="leftDrawer")
@@ -31,6 +38,8 @@ q-layout(view='hHh LpR fFf')
 			transition(name="fade" mode="out-in")
 				component(:is="Component")
 
+
+	AddDialog(v-model="addDialog")
 </template>
 
 <style scoped lang="scss">
