@@ -21,7 +21,7 @@ const pages = [
 	{
 		id: 1,
 		title: 'Создать',
-		icon: 'mdi-finance',
+		icon: 'mdi-plus-box-multiple',
 		url: '/new',
 	},
 ]
