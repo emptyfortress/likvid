@@ -1,3 +1,10 @@
+interface defaults {
+	color: string
+	varPrefix: string
+	hoverColor: string
+	size: string
+}
+
 const sizes = {
 	sm: {
 		size: 16,
@@ -17,7 +24,7 @@ const sizes = {
 	},
 }
 
-const defaults = {
+const defaults: defaults = {
 	color: 'var:primary',
 	varPrefix: 'q-',
 	hoverColor: 'red',
