@@ -22,6 +22,12 @@ export const router = createRouter({
 			component: Home,
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
+		{
+			path: '/new',
+			name: 'new',
+			component: () => import('@/components/NewTree.vue'),
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
 	],
 })
 

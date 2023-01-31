@@ -18,12 +18,12 @@ const pages = [
 		icon: 'mdi-home-roof',
 		url: '/',
 	},
-	// {
-	// 	id: 1,
-	// 	title: 'Отчеты',
-	// 	icon: 'mdi-finance',
-	// 	url: '/report',
-	// },
+	{
+		id: 1,
+		title: 'Создать',
+		icon: 'mdi-finance',
+		url: '/new',
+	},
 ]
 </script>
 
