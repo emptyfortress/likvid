@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const ratio = ref(50)
+const ratio = ref(30)
 </script>
 
 <template lang="pug">

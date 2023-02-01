@@ -25,7 +25,7 @@ export const router = createRouter({
 		{
 			path: '/new/:id',
 			name: 'new',
-			component: () => import('@/components/NewTree.vue'),
+			component: () => import('@/components/Constructor.vue'),
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 	],
