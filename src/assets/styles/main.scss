@@ -1,10 +1,6 @@
 @import '@/assets/styles/myvariables.scss';
 @import '@/assets/styles/animation.scss';
 
-:root {
-	--test: #00ff00;
-}
-
 body {
 	font-size: $font-size;
 	color: $text-color;
@@ -92,4 +88,15 @@ body {
 .pink {
 	background: pink;
 	color: darkred;
+}
+
+.q-splitter--vertical.q-splitter--workable > .q-splitter__separator {
+	border-left: 2px dotted transparent;
+	margin-left: 0.5rem;
+	margin-right: 1rem;
+	background: #e5e7df;
+	&:hover,
+	&:active {
+		border-left: 2px dotted $primary;
+	}
 }
