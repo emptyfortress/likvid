@@ -2,13 +2,18 @@
 import { ref, reactive } from 'vue'
 import { Draggable } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
+import SvgIcon from '@/components/global/SvgIcon.vue'
 
 const tree = ref()
 const trigger = ref()
 
-const treedata = reactive([
-	{ text: 'Node 1', selected: false, children: [] },
-	{ text: 'Node 2', selected: false, children: [] },
+let treedata = reactive([
+	{
+		text: 'Справочник',
+		root: true,
+		selected: false,
+		children: [{ text: 'Node 1', selected: false, children: [] }],
+	},
 ])
 
 const toggle = (stat: any) => {
@@ -40,7 +45,8 @@ const select = (e: any) => {
 		:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
-				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click="toggle(stat)" :class="{'closed' : !stat.open}").trigger
+				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
+				SvgIcon(name="sprav" size="16px" v-if="node.root === true").sp
 				label {{ node.text }}
 				q-btn(flat round icon="mdi-close" size="sm")
 					q-menu
@@ -80,5 +86,9 @@ const select = (e: any) => {
 	&.closed {
 		transform: rotate(-90deg);
 	}
+}
+.sp {
+	transform: translateY(2px);
+	margin-right: 0.5rem;
 }
 </style>
