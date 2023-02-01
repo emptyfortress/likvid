@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@he-tree/vue": "^2.2.5",
     "@quasar/extras": "^1.15.10",
     "pinia": "^2.0.29",
     "quasar": "^2.11.5",

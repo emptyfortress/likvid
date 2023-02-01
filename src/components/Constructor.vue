@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import PropsTab from '@/components/PropsTab.vue'
+import DragTree from '@/components/DragTree.vue'
 
 const ratio = ref(30)
 </script>
@@ -10,10 +11,10 @@ q-page(padding)
 	q-splitter(v-model="ratio")
 		template(#before)
 			q-scroll-area.home
-				h2 New tree {{$route.params.id}}
+				DragTree()
 		template(#after)
 			q-scroll-area.home
-				PropsTab
+				PropsTab()
 </template>
 
 <style scoped lang="scss">
