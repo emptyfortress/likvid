@@ -22,7 +22,7 @@ const pages = [
 		id: 1,
 		title: 'Создать',
 		icon: 'mdi-plus-box-multiple',
-		url: '/new',
+		url: '/new/0',
 	},
 ]
 </script>

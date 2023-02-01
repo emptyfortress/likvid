@@ -3,7 +3,7 @@
 <template lang="pug">
 q-page(padding)
 	.container
-		h2 New tree
+		h2 New tree {{$route.params.id}}
 </template>
 
 <style scoped lang="scss">
