@@ -7,8 +7,8 @@ const tree = ref()
 const trigger = ref()
 
 const treedata = reactive([
-	{ text: 'Node 1', children: [] },
-	{ text: 'Node 2', children: [] },
+	{ text: 'Node 1', selected: false, children: [] },
+	{ text: 'Node 2', selected: false, children: [] },
 ])
 
 const toggle = (stat: any) => {
@@ -19,10 +19,15 @@ const add = () => {
 	const temp = { text: 'node', children: [] }
 	tree.value.add(temp, null)
 }
-const del = (e: unknown) => {
+const del = (e: any) => {
 	tree.value.remove(e)
 }
 defineExpose({ add })
+
+const select = (e: any) => {
+	tree.value.statsFlat.map((item: any) => (item.data.selected = false))
+	e.data.selected = true
+}
 </script>
 
 <template lang="pug">
@@ -34,7 +39,7 @@ defineExpose({ add })
 		:triggerClass="trigger"
 		:watermark="false")
 		template(#default="{ node, stat }")
-			.node
+			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click="toggle(stat)" :class="{'closed' : !stat.open}").trigger
 				label {{ node.text }}
 				q-btn(flat round icon="mdi-close" size="sm")
@@ -53,6 +58,7 @@ defineExpose({ add })
 	margin-bottom: 2px;
 	cursor: pointer;
 	position: relative;
+	border: 1px solid $borderColor;
 	.q-btn {
 		position: absolute;
 		right: 5px;
@@ -61,6 +67,10 @@ defineExpose({ add })
 		&:hover {
 			color: hsla(77, 13%, 40%, 1);
 		}
+	}
+	&.selected {
+		background: #fff;
+		border: 1px solid $secondary;
 	}
 }
 .trigger {
