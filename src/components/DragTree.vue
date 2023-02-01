@@ -19,12 +19,10 @@ const add = () => {
 	const temp = { text: 'node', children: [] }
 	tree.value.add(temp, null)
 }
-defineExpose({ add })
-
-const get = () => {
-	const temp = tree.value.getData()
-	console.log(temp)
+const del = (e: unknown) => {
+	tree.value.remove(e)
 }
+defineExpose({ add })
 </script>
 
 <template lang="pug">
@@ -38,9 +36,12 @@ const get = () => {
 		template(#default="{ node, stat }")
 			.node
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click="toggle(stat)" :class="{'closed' : !stat.open}").trigger
-				span {{ node.text }}
-// q-btn(unelevated color="primary" label="add" @click="add") 
-// q-btn(unelevated color="primary" label="get" @click="get") 
+				label {{ node.text }}
+				q-btn(flat round icon="mdi-close" size="sm")
+					q-menu
+						q-list
+							q-item(clickable @click="del(stat)" v-close-popup).pink
+								q-item-section Удалить
 </template>
 
 <style scoped lang="scss">
@@ -50,11 +51,17 @@ const get = () => {
 	padding: 0.3rem 1rem;
 	background: $borderColor;
 	margin-bottom: 2px;
-}
-.place {
-	height: 3rem;
-	/* width: 100%; */
-	/* background: red; */
+	cursor: pointer;
+	position: relative;
+	.q-btn {
+		position: absolute;
+		right: 5px;
+		top: 2px;
+		color: hsla(77, 13%, 74%, 1);
+		&:hover {
+			color: hsla(77, 13%, 40%, 1);
+		}
+	}
 }
 .trigger {
 	font-size: 1.3rem;
