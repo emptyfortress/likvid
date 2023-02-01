@@ -39,7 +39,8 @@ q-layout(view="hHh LpR fFf")
 				component(:is="Component")
 
 
-	AddDialog(v-model="addDialog")
+	q-dialog(v-model="addDialog")
+		AddDialog
 </template>
 
 <style scoped lang="scss">

@@ -1,50 +1,35 @@
 <script setup lang="ts">
-const props = defineProps({
-	modelValue: {
-		type: Boolean,
-		default: false,
-	},
-})
-
-const emit = defineEmits(['update:modelValue'])
-
-const close = () => {
-	emit('update:modelValue', false)
-}
+import SvgIcon from '@/components/global/SvgIcon.vue'
 
 const items = [
-	{ id: 0, icon: 'mdi-account', label: 'Сотрудников', to: '', className: '' },
-	{ id: 1, icon: 'mdi-account-tie', label: 'Контрагентов', to: '', className: '' },
+	{ id: 0, icon: 'users', label: 'Сотрудников', to: '', className: '' },
+	{ id: 1, icon: 'partner', label: 'Контрагентов', to: '', className: '' },
 	{
 		id: 2,
-		icon: 'mdi-file-document-multiple-outline',
+		icon: 'packet',
 		label: 'Пакет документов',
 		to: '',
 		className: '',
 	},
-	{ id: 3, icon: '', label: 'Номенклатура дел', to: '', className: '' },
-	{ id: 4, icon: '', label: 'С нуля', to: '', className: '' },
+	{ id: 3, icon: 'nomenclatura', label: 'Номенклатура дел', to: '', className: '' },
+	{ id: 4, icon: 'cran', label: 'С нуля', to: '', className: '' },
 ]
 </script>
 
 <template lang="pug">
-q-dialog(:model-value="props.modelValue" persistent)
-	q-card.new
-		q-card-section.row.items-baseline.q-pb-none
-			q-icon(name="mdi-book-outline" size="sm").q-mr-sm
-			.title Создать справочник
-			q-space
-			q-btn(icon="mdi-close" flat round dense @click="close" v-close-popup)
+q-card.new
+	q-card-section.row.items-baseline.q-pb-none
+		.title Создать справочник
+		q-space
+		q-btn(icon="mdi-close" flat round dense v-close-popup)
 
-		q-card-section
-			q-list(separator)
-				q-item(v-for="item in items" :key="item.id" clickable v-ripple)
-					q-item-section(avatar)
-						q-icon(:name="item.icon")
-					q-item-section
-						q-item-label {{item.label}}
-					// q-item-section(side)
-					// 	q-icon(name="mdi-close")
+	q-card-section
+		q-list(separator)
+			q-item(v-for="item in items" :key="item.id" clickable v-ripple tag="router-link" :to="`/new/${item.id}`" v-close-popup)
+				q-item-section(avatar)
+					svg-icon(:name="item.icon")
+				q-item-section
+					q-item-label {{item.label}}
 </template>
 
 <style scoped lang="scss">
@@ -59,6 +44,5 @@ q-dialog(:model-value="props.modelValue" persistent)
 }
 .q-item {
 	background: $bgMain;
-	/* border-bottom: 1px solid white; */
 }
 </style>

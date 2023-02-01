@@ -1,6 +1,10 @@
 @import '@/assets/styles/myvariables.scss';
 @import '@/assets/styles/animation.scss';
 
+:root {
+	--test: #00ff00;
+}
+
 body {
 	font-size: $font-size;
 	color: $text-color;

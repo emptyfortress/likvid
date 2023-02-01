@@ -23,7 +23,7 @@ export const router = createRouter({
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 		{
-			path: '/new',
+			path: '/new/:id',
 			name: 'new',
 			component: () => import('@/components/NewTree.vue'),
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },

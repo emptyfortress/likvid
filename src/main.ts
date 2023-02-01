@@ -15,6 +15,21 @@ const app = createApp(App)
 app.use(Quasar, {
 	plugins: {}, // import Quasar plugins and add here
 	iconSet: quasarIconSet,
+	config: {
+		brand: {
+			primary: '#285e8b',
+			secondary: '#2196f3',
+			accent: '#9C27B0',
+
+			dark: '#1d1d1d',
+			'dark-page': '#121212',
+
+			positive: '#178530',
+			negative: '#C10015',
+			info: '#2a33d4',
+			warning: '#fac53e',
+		},
+	},
 	/*
   config: {
     brand: {
