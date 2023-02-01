@@ -1,43 +1,46 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, reactive } from 'vue'
 import { Draggable } from '@he-tree/vue'
-// import data from '@/stores/data.json'
 import '@he-tree/vue/style/default.css'
 
-const data = [
-	{ text: 'Fuck 1', children: [] },
-	{ text: 'Fuck 2', children: [] },
-	{ text: 'Fuck 3', children: [] },
-	{ text: 'Fuck 4', children: [] },
-]
-
 const tree = ref()
-
 const trigger = ref()
+
+const treedata = reactive([
+	{ text: 'Node 1', children: [] },
+	{ text: 'Node 2', children: [] },
+])
 
 const toggle = (stat: any) => {
 	stat.open = !stat.open
 }
 
-const test = () => {
-	// const temp = tree.value.getStat()
-	console.log(tree.value.getStat())
+const add = () => {
+	const temp = { text: 'node', children: [] }
+	tree.value.add(temp, null)
+}
+defineExpose({ add })
+
+const get = () => {
+	const temp = tree.value.getData()
+	console.log(temp)
 }
 </script>
 
 <template lang="pug">
-div
+.test
 	component(:is="Draggable"
 		ref="tree"
-		v-model="data"
+		v-model="treedata"
 		virtualization
 		:triggerClass="trigger"
 		:watermark="false")
 		template(#default="{ node, stat }")
 			.node
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click="toggle(stat)" :class="{'closed' : !stat.open}").trigger
-
 				span {{ node.text }}
+// q-btn(unelevated color="primary" label="add" @click="add") 
+// q-btn(unelevated color="primary" label="get" @click="get") 
 </template>
 
 <style scoped lang="scss">
