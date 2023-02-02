@@ -64,7 +64,7 @@ const select = (e: any) => {
 	margin-bottom: 2px;
 	cursor: pointer;
 	position: relative;
-	border: 1px solid $borderColor;
+	// border: 1px solid $borderColor;
 	.q-btn {
 		position: absolute;
 		right: 5px;
@@ -75,8 +75,12 @@ const select = (e: any) => {
 		}
 	}
 	&.selected {
-		background: #fff;
-		border: 1px solid $secondary;
+		background: #b1ddfc;
+		color: $primary;
+		.q-btn {
+			color: $secondary;
+		}
+		// border: 1px solid $secondary;
 	}
 }
 .trigger {
