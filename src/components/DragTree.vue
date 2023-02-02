@@ -3,9 +3,11 @@ import { ref, reactive } from 'vue'
 import { Draggable } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
 import SvgIcon from '@/components/global/SvgIcon.vue'
+import { useStore } from '@/stores/store'
 
 const tree = ref()
 const trigger = ref()
+const store = useStore()
 
 let treedata = reactive([
 	{
@@ -29,9 +31,11 @@ const del = (e: any) => {
 }
 defineExpose({ add })
 
-const select = (e: any) => {
+const select = (e: Stat) => {
 	tree.value.statsFlat.map((item: any) => (item.data.selected = false))
 	e.data.selected = true
+	store.setSelectedNode(e)
+	store.selection = true
 }
 </script>
 

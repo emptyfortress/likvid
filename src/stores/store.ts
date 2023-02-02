@@ -4,23 +4,33 @@ export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
 		mini: false,
-		treedata: [
-			{ text: 'Node 1', children: [] },
-			{ text: 'Node 2', children: [] },
-		],
+		selection: false,
+		selectedNode: {
+			isStat: true,
+			hidden: false,
+			checked: false,
+			style: null,
+			class: null,
+			draggable: null,
+			droppable: null,
+			data: {
+				text: 'Справочник',
+				root: true,
+				selected: true,
+			},
+			open: true,
+			parent: null,
+			children: 'Node 1',
+			level: 1,
+		},
 	}),
 	getters: {},
 	actions: {
 		toggleMini() {
 			this.mini = !this.mini
 		},
-		addChild() {
-			const node = {
-				text: 'Node',
-				children: [],
-			}
-			this.treedata.push(node)
-			console.log('fuck')
+		setSelectedNode(e: Stat) {
+			this.selectedNode = e
 		},
 	},
 })
