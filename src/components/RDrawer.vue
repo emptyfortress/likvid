@@ -57,6 +57,7 @@ q-drawer(:model-value="props.modelValue" side="right" :width="300" overlay borde
 				div
 					q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;")
 					span.q-ml-sm {{ element.name }}
+				q-btn(dense flat round icon="mdi-information-outline" size="sm")
 
 </template>
 
@@ -69,6 +70,12 @@ q-drawer(:model-value="props.modelValue" side="right" :width="300" overlay borde
 	cursor: pointer;
 	background: $bgMain;
 	font-size: 0.9rem;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	.q-icon,
+	.q-btn {
+		color: $primary;
+	}
 }
 .zg {
 	margin: 1rem;

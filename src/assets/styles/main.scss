@@ -134,3 +134,14 @@ body {
 		}
 	}
 }
+
+.list-group > div {
+	width: 100%;
+	padding: 0.5rem;
+	cursor: pointer;
+	background: #efefef;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid #0000001a;
+	}
+}
