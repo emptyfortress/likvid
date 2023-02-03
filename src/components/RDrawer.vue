@@ -47,7 +47,7 @@ const ondragstart = (e: any) => {
 	drag.value = true
 	store.setDraggedNode(e.item.innerText)
 }
-const ondragend = (e: any, i: string) => {
+const ondragend = () => {
 	drag.value = false
 	store.setDraggedNode(null)
 }
