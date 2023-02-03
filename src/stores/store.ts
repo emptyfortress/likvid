@@ -16,7 +16,7 @@ export const useStore = defineStore({
 		toggleMini() {
 			this.mini = !this.mini
 		},
-		setDraggedNode(e: string) {
+		setDraggedNode(e: N) {
 			this.draggedNode = e
 		},
 		setCurrentNode(e: C) {
