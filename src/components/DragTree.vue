@@ -55,7 +55,7 @@ const externalDataHandler = () => {
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
-				SvgIcon(name="sprav" size="16px" v-if="node.root === true").sp
+				svg-icon(name="sprav" size="16px" v-if="node.root === true").sp
 				label {{ node.text }}
 				q-btn(flat round icon="mdi-close" size="sm")
 					q-menu

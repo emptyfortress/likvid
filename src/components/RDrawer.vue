@@ -44,12 +44,10 @@ const filteredList = computed(() => {
 })
 
 const ondragstart = (e: any) => {
-	console.log(e.item.innerText)
 	drag.value = true
 	store.setDraggedNode(e.item.innerText)
 }
 const ondragend = (e: any, i: string) => {
-	console.log('end')
 	drag.value = false
 	store.setDraggedNode(null)
 }
