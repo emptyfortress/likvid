@@ -7,7 +7,7 @@ import ViewProps from '@/components/tabs/ViewProps.vue'
 import RightsProps from '@/components/tabs/RightsProps.vue'
 import StateProps from '@/components/tabs/StateProps.vue'
 
-const activeTab = ref('two')
+const activeTab = ref('one')
 
 const tabs = [
 	{ id: 0, modified: false, name: 'one', label: 'Справочник' },
