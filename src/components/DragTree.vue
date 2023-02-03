@@ -37,6 +37,9 @@ const select = (e: Stat) => {
 	store.setSelectedNode(e)
 	store.selection = true
 }
+const externalDataHandler = () => {
+	return { text: store.draggedNode }
+}
 </script>
 
 <template lang="pug">
@@ -46,6 +49,8 @@ const select = (e: Stat) => {
 		v-model="treedata"
 		virtualization
 		:triggerClass="trigger"
+		:onExternalDragOver="()=> true"
+		:externalDataHandler="externalDataHandler"
 		:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
@@ -68,7 +73,6 @@ const select = (e: Stat) => {
 	margin-bottom: 2px;
 	cursor: pointer;
 	position: relative;
-	// border: 1px solid $borderColor;
 	.q-btn {
 		position: absolute;
 		right: 5px;
@@ -84,7 +88,6 @@ const select = (e: Stat) => {
 		.q-btn {
 			color: $secondary;
 		}
-		// border: 1px solid $secondary;
 	}
 }
 .trigger {

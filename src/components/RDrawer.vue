@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import draggable from 'vuedraggable'
+import { useStore } from '@/stores/store'
 
 const props = defineProps({
 	modelValue: {
@@ -8,6 +9,8 @@ const props = defineProps({
 		default: false,
 	},
 })
+
+const store = useStore()
 
 const list = reactive([
 	{ id: 0, name: 'Справочник' },
@@ -34,10 +37,22 @@ const list = reactive([
 	{ id: 21, name: 'Строка' },
 	{ id: 22, name: 'Объект' },
 ])
+const drag = ref(false)
 const filter = ref('')
 const filteredList = computed(() => {
 	return list.filter((item) => item.name.toLowerCase().includes(filter.value.toLowerCase()))
 })
+
+const ondragstart = (e: any) => {
+	console.log(e.item.innerText)
+	drag.value = true
+	store.setDraggedNode(e.item.innerText)
+}
+const ondragend = (e: any, i: string) => {
+	console.log('end')
+	drag.value = false
+	store.setDraggedNode(null)
+}
 </script>
 
 <template lang="pug">
@@ -52,7 +67,9 @@ q-drawer(:model-value="props.modelValue" side="right" :width="300" overlay borde
 	component(:is="draggable" :list="filteredList"
 		item-key="id"
 		:group="{ name: 'node', pull: 'clone', put: false }"
-		ghost-class='ghost'
+		@start="ondragstart" 
+		@end="ondragend"
+		ghost-class="ghost"
 		).list-group
 		template(#item="{ element, index }")
 			.tabel

@@ -5,32 +5,15 @@ export const useStore = defineStore({
 	state: () => ({
 		mini: false,
 		selection: false,
-		selectedNode: {
-			isStat: true,
-			hidden: false,
-			checked: false,
-			style: null,
-			class: null,
-			draggable: null,
-			droppable: null,
-			data: {
-				text: 'Справочник',
-				root: true,
-				selected: true,
-			},
-			open: true,
-			parent: null,
-			children: 'Node 1',
-			level: 1,
-		},
+		draggedNode: null,
 	}),
 	getters: {},
 	actions: {
 		toggleMini() {
 			this.mini = !this.mini
 		},
-		setSelectedNode(e: Stat) {
-			this.selectedNode = e
+		setDraggedNode(e: null | string) {
+			this.draggedNode = e
 		},
 	},
 })
