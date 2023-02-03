@@ -3,6 +3,10 @@ import { ref, reactive } from 'vue'
 import draggable from 'vuedraggable'
 
 const list1 = reactive([{ id: 0, name: 'Объект' }])
+
+const remove = (ind: number) => {
+	list1.splice(ind, 1)
+}
 </script>
 
 <template lang="pug">
@@ -43,10 +47,10 @@ component(:is="draggable" :list="list1"
 								span(v-if="element.arch") архивный, 
 								span(v-if="element.temp") временный
 
-				q-btn(flat round dense icon="mdi-trash-can-outline" size="sm" )
+				q-btn(flat round dense icon="mdi-close" size="sm" )
 					q-menu
 						q-list
-							q-item(clickable v-close-popup @click="remove1(index)").pink
+							q-item(clickable v-close-popup @click="remove(index)").pink
 								q-item-section Удалить
 
 
@@ -56,7 +60,7 @@ component(:is="draggable" :list="list1"
 @import '@/assets/styles/myvariables.scss';
 
 .tabel {
-	width: 400px;
+	width: 600px;
 	display: grid;
 	justify-items: space-between;
 	align-items: center;
@@ -70,6 +74,20 @@ component(:is="draggable" :list="list1"
 	.q-icon,
 	.q-btn {
 		color: $primary;
+	}
+}
+.hrinfo {
+	padding: 1rem;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	justify-items: start;
+	align-items: flex-end;
+	column-gap: 1rem;
+	row-gap: 3px;
+
+	.label {
+		color: grey;
+		justify-self: end;
 	}
 }
 </style>
