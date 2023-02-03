@@ -2,6 +2,7 @@
 import { ref, reactive, computed } from 'vue'
 import draggable from 'vuedraggable'
 import { useStore } from '@/stores/store'
+import WordHighlighter from 'vue-word-highlighter'
 
 const props = defineProps({
 	modelValue: {
@@ -28,14 +29,20 @@ const list = reactive([
 	{ id: 12, name: 'Документ' },
 	{ id: 13, name: 'Задание' },
 	{ id: 14, name: 'Группа заданий' },
-	{ id: 15, name: 'Карточка' },
-	{ id: 16, name: 'База данных' },
-	{ id: 17, name: 'Запись' },
-	{ id: 18, name: 'Логин' },
-	{ id: 19, name: 'Журнал' },
-	{ id: 20, name: 'Таблица' },
-	{ id: 21, name: 'Строка' },
-	{ id: 22, name: 'Объект' },
+	{ id: 15, name: 'Согласование' },
+	{ id: 16, name: 'Карточка' },
+	{ id: 17, name: 'Ссылка' },
+	{ id: 18, name: 'Отчет' },
+	{ id: 19, name: 'Этап' },
+	{ id: 20, name: 'Цикл' },
+	{ id: 21, name: 'База данных' },
+	{ id: 22, name: 'Запись' },
+	{ id: 23, name: 'Логин' },
+	{ id: 24, name: 'Журнал' },
+	{ id: 25, name: 'Таблица' },
+	{ id: 26, name: 'Строка' },
+	{ id: 27, name: 'Поисковый запрос' },
+	{ id: 28, name: 'Объект' },
 ])
 const drag = ref(false)
 const filter = ref('')
@@ -73,7 +80,8 @@ q-drawer(:model-value="props.modelValue" side="right" :width="300" overlay borde
 			.tabel
 				div
 					q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;")
-					span.q-ml-sm {{ element.name }}
+					span.q-ml-sm
+						WordHighlighter(:query="filter") {{ element.name }}
 				q-btn(dense flat round icon="mdi-information-outline" size="sm")
 
 </template>

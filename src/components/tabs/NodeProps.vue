@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
+import { useStore } from '@/stores/store'
 import draggable from 'vuedraggable'
 
 const list1 = reactive([{ id: 0, name: 'Объект' }])
@@ -7,9 +8,11 @@ const list1 = reactive([{ id: 0, name: 'Объект' }])
 const remove = (ind: number) => {
 	list1.splice(ind, 1)
 }
+const store = useStore()
 </script>
 
 <template lang="pug">
+.text-h6(v-if="store.currentNode") {{ store.currentNode.data.text}}
 ul
 	li Возможные подчиненные объекты
 	li Порядок следования подчиненных объектов

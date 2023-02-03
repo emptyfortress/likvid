@@ -26,15 +26,16 @@ const add = () => {
 	const temp = { text: 'node', children: [] }
 	tree.value.add(temp, null)
 }
-const del = (e: any) => {
+const del = (e: Stat) => {
 	tree.value.remove(e)
+	store.setCurrentNode(null)
 }
 defineExpose({ add })
 
 const select = (e: Stat) => {
 	tree.value.statsFlat.map((item: any) => (item.data.selected = false))
 	e.data.selected = true
-	store.setSelectedNode(e)
+	store.setCurrentNode(e)
 	store.selection = true
 }
 const externalDataHandler = () => {
