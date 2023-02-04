@@ -27,7 +27,7 @@ q-card.new
 		q-list(separator)
 			q-item(v-for="item in items" :key="item.id" clickable v-ripple tag="router-link" :to="`/new/${item.id}`" v-close-popup)
 				q-item-section(avatar)
-					svg-icon(:name="item.icon")
+					SvgIcon(:name="item.icon")
 				q-item-section
 					q-item-label {{item.label}}
 </template>
