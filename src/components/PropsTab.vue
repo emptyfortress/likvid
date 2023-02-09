@@ -6,6 +6,8 @@ import NodeProps from '@/components/tabs/NodeProps.vue'
 import ViewProps from '@/components/tabs/ViewProps.vue'
 import RightsProps from '@/components/tabs/RightsProps.vue'
 import StateProps from '@/components/tabs/StateProps.vue'
+import Loader from '@/components/Loader.vue'
+import Error from '@/components/Error.vue'
 
 const activeTab = ref('one')
 
@@ -13,9 +15,19 @@ const tabs = [
 	{ id: 0, modified: false, name: 'one', label: 'Справочник' },
 	{ id: 1, modified: true, name: 'two', label: 'Узел' },
 	{ id: 2, modified: false, name: 'three', label: 'Представления' },
-	{ id: 4, modified: false, name: 'five', label: 'Права' },
-	{ id: 3, modified: false, name: 'four', label: 'Состояния' },
+	{ id: 3, modified: false, name: 'four', label: 'Права' },
+	{ id: 4, modified: false, name: 'five', label: 'Состояния' },
 ]
+
+// const AsyncComp = defineAsyncComponent({
+// 	loader: () => import('@/components/tabs/NodeProps.vue'),
+//
+// 	loadingComponent: Loader,
+// 	delay: 200,
+//
+// 	errorComponent: Error,
+// 	timeout: 3000,
+// })
 </script>
 
 <template lang="pug">
@@ -29,6 +41,7 @@ q-tab-panels(v-model='activeTab' animated)
 		CommonProps( )
 	q-tab-panel(name='two')
 		NodeProps
+		// AsyncComp
 	q-tab-panel(name='three')
 		ViewProps()
 	q-tab-panel(name='four')

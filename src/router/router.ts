@@ -23,6 +23,18 @@ export const router = createRouter({
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 		{
+			path: '/view',
+			name: 'view',
+			component: () => import('@/components/View.vue'),
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
+		{
+			path: '/run',
+			name: 'runtime',
+			component: () => import('@/components/RunTime.vue'),
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
+		{
 			path: '/new/:id',
 			name: 'new',
 			component: () => import('@/components/Constructor.vue'),

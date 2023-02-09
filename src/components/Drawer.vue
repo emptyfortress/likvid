@@ -20,9 +20,21 @@ const pages = [
 	},
 	{
 		id: 1,
-		title: 'Создать',
+		title: 'Design mode',
 		icon: 'mdi-plus-box-multiple',
 		url: '/new/0',
+	},
+	{
+		id: 2,
+		title: 'View mode',
+		icon: 'mdi-folder-outline',
+		url: '/view',
+	},
+	{
+		id: 3,
+		title: 'Runtime mode',
+		icon: 'mdi-folder-outline',
+		url: '/run',
 	},
 ]
 </script>
