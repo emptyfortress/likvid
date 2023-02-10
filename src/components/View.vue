@@ -31,7 +31,7 @@ q-page(padding)
 						template(v-slot:prepend)
 							q-icon(name="mdi-magnify" color="primary")
 					q-btn(round icon="mdi-plus" size="sm" dark color="primary" @click="").fab
-					q-tree(:nodes="paket" node-key="label" default-expand-all )
+					q-tree(:nodes="paket" node-key="label" default-expand-all icon="mdi-chevron-right")
 						template(v-slot:header-root="prop")
 							.row.items-center
 								SvgIcon(name="packet").q-mr-sm
@@ -68,5 +68,8 @@ q-page(padding)
 }
 .q-tree {
 	margin-top: 2rem;
+}
+:deep(.q-tree__arrow) {
+	font-size: 1.3rem;
 }
 </style>
