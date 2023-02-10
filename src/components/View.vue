@@ -5,13 +5,7 @@ import { useStore } from '@/stores/store'
 
 const store = useStore()
 const ratio = ref(45)
-const activeTab = ref('one')
 
-const tabs = [
-	{ id: 0, modified: false, name: 'one', label: 'Атрибуты' },
-	{ id: 1, modified: true, name: 'two', label: 'Узел' },
-	{ id: 2, modified: false, name: 'three', label: 'Представления' },
-]
 const paket = ref([
 	{
 		id: 0,
@@ -89,9 +83,9 @@ q-page(padding)
 	.container
 		.text-h6 Пакет документов "КОНТРАКТ"
 
-		q-splitter(v-model="ratio")
+		q-splitter(v-model="ratio").q-mt-md
 			template(#before)
-				q-scroll-area.home.pr
+				q-scroll-area.home
 					q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="add").fab
 					q-tree(:nodes="paket"
 						node-key="id"
@@ -108,9 +102,6 @@ q-page(padding)
 								span {{ prop.node.label }}
 					
 			template(#after)
-				q-tabs(v-model='activeTab' dense align="left").text-primary
-					q-tab(v-for='tab in tabs' :key='tab.id' :name='tab.name')
-						span {{tab.label}}
 				q-scroll-area.home
 					p fuck
 </template>
@@ -119,14 +110,11 @@ q-page(padding)
 @import '@/assets/styles/myvariables.scss';
 
 .home {
-	height: calc(100vh - 170px);
+	height: calc(100vh - 150px);
 	position: relative;
 	margin-right: 0.5rem;
 	padding: 1rem;
 	background: #fff;
-	&.pr {
-		margin-top: 35px;
-	}
 }
 .fab {
 	position: absolute;
