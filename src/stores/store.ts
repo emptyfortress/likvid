@@ -8,8 +8,11 @@ export const useStore = defineStore({
 	state: () => ({
 		mini: false,
 		selection: false,
+		rightDrawer: false,
+		treeChanged: false,
 		draggedNode: null as N,
 		currentNode: null as C,
+		mytree: [] as Stat[],
 	}),
 	getters: {},
 	actions: {
@@ -21,6 +24,21 @@ export const useStore = defineStore({
 		},
 		setCurrentNode(e: C) {
 			this.currentNode = e
+		},
+		showRightDrawer() {
+			this.rightDrawer = true
+		},
+		hideRightDrawer() {
+			this.rightDrawer = false
+		},
+		toggleRightDrawer() {
+			this.rightDrawer = !this.rightDrawer
+		},
+		setTreeChanged(payload: boolean) {
+			this.treeChanged = payload
+		},
+		setMyTree(e: Stat[]) {
+			this.mytree = [...e]
 		},
 	},
 })

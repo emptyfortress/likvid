@@ -2,9 +2,11 @@
 import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import DragTree from '@/components/DragTree.vue'
+import { useStore } from '@/stores/store'
 
+const store = useStore()
 const ratio = ref(50)
-const filter = ref('')
+// const filter = ref('')
 const activeTab = ref('one')
 const structure = ref('struct')
 
@@ -20,6 +22,14 @@ const paket = ref([
 		children: [{ label: 'Two' }, { label: 'trhee' }, { label: 'foru' }],
 	},
 ])
+const add = () => {
+	store.toggleRightDrawer()
+}
+
+const dragtree = ref(DragTree)
+const saveTree = () => {
+	dragtree.value.save()
+}
 </script>
 
 <template lang="pug">
@@ -31,11 +41,12 @@ q-page(padding)
 				q-tab(name="model") Просмотр
 
 			q-scroll-area.home
-				q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="").fab
+				q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="add").fab
+				q-btn(v-if="store.treeChanged" flat color="primary" label="Сохранить" @click="saveTree").save 
 
 				q-tab-panels(v-model="structure" animated)
 					q-tab-panel(name="struct")
-						DragTree()
+						DragTree( ref="dragtree")
 					
 					q-tab-panel(name="model")
 						q-tree(:nodes="paket" node-key="label" default-expand-all icon="mdi-chevron-right")
@@ -63,6 +74,11 @@ q-page(padding)
 	position: absolute;
 	bottom: 0.5rem;
 	right: 0.5rem;
+}
+.save {
+	position: absolute;
+	bottom: 0.5rem;
+	right: 5rem;
 }
 .title {
 	font-size: 1.2rem;

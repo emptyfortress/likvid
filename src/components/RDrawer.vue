@@ -14,16 +14,16 @@ const props = defineProps({
 const store = useStore()
 
 const list = reactive([
-	{ id: 0, name: 'Справочник' },
-	{ id: 1, name: 'Организация' },
-	{ id: 2, name: 'Филиал' },
-	{ id: 3, name: 'Контрагент' },
-	{ id: 4, name: 'Подразделение' },
+	{ id: 0, branch: true, name: 'Справочник' },
+	{ id: 1, branch: true, name: 'Организация' },
+	{ id: 2, branch: true, name: 'Филиал' },
+	{ id: 4, branch: true, name: 'Подразделение' },
+	{ id: 3, branch: true, name: 'Контрагент' },
+	{ id: 6, branch: true, name: 'Группа' },
+	{ id: 9, branch: true, name: 'Папка' },
 	{ id: 5, name: 'Сотрудник' },
-	{ id: 6, name: 'Группа' },
 	{ id: 7, name: 'Роль' },
 	{ id: 8, name: 'Должность' },
-	{ id: 9, name: 'Папка' },
 	{ id: 10, name: 'Файл' },
 	{ id: 11, name: 'Вложение' },
 	{ id: 12, name: 'Документ' },
@@ -77,9 +77,10 @@ q-drawer(:model-value="props.modelValue" side="right" :width="300" overlay borde
 		ghost-class="ghost"
 		).list-group
 		template(#item="{ element, index }")
-			.tabel
+			.tabel(:class="{ multi : element.branch}")
 				div
-					q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;")
+					q-icon(name="mdi-folder-outline" size="20px" color="primary" v-if="element.branch")
+					q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;" v-else)
 					span.q-ml-sm
 						WordHighlighter(:query="filter") {{ element.name }}
 				q-btn(dense flat round icon="mdi-information-outline" size="sm")
@@ -97,6 +98,9 @@ q-drawer(:model-value="props.modelValue" side="right" :width="300" overlay borde
 	font-size: 0.9rem;
 	display: grid;
 	grid-template-columns: 1fr auto;
+	&.multi {
+		background: #dbded3;
+	}
 	.q-icon,
 	.q-btn {
 		color: $primary;

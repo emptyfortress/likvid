@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import { Draggable } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
 import SvgIcon from '@/components/global/SvgIcon.vue'
@@ -14,9 +14,13 @@ let treedata = reactive([
 		text: 'Справочник',
 		root: true,
 		selected: false,
-		children: [{ text: 'Node 1', selected: false, children: [] }],
+		children: [],
 	},
 ])
+
+watch(treedata[0], () => {
+	store.setTreeChanged(true)
+})
 
 const toggle = (stat: any) => {
 	stat.open = !stat.open
@@ -30,7 +34,13 @@ const del = (e: Stat) => {
 	tree.value.remove(e)
 	store.setCurrentNode(null)
 }
-defineExpose({ add })
+
+const save = () => {
+	// console.log('fuuuuuck')
+	store.setMyTree(treedata)
+	store.setTreeChanged(false)
+}
+defineExpose({ add, save })
 
 const select = (e: Stat) => {
 	tree.value.statsFlat.map((item: any) => (item.data.selected = false))

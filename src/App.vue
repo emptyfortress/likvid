@@ -3,17 +3,15 @@ import { ref } from 'vue'
 import Drawer from '@/components/Drawer.vue'
 import RDrawer from '@/components/RDrawer.vue'
 import AddDialog from '@/components/AddDialog.vue'
+import { useStore } from '@/stores/store'
 
+const store = useStore()
 const leftDrawer = ref(true)
-const rightDrawer = ref(false)
 
 const toggleLeftDrawer = () => {
 	leftDrawer.value = !leftDrawer.value
 }
 
-const toggleRightDrawer = () => {
-	rightDrawer.value = !rightDrawer.value
-}
 const addDialog = ref(false)
 
 const showDialog = () => {
@@ -28,10 +26,10 @@ q-layout(view="hHh LpR fFf")
 			q-btn(dense flat round icon="mdi-menu" @click="toggleLeftDrawer" color="primary")
 			q-toolbar-title
 			q-btn(dense flat round icon="mdi-plus-box-multiple" @click="showDialog" color="primary")
-			q-btn(dense flat round icon="mdi-menu" @click="toggleRightDrawer" color="primary")
+			q-btn(dense flat round icon="mdi-menu" @click="store.toggleRightDrawer" color="primary")
 
 	Drawer(v-model="leftDrawer")
-	RDrawer(v-model="rightDrawer")
+	RDrawer(v-model="store.rightDrawer")
 
 	q-page-container
 		router-view(v-slot="{ Component, route }")
