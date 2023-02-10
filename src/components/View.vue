@@ -2,76 +2,11 @@
 import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
+import { packet } from '@/stores/packet'
 
 const store = useStore()
-const ratio = ref(45)
+const ratio = ref(40)
 
-const paket = ref([
-	{
-		id: 0,
-		label: 'Контракт',
-		header: 'root',
-		children: [
-			{
-				id: 1,
-				label: 'Исполнитель',
-				icon: 'mdi-folder-outline',
-				children: [
-					{
-						id: 5,
-						label: 'Выписка из ЕГРЮЛ',
-						icon: 'mdi-file-document-outline',
-					},
-					{
-						id: 6,
-						label: 'Устав предприятия',
-						icon: 'mdi-file-document-outline',
-					},
-					{
-						id: 7,
-						label: 'Учредительные документы',
-						icon: 'mdi-file-document-outline',
-					},
-					{
-						id: 8,
-						label: 'Доверенность на представителя директора',
-						icon: 'mdi-file-document-outline',
-					},
-					{
-						id: 9,
-						label: 'Декларации за прошедший год',
-						icon: 'mdi-file-document-outline',
-					},
-					{
-						id: 10,
-						label: 'Документы о соответствии тендеру',
-						icon: 'mdi-file-document-outline',
-					},
-					{
-						id: 11,
-						label: 'Сертификат банковской гарантии',
-						icon: 'mdi-file-document-outline',
-					},
-				],
-			},
-			{
-				id: 2,
-				label: 'Документы об оплате',
-				icon: 'mdi-folder-outline',
-			},
-			{
-				id: 3,
-				label: 'Исполнение контракта',
-				icon: 'mdi-file-document-outline',
-			},
-			{
-				id: 4,
-				label: 'Информация о заказчике',
-				icon: 'mdi-file-document-outline',
-			},
-		],
-	},
-])
 const add = () => {
 	store.toggleRightDrawer()
 }
@@ -80,30 +15,30 @@ const selected = ref(1)
 
 <template lang="pug">
 q-page(padding)
-	.container
-		.text-h6 Пакет документов "КОНТРАКТ"
+	.text-h6 Пакет документов "КОНТРАКТ"
 
-		q-splitter(v-model="ratio").q-mt-md
-			template(#before)
-				q-scroll-area.home
-					q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="add").fab
-					q-tree(:nodes="paket"
-						node-key="id"
-						default-expand-all
-						v-model:selected="selected"
-						icon="mdi-chevron-right")
-						template(v-slot:header-root="prop")
-							.row.items-center
-								component(:is="SvgIcon" name="packet" size="30px").q-mr-sm
-								div {{ prop.node.label }}
-						template(v-slot:default-header="prop")
-							.row.items-center
-								q-icon(:name="prop.node.icon" size="24px").q-mr-sm
-								span {{ prop.node.label }}
-					
-			template(#after)
-				q-scroll-area.home
-					p fuck
+	q-splitter(v-model="ratio").q-mt-md
+		template(#before)
+			q-scroll-area.home
+				q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="add").fab
+				q-tree(:nodes="packet"
+					node-key="id"
+					default-expand-all
+					v-model:selected="selected"
+					icon="mdi-chevron-right")
+					template(v-slot:header-root="prop")
+						.row.items-center
+							component(:is="SvgIcon" name="packet" size="30px").q-mr-sm
+							div {{ prop.node.label }}
+					template(v-slot:default-header="prop")
+						.row.items-center
+							q-icon(:name="prop.node.icon" size="24px").q-mr-sm
+							span {{ prop.node.label }}
+				
+		template(#after)
+			q-scroll-area.home
+				p fuck
+
 </template>
 
 <style scoped lang="scss">
@@ -133,9 +68,6 @@ q-page(padding)
 	width: 150px;
 	margin-left: 1rem;
 	margin-top: 1rem;
-}
-.q-tree {
-	margin-top: 2rem;
 }
 :deep(.q-tree__arrow) {
 	font-size: 1.3rem;
