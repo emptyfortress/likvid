@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
+import DragTree from '@/components/DragTree.vue'
 
 const ratio = ref(50)
 const filter = ref('')
 const activeTab = ref('one')
+const structure = ref('struct')
 
 const tabs = [
 	{ id: 0, modified: false, name: 'one', label: 'Справочник' },
@@ -22,41 +24,45 @@ const paket = ref([
 
 <template lang="pug">
 q-page(padding)
-	.container
-		q-splitter(v-model="ratio")
-			template(#before)
-				.title Пакет документов
-				q-scroll-area.home
-					q-input(v-model="filter" dense placeholder="filter" clearable style="width:200px").filt
-						template(v-slot:prepend)
-							q-icon(name="mdi-magnify" color="primary")
-					q-btn(round icon="mdi-plus" size="sm" dark color="primary" @click="").fab
-					q-tree(:nodes="paket" node-key="label" default-expand-all icon="mdi-chevron-right")
-						template(v-slot:header-root="prop")
-							.row.items-center
-								SvgIcon(name="packet").q-mr-sm
-								div {{ prop.node.label }}
+	q-splitter(v-model="ratio")
+		template(#before)
+			q-tabs(v-model="structure" dense align="left").text-primary
+				q-tab(name="struct") Структура
+				q-tab(name="model") Просмотр
 
-			template(#after)
-				q-tabs(v-model='activeTab' dense align="left").text-primary
-					q-tab(v-for='tab in tabs' :key='tab.id' :name='tab.name')
-						span {{tab.label}}
-				q-scroll-area.home.pr
-					p fuck
+			q-scroll-area.home
+				q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="").fab
+
+				q-tab-panels(v-model="structure" animated)
+					q-tab-panel(name="struct")
+						DragTree()
+					
+					q-tab-panel(name="model")
+						q-tree(:nodes="paket" node-key="label" default-expand-all icon="mdi-chevron-right")
+							template(v-slot:header-root="prop")
+								.row.items-center
+									svg-icon(name="packet").q-mr-sm
+									div {{ prop.node.label }}
+				
+		template(#after)
+			q-tabs(v-model='activeTab' dense align="left").text-primary
+				q-tab(v-for='tab in tabs' :key='tab.id' :name='tab.name')
+					span {{tab.label}}
+			q-scroll-area.home.pr
+				p fuck
 </template>
 
 <style scoped lang="scss">
 .home {
 	height: calc(100vh - 140px);
 	position: relative;
-	background: #fff;
 	margin-right: 0.5rem;
-	padding: 1rem;
+	background: #fff;
 }
 .fab {
 	position: absolute;
-	bottom: 0;
-	right: 0;
+	bottom: 0.5rem;
+	right: 0.5rem;
 }
 .title {
 	font-size: 1.2rem;
