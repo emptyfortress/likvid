@@ -2,15 +2,14 @@
 import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
-import { packet } from '@/stores/packet'
+import PropertyView from '@/components/PropertyView.vue'
 
 const store = useStore()
-const ratio = ref(40)
+const ratio = ref(32)
 
 const add = () => {
 	store.toggleRightDrawer()
 }
-const selected = ref(1)
 </script>
 
 <template lang="pug">
@@ -21,10 +20,10 @@ q-page(padding)
 		template(#before)
 			q-scroll-area.home
 				q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="add").fab
-				q-tree(:nodes="packet"
-					node-key="id"
+				q-tree(:nodes="store.packet"
+					node-key="label"
 					default-expand-all
-					v-model:selected="selected"
+					v-model:selected="store.selected"
 					icon="mdi-chevron-right")
 					template(v-slot:header-root="prop")
 						.row.items-center
@@ -37,7 +36,7 @@ q-page(padding)
 				
 		template(#after)
 			q-scroll-area.home
-				p fuck
+				PropertyView
 
 </template>
 

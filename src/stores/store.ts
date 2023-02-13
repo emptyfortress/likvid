@@ -10,11 +10,44 @@ export const useStore = defineStore({
 		selection: false,
 		rightDrawer: false,
 		treeChanged: false,
-		draggedNode: null as N,
-		currentNode: null as C,
-		mytree: [] as Stat[],
+		// draggedNode: null as N,
+		// currentNode: null as C,
+		// mytree: [] as Stat[],
+		selected: 'Контракт',
+		packet: [
+			{
+				id: 0,
+				label: 'Контракт',
+				header: 'root',
+				children: [
+					{
+						id: 1,
+						label: 'Информация о заказчике',
+						icon: 'mdi-file-document-outline',
+					},
+					{
+						id: 2,
+						label: 'Исполнитель',
+						icon: 'mdi-folder-outline',
+					},
+					{
+						id: 3,
+						label: 'Исполнение контракта',
+						icon: 'mdi-file-document-outline',
+					},
+				],
+			},
+		],
 	}),
-	getters: {},
+	getters: {
+		currentNode(state) {
+			if (state.selected === 'Контракт') {
+				return state.packet[0]
+			} else {
+				return state.packet[0].children.find((item) => item.label === state.selected)
+			}
+		},
+	},
 	actions: {
 		toggleMini() {
 			this.mini = !this.mini
