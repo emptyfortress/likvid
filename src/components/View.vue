@@ -8,7 +8,7 @@ const store = useStore()
 const ratio = ref(32)
 
 const add = () => {
-	store.toggleRightDrawer()
+	store.addNode()
 }
 </script>
 
@@ -19,7 +19,7 @@ q-page(padding)
 	q-splitter(v-model="ratio").q-mt-md
 		template(#before)
 			q-scroll-area.home
-				q-btn(round icon="mdi-plus" size="md" dark color="primary" @click="add").fab
+				q-btn(:disable="store.packet[0].children.length > 3" icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
 				q-tree(:nodes="store.packet"
 					node-key="label"
 					default-expand-all

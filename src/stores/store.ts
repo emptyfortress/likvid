@@ -52,12 +52,15 @@ export const useStore = defineStore({
 		toggleMini() {
 			this.mini = !this.mini
 		},
-		setDraggedNode(e: N) {
-			this.draggedNode = e
-		},
-		setCurrentNode(e: C) {
-			this.currentNode = e
-		},
+		// setDraggedNode(e: N) {
+		// 	this.draggedNode = e
+		// },
+		// setCurrentNode(e: C) {
+		// 	this.currentNode = e
+		// },
+		// setMyTree(e: Stat[]) {
+		// 	this.mytree = [...e]
+		// },
 		showRightDrawer() {
 			this.rightDrawer = true
 		},
@@ -70,8 +73,18 @@ export const useStore = defineStore({
 		setTreeChanged(payload: boolean) {
 			this.treeChanged = payload
 		},
-		setMyTree(e: Stat[]) {
-			this.mytree = [...e]
+		addNode() {
+			const change = {
+				id: 4,
+				label: 'Изменение контракта',
+				icon: 'mdi-file-document-outline',
+			}
+			this.packet[0].children.push(change)
+			this.selected = 'Изменение контракта'
+		},
+		removeNode() {
+			this.packet[0].children.pop()
+			this.selected = 'Контракт'
 		},
 	},
 })

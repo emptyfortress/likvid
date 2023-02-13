@@ -14,6 +14,9 @@ const id = ref()
 const num = ref()
 const sum = ref()
 const deadline = ref()
+const remove = () => {
+	store.removeNode()
+}
 </script>
 
 <template lang="pug">
@@ -89,6 +92,23 @@ q-tab-panels(v-model="store.selected"
 		ul(v-if="docs.length > 0")
 			li(v-for="item in docs" :key="item.label") {item.label}
 
+	q-tab-panel(name="Изменение контракта")
+		.row.justify-between.items-center
+			.title(v-if="store.currentNode") {{store.currentNode.label}}
+			q-btn(unelevated color="primary" label="Удалить документ" @click="remove") 
+		br
+		q-form.mygrid
+			.label Условие 1:
+			q-input(dense v-model="id" type="number")
+			.label Условие 2:
+			q-input(dense v-model="id" type="number")
+			.label Условие 3:
+			q-input(dense v-model="id" type="number")
+		q-separator.q-my-md
+		.inf Список документов:
+		q-btn(unelevated color="primary" label="Добавить" size="sm")
+		ul(v-if="docs.length > 0")
+			li(v-for="item in docs" :key="item.label") {item.label}
 </template>
 
 <style scoped lang="scss">

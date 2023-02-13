@@ -66,7 +66,6 @@ q-form.mygrid
 	.val Спб, наб. р. Смоленки 31
 	.label Руководитель:
 	.val Федорович Ю.
-// q-separator.q-my-md
 br
 br
 .inf Список документов:
@@ -111,7 +110,6 @@ q-table(:columns="columns"
 }
 .inf {
 	font-size: 0.9rem;
-	// margin-bottom: 1rem;
 }
 .q-td img {
 	height: 20px;
