@@ -10,9 +10,10 @@ export const useStore = defineStore({
 		selection: false,
 		rightDrawer: false,
 		treeChanged: false,
-		// draggedNode: null as N,
-		// currentNode: null as C,
-		// mytree: [] as Stat[],
+		draggedNode: null as N,
+		currentNode: null as C,
+		// currentNode1: null as C,
+		mytree: [] as Stat[],
 		selected: 'Контракт',
 		packet: [
 			{
@@ -40,7 +41,7 @@ export const useStore = defineStore({
 		],
 	}),
 	getters: {
-		currentNode(state) {
+		currentNode1(state) {
 			if (state.selected === 'Контракт') {
 				return state.packet[0]
 			} else {
@@ -52,15 +53,15 @@ export const useStore = defineStore({
 		toggleMini() {
 			this.mini = !this.mini
 		},
-		// setDraggedNode(e: N) {
-		// 	this.draggedNode = e
-		// },
-		// setCurrentNode(e: C) {
-		// 	this.currentNode = e
-		// },
-		// setMyTree(e: Stat[]) {
-		// 	this.mytree = [...e]
-		// },
+		setDraggedNode(e: N) {
+			this.draggedNode = e
+		},
+		setCurrentNode(e: C) {
+			this.currentNode = e
+		},
+		setMyTree(e: Stat[]) {
+			this.mytree = [...e]
+		},
 		showRightDrawer() {
 			this.rightDrawer = true
 		},

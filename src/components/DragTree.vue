@@ -5,6 +5,8 @@ import '@he-tree/vue/style/default.css'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
 
+type C = Stat | null
+
 const tree = ref()
 const trigger = ref()
 const store = useStore()
@@ -15,6 +17,10 @@ let treedata = reactive([
 		root: true,
 		selected: false,
 		children: [],
+		data: {
+			text: 'Справочник',
+			selected: false,
+		},
 	},
 ])
 
@@ -35,12 +41,13 @@ const del = (e: Stat) => {
 	store.setCurrentNode(null)
 }
 
-const save = () => {
-	// console.log('fuuuuuck')
-	store.setMyTree(treedata)
-	store.setTreeChanged(false)
-}
-defineExpose({ add, save })
+// const save = () => {
+// 	store.setMyTree(treedata)
+// 	store.setTreeChanged(false)
+// }
+
+// defineExpose({ add, save })
+defineExpose({ add })
 
 const select = (e: Stat) => {
 	tree.value.statsFlat.map((item: any) => (item.data.selected = false))
