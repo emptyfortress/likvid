@@ -18,7 +18,7 @@ q-page(padding)
 		template(#before)
 			q-scroll-area.home
 				DragTree(ref="dragtree")
-				q-btn(fab icon="mdi-plus" dark color="primary" @click="add").fab
+				q-btn(round icon="mdi-plus" dark color="primary" @click="add" size="md").fab
 		template(#after)
 			q-scroll-area.home.pr
 				PropsTab
@@ -31,13 +31,10 @@ h2 {
 .home {
 	height: calc(100vh - 99px);
 	position: relative;
-	/* &.pr { */
-	/* 	background: white; */
-	/* } */
 }
 .fab {
 	position: absolute;
-	bottom: 1rem;
-	right: 1rem;
+	bottom: 0.5rem;
+	right: 0.5rem;
 }
 </style>
