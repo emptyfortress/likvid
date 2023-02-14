@@ -71,7 +71,7 @@ export const useStore = defineStore({
 		setCurrentNode(e: C) {
 			this.currentNode = e
 		},
-		setMyTree(e: Stat[]) {
+		setMyTree(e: any) {
 			this.mytree = [...e]
 		},
 		showRightDrawer() {
@@ -102,7 +102,7 @@ export const useStore = defineStore({
 		addNewItemToAddDialog(e: string) {
 			const temp = {
 				id: this.createList.length + 1,
-				icon: 'users',
+				icon: 'book',
 				label: e,
 				to: '',
 				className: 'act',

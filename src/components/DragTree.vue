@@ -39,6 +39,7 @@ const del = (e: Stat) => {
 
 const save = (e: string) => {
 	store.addNewItemToAddDialog(e)
+	store.setMyTree(treedata)
 }
 
 defineExpose({ add, save })
