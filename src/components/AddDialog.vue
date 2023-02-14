@@ -1,19 +1,8 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/global/SvgIcon.vue'
+import { useStore } from '@/stores/store'
 
-const items = [
-	{ id: 0, icon: 'users', label: 'Сотрудников', to: '', className: '' },
-	{ id: 1, icon: 'partner', label: 'Контрагентов', to: '', className: '' },
-	{
-		id: 2,
-		icon: 'packet',
-		label: 'Пакет документов',
-		to: '',
-		className: '',
-	},
-	{ id: 3, icon: 'nomenclatura', label: 'Номенклатура дел', to: '', className: '' },
-	{ id: 4, icon: 'cran', label: 'С нуля', to: '', className: '' },
-]
+const store = useStore()
 </script>
 
 <template lang="pug">
@@ -25,9 +14,9 @@ q-card.new
 
 	q-card-section
 		q-list(separator)
-			q-item(v-for="item in items" :key="item.id" clickable v-ripple tag="router-link" :to="`/new/${item.id}`" v-close-popup)
+			q-item(v-for="item in store.createList" :key="item.id" clickable v-ripple tag="router-link" :to="item.to" :class="item.className" v-close-popup)
 				q-item-section(avatar)
-					SvgIcon(:name="item.icon")
+					component(:is="SvgIcon" :name="item.icon")
 				q-item-section
 					q-item-label {{item.label}}
 </template>
@@ -44,5 +33,8 @@ q-card.new
 }
 .q-item {
 	background: $bgMain;
+	&.act {
+		background: #d3e8d4;
+	}
 }
 </style>

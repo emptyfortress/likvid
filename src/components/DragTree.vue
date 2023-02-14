@@ -17,10 +17,10 @@ let treedata = reactive([
 		root: true,
 		selected: false,
 		children: [],
-		data: {
-			text: 'Справочник',
-			selected: false,
-		},
+		// data: {
+		// 	text: 'Справочник',
+		// 	selected: false,
+		// },
 	},
 ])
 
@@ -54,6 +54,7 @@ const select = (e: Stat) => {
 	e.data.selected = true
 	store.setCurrentNode(e)
 	store.selection = true
+	console.log(e)
 }
 const externalDataHandler = () => {
 	return { text: store.draggedNode }
@@ -80,6 +81,7 @@ const externalDataHandler = () => {
 						q-list
 							q-item(clickable @click="del(stat)" v-close-popup).pink
 								q-item-section Удалить
+	pre {{treedata}}
 </template>
 
 <style scoped lang="scss">

@@ -39,6 +39,19 @@ export const useStore = defineStore({
 				],
 			},
 		],
+		createList: [
+			{ id: 0, icon: 'users', label: 'Сотрудников', to: '', className: '' },
+			{ id: 1, icon: 'partner', label: 'Контрагентов', to: '', className: '' },
+			{ id: 3, icon: 'nomenclatura', label: 'Номенклатура дел', to: '', className: '' },
+			{
+				id: 2,
+				icon: 'packet',
+				label: 'Пакет документов "Контракт"',
+				to: '/view',
+				className: 'act',
+			},
+			{ id: 4, icon: 'cran', label: 'С нуля', to: '/new/0', className: 'act' },
+		],
 	}),
 	getters: {
 		currentNode1(state) {
