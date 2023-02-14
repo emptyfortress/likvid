@@ -2,8 +2,10 @@
 import { ref } from 'vue'
 import PropsTab from '@/components/PropsTab.vue'
 import DragTree from '@/components/DragTree.vue'
+import { useStore } from '@/stores/store'
 
 const ratio = ref(30)
+const store = useStore()
 
 const dragtree = ref(DragTree)
 
@@ -17,8 +19,9 @@ q-page(padding)
 	q-splitter(v-model="ratio")
 		template(#before)
 			q-scroll-area.home
-				DragTree(ref="dragtree")
+				component(:is="DragTree" ref="dragtree")
 				q-btn(round icon="mdi-plus" dark color="primary" @click="add" size="md").fab
+				q-btn(v-if="store.treeChanged" flat color="primary" label="Сохранить" @click="").fab1
 		template(#after)
 			q-scroll-area.home.pr
 				PropsTab
@@ -36,5 +39,11 @@ h2 {
 	position: absolute;
 	bottom: 0.5rem;
 	right: 0.5rem;
+}
+.fab1 {
+	transition: 0.2s ease all;
+	position: absolute;
+	bottom: 0.5rem;
+	right: 3.5rem;
 }
 </style>
