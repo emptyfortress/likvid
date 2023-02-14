@@ -20,7 +20,7 @@ let treedata = reactive([
 	},
 ])
 
-watch(treedata[0], () => {
+watch(treedata, () => {
 	store.setTreeChanged(true)
 })
 
