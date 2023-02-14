@@ -17,10 +17,6 @@ let treedata = reactive([
 		root: true,
 		selected: false,
 		children: [],
-		// data: {
-		// 	text: 'Справочник',
-		// 	selected: false,
-		// },
 	},
 ])
 
