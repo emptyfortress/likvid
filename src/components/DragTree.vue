@@ -13,8 +13,9 @@ const store = useStore()
 
 let treedata = reactive([
 	{
+		id: 0,
 		text: 'Справочник',
-		root: true,
+		header: 'root',
 		selected: false,
 		children: [],
 	},
@@ -29,7 +30,12 @@ const toggle = (stat: any) => {
 }
 
 const add = () => {
-	const temp = { text: 'node', children: [] }
+	const temp = {
+		text: 'node',
+		id: Date.now(),
+		selected: false,
+		children: [],
+	}
 	tree.value.add(temp, null)
 }
 const del = (e: Stat) => {
@@ -52,7 +58,11 @@ const select = (e: Stat) => {
 	console.log(e)
 }
 const externalDataHandler = () => {
-	return { text: store.draggedNode }
+	return {
+		text: store.draggedNode,
+		id: Date.now(),
+		selected: false,
+	}
 }
 </script>
 
@@ -69,14 +79,12 @@ const externalDataHandler = () => {
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
-				svg-icon( name="book" size="20px" v-if="node.root === true").sp
+				component(:is="SvgIcon" name="book" size="20px" v-if="node.root === true").sp
 				label {{ node.text }}
 				q-btn(flat round icon="mdi-close" size="sm")
 					q-menu
 						q-list
 							q-item(clickable @click="del(stat)" v-close-popup).pink
-								q-item-section Удалить
-	pre {{treedata}}
 </template>
 
 <style scoped lang="scss">

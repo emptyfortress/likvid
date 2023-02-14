@@ -104,7 +104,7 @@ export const useStore = defineStore({
 				id: this.createList.length + 1,
 				icon: 'book',
 				label: e,
-				to: '',
+				to: '/view1',
 				className: 'act',
 			}
 			this.createList.push(temp)

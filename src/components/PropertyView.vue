@@ -26,7 +26,7 @@ q-tab-panels(v-model="store.selected"
 	transition-next="jump-up")
 
 	q-tab-panel(name="Контракт")
-		.title(v-if="store.currentNode1") {{store.currentNode1.label}}
+		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 
 		q-form.mygrid
 			.label id:
@@ -41,7 +41,7 @@ q-tab-panels(v-model="store.selected"
 			q-input(dense v-model="deadline" type="date").dat
 
 	q-tab-panel(name="Информация о заказчике")
-		.title(v-if="store.currentNode1") {{store.currentNode1.label}}
+		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 	
 		q-form.mygrid
 			.label Заказчик:
@@ -61,11 +61,11 @@ q-tab-panels(v-model="store.selected"
 			li(v-for="item in docs" :key="item.label") {item.label}
 
 	q-tab-panel(name="Исполнитель")
-		.title(v-if="store.currentNode1") {{store.currentNode1.label}}
+		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 		DocsVision
 
 	q-tab-panel(name="Исполнение контракта")
-		.title(v-if="store.currentNode1") {{store.currentNode1.label}}
+		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 		q-form.mygrid
 			.label Сумма контракта:
 			q-input(dense v-model="id" type="number")
@@ -94,7 +94,7 @@ q-tab-panels(v-model="store.selected"
 
 	q-tab-panel(name="Изменение контракта")
 		.row.justify-between.items-center
-			.title(v-if="store.currentNode1") {{store.currentNode1.label}}
+			.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 			q-btn(unelevated color="primary" label="Удалить документ" @click="remove") 
 		br
 		q-form.mygrid

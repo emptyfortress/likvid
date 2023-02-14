@@ -29,6 +29,12 @@ export const router = createRouter({
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 		{
+			path: '/view1',
+			name: 'view1',
+			component: () => import('@/components/View1.vue'),
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
+		{
 			path: '/run',
 			name: 'runtime',
 			component: () => import('@/components/RunTime.vue'),

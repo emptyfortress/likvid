@@ -45,7 +45,7 @@ q-page(padding)
 				q-space
 				q-btn(icon="mdi-close" flat round dense @click="newSprav = false")
 			q-card-section
-				q-input(v-model="newName" ).inp
+				q-input(v-model="newName" autofocus).inp
 			q-card-section
 				q-card-actions(align="right")
 					q-btn(flat color="primary" label="Отмена" @click="newSprav = false") 
