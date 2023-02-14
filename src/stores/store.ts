@@ -12,28 +12,27 @@ export const useStore = defineStore({
 		treeChanged: false,
 		draggedNode: null as N,
 		currentNode: null as C,
-		// currentNode1: null as C,
 		mytree: [] as Stat[],
 		selected: 'Контракт',
 		packet: [
 			{
 				id: 0,
-				label: 'Контракт',
+				text: 'Контракт',
 				header: 'root',
 				children: [
 					{
 						id: 1,
-						label: 'Информация о заказчике',
+						text: 'Информация о заказчике',
 						icon: 'mdi-file-document-outline',
 					},
 					{
 						id: 2,
-						label: 'Исполнитель',
+						text: 'Исполнитель',
 						icon: 'mdi-folder-outline',
 					},
 					{
 						id: 3,
-						label: 'Исполнение контракта',
+						text: 'Исполнение контракта',
 						icon: 'mdi-file-document-outline',
 					},
 				],

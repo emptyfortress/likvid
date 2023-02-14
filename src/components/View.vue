@@ -21,18 +21,18 @@ q-page(padding)
 			q-scroll-area.home
 				q-btn(:disable="store.packet[0].children.length > 3" icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
 				q-tree(:nodes="store.packet"
-					node-key="label"
+					node-key="text"
 					default-expand-all
 					v-model:selected="store.selected"
 					icon="mdi-chevron-right")
 					template(v-slot:header-root="prop")
 						.row.items-center
 							component(:is="SvgIcon" name="packet" size="30px").q-mr-sm
-							div {{ prop.node.label }}
+							div {{ prop.node.text }}
 					template(v-slot:default-header="prop")
 						.row.items-center
 							q-icon(:name="prop.node.icon" size="24px").q-mr-sm
-							span {{ prop.node.label }}
+							span {{ prop.node.text }}
 				
 		template(#after)
 			q-scroll-area.home
