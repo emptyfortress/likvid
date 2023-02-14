@@ -57,7 +57,7 @@ export const useStore = defineStore({
 			if (state.selected === 'Контракт') {
 				return state.packet[0]
 			} else {
-				return state.packet[0].children.find((item) => item.label === state.selected)
+				return state.packet[0].children.find((item) => item.text === state.selected)
 			}
 		},
 	},
@@ -89,7 +89,7 @@ export const useStore = defineStore({
 		addNode() {
 			const change = {
 				id: 4,
-				label: 'Изменение контракта',
+				text: 'Изменение контракта',
 				icon: 'mdi-file-document-outline',
 			}
 			this.packet[0].children.push(change)
@@ -98,6 +98,16 @@ export const useStore = defineStore({
 		removeNode() {
 			this.packet[0].children.pop()
 			this.selected = 'Контракт'
+		},
+		addNewItemToAddDialog(e: string) {
+			const temp = {
+				id: this.createList.length + 1,
+				icon: 'users',
+				label: e,
+				to: '',
+				className: 'act',
+			}
+			this.createList.push(temp)
 		},
 	},
 })

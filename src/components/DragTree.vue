@@ -37,13 +37,11 @@ const del = (e: Stat) => {
 	store.setCurrentNode(null)
 }
 
-// const save = () => {
-// 	store.setMyTree(treedata)
-// 	store.setTreeChanged(false)
-// }
+const save = (e: string) => {
+	store.addNewItemToAddDialog(e)
+}
 
-// defineExpose({ add, save })
-defineExpose({ add })
+defineExpose({ add, save })
 
 const select = (e: Stat) => {
 	tree.value.statsFlat.map((item: any) => (item.data.selected = false))

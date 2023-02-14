@@ -6,12 +6,24 @@ import { useStore } from '@/stores/store'
 
 const ratio = ref(30)
 const store = useStore()
+const newName = ref('')
 
 const dragtree = ref(DragTree)
 
 const add = () => {
 	dragtree.value.add()
 }
+
+const save = () => {
+	newSprav.value = true
+}
+const addnew = () => {
+	dragtree.value.save(newName.value)
+	newSprav.value = false
+	newName.value = ''
+	store.setTreeChanged(false)
+}
+const newSprav = ref(false)
 </script>
 
 <template lang="pug">
@@ -21,10 +33,25 @@ q-page(padding)
 			q-scroll-area.home
 				component(:is="DragTree" ref="dragtree")
 				q-btn(round icon="mdi-plus" dark color="primary" @click="add" size="md").fab
-				q-btn(v-if="store.treeChanged" flat color="primary" label="Сохранить" @click="").fab1
+				q-btn(v-if="store.treeChanged" flat color="primary" label="Сохранить" @click="save").fab1
 		template(#after)
 			q-scroll-area.home.pr
-				PropsTab
+				component(:is="PropsTab" )
+
+	q-dialog(:model-value="newSprav")
+		q-card(style="min-width: 400px")
+			q-card-section.row.items-center.q-pb-none
+				.text-h6 Назовите справочник
+				q-space
+				q-btn(icon="mdi-close" flat round dense @click="newSprav = false")
+			q-card-section
+				q-input(v-model="newName" ).inp
+			q-card-section
+				q-card-actions(align="right")
+					q-btn(flat color="primary" label="Отмена" @click="newSprav = false") 
+					q-btn(unelevated color="primary" label="Сохранить" @click="addnew") 
+		
+
 </template>
 
 <style scoped lang="scss">
@@ -45,5 +72,8 @@ h2 {
 	position: absolute;
 	bottom: 0.5rem;
 	right: 3.5rem;
+}
+.inp {
+	font-size: 1.1rem;
 }
 </style>
