@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useQuasar } from 'quasar'
 import { useStore } from '@/stores/store'
 import DocsVision from '@/components/DocsVision.vue'
 
@@ -7,15 +8,34 @@ interface Docs {
 	label: string
 }
 const store = useStore()
+const $q = useQuasar()
 
 const docs = ref([] as Docs[])
 
-const id = ref()
-const num = ref()
-const sum = ref()
-const deadline = ref()
+const id = ref(null)
+const num = ref(null)
+const sum = ref(null)
+const deadline = ref(null)
 const remove = () => {
 	store.removeNode()
+}
+const rule = computed(() => {
+	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']
+})
+
+const save = () => {
+	$q.notify({
+		color: 'positive',
+		textColor: 'white',
+		icon: 'mdi-check-bold',
+		message: 'Сохранено',
+	})
+}
+const reset = () => {
+	id.value = null
+	num.value = null
+	sum.value = null
+	deadline.value = null
 }
 </script>
 
@@ -23,22 +43,27 @@ const remove = () => {
 q-tab-panels(v-model="store.selected"
 	animated
 	transition-prev="jump-up"
-	transition-next="jump-up")
+	transition-next="jump-up").rel
 
 	q-tab-panel(name="Контракт")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 
-		q-form.mygrid
-			.label id:
-			q-input(dense v-model="id" type="number")
-			.label Номер контракта:
-			q-input(dense v-model="num" type="number")
-			.label Исполнитель:
-			.link ООО "Доквижн"
-			.label Общая стоимость контракта:
-			q-input(dense v-model="sum" type="number")
-			.label Сроки исполнения:
-			q-input(dense v-model="deadline" type="date").dat
+		q-form(@submit="save" @reset="reset")
+			.mygrid
+				.label id:
+				q-input(dense v-model="id" type="number" lazy-rules :rules="rule")
+				.label Номер контракта:
+				q-input(dense v-model="num" type="number" lazy-rules :rules="rule")
+				.label Исполнитель:
+				.link ООО "Доквижн"
+				.label Общая стоимость контракта:
+				q-input(dense v-model="sum" type="number" lazy-rules :rules="rule")
+				.label Сроки исполнения:
+				q-input(dense v-model="deadline" type="date" lazy-rules :rules="rule").dat
+
+			q-card-actions(align="right")
+				q-btn(flat color="primary" label="Отмена" type="reset") 
+				q-btn(unelevated color="primary" label="Сохранить" type="submit") 
 
 	q-tab-panel(name="Информация о заказчике")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
@@ -62,7 +87,7 @@ q-tab-panels(v-model="store.selected"
 
 	q-tab-panel(name="Исполнитель")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-		DocsVision
+		component(:is="DocsVision" )
 
 	q-tab-panel(name="Исполнение контракта")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
@@ -146,5 +171,12 @@ li {
 	color: $primary;
 	text-decoration: underline;
 	cursor: pointer;
+}
+.q-card__actions {
+	margin-top: 2rem;
+	/* position: absolute; */
+	/* bottom: 0; */
+	/* right: 0; */
+	/* width: 100%; */
 }
 </style>

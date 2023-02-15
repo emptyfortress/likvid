@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { Quasar } from 'quasar'
+import { Quasar, Notify } from 'quasar'
 import quasarIconSet from 'quasar/icon-set/mdi-v6'
 import '@quasar/extras/roboto-font/roboto-font.css'
 import '@quasar/extras/mdi-v6/mdi-v6.css'
@@ -13,7 +13,7 @@ const pinia = createPinia()
 const app = createApp(App)
 
 app.use(Quasar, {
-	plugins: {}, // import Quasar plugins and add here
+	plugins: { Notify }, // import Quasar plugins and add here
 	iconSet: quasarIconSet,
 	config: {
 		brand: {
@@ -28,6 +28,14 @@ app.use(Quasar, {
 			negative: '#C10015',
 			info: '#2a33d4',
 			warning: '#fac53e',
+		},
+		notify: {
+			// type: 'warning',
+			position: 'bottom-right',
+			timeout: 3000,
+			icon: 'mdi-alert',
+			color: 'primary',
+			classes: 'notifications',
 		},
 	},
 	/*
