@@ -36,7 +36,17 @@ const reset = () => {
 	num.value = null
 	sum.value = null
 	deadline.value = null
+	val1.value = null
+	val2.value = null
+	val3.value = null
+	val4.value = null
+	val5.value = null
 }
+const val1 = ref(null)
+const val2 = ref(null)
+const val3 = ref(null)
+const val4 = ref(null)
+const val5 = ref(null)
 </script>
 
 <template lang="pug">
@@ -68,17 +78,22 @@ q-tab-panels(v-model="store.selected"
 	q-tab-panel(name="Информация о заказчике")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 	
-		q-form.mygrid
-			.label Заказчик:
-			q-input(dense v-model="id" type="text")
-			.label ИНН:
-			q-input(dense v-model="id" type="number")
-			.label КПП:
-			q-input(dense v-model="id" type="number")
-			.label Юридический адрес:
-			q-input(dense v-model="id" type="text")
-			.label Руководитель:
-			q-input(dense v-model="id" type="text")
+		q-form(@submit="save" @reset="reset")
+			.mygrid
+				.label Заказчик:
+				q-input(dense v-model="val1" type="text" lazy-rules :rules="rule")
+				.label ИНН:
+				q-input(dense v-model="val2" type="number" lazy-rules :rules="rule")
+				.label КПП:
+				q-input(dense v-model="val3" type="number" lazy-rules :rules="rule")
+				.label Юридический адрес:
+				q-input(dense v-model="val4" type="text" lazy-rules :rules="rule")
+				.label Руководитель:
+				q-input(dense v-model="val5" type="text" lazy-rules :rules="rule")
+			q-card-actions(align="right")
+				q-btn(flat color="primary" label="Отмена" type="reset") 
+				q-btn(unelevated color="primary" label="Сохранить" type="submit") 
+
 		q-separator.q-my-md
 		.inf Документы, подтверждающие статус, необходимый для заключения контракта:
 		q-btn(unelevated color="primary" label="Добавить" size="sm")
