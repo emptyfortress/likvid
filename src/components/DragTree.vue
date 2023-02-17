@@ -32,7 +32,7 @@ const externalDataHandler = () => {
 		selected: false,
 	}
 }
-const treedata = [
+const treedata = reactive([
 	{
 		id: 0,
 		text: 'Root',
@@ -51,7 +51,7 @@ const treedata = [
 			},
 		],
 	},
-]
+])
 </script>
 
 <template lang="pug">
@@ -60,7 +60,6 @@ const treedata = [
 		ref="tree"
 		v-model="treedata"
 		virtualization
-		triggerClass="trigger"
 		:onExternalDragOver="()=> true"
 		:externalDataHandler="externalDataHandler"
 		:watermark="false")
