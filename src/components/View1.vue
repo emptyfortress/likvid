@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
 import PropertyView from '@/components/PropertyView.vue'
+import EditTree from '@/components/EditTree.vue'
 
 const store = useStore()
 const ratio = ref(32)
@@ -14,29 +15,14 @@ const add = () => {
 
 <template lang="pug">
 q-page(padding)
-	// .text-h6 {{ store.mytree[0].data.text}}
+	.text-h6 {{ store.treedata[0].text}}
 
 	q-splitter(v-model="ratio").q-mt-md
 		template(#before)
 			q-scroll-area.home
-				q-btn(:disable="store.packet[0].children.length > 3" icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
-
-				q-tree(:nodes="store.mytree"
-					node-key="id"
-					default-expand-all
-					v-model:selected="store.selected"
-					icon="mdi-chevron-right")
-
-					template(v-slot:header-root="prop")
-						.row.items-center
-							component(:is="SvgIcon"  name="book" size="24px").q-mr-sm
-							div {{ prop.node.text }}
-
-					template(v-slot:default-header="prop")
-						.row.items-center
-							q-icon(v-if="prop.node.children.length > 0" name="mdi-folder-outline" size="24px").q-mr-sm
-							q-icon(v-else  name="mdi-file-document-outline" size="24px").q-mr-sm
-							span {{ prop.node.text }}
+				q-btn(icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
+				component(:is="EditTree" ref="dragtree" :watermark="false")
+				pre {{ store.treedata }}
 
 		template(#after)
 			q-scroll-area.home

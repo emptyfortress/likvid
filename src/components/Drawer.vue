@@ -10,51 +10,12 @@ const props = defineProps({
 		default: true,
 	},
 })
-
-const pages = [
-	{
-		id: 0,
-		title: 'Главная',
-		icon: 'mdi-home-roof',
-		url: '/',
-	},
-	{
-		id: 1,
-		title: 'Design mode',
-		icon: 'mdi-ruler-square-compass',
-		url: '/new/0',
-	},
-	{
-		id: 2,
-		title: 'Edit mode',
-		icon: 'mdi-pencil-ruler',
-		url: '/view1',
-	},
-	{
-		id: 3,
-		// title: '',
-		// icon: 'mdi-ruler-square-compass',
-		// url: '/new/0',
-	},
-	{
-		id: 4,
-		title: 'Контракт',
-		icon: 'mdi-folder-outline',
-		url: '/view',
-	},
-	// {
-	// 	id: 3,
-	// 	title: 'Runtime mode',
-	// 	icon: 'mdi-folder-outline',
-	// 	url: '/run',
-	// },
-]
 </script>
 
 <template lang="pug">
 q-drawer(:model-value="props.modelValue" side="left" :mini="mystore.mini" :width="200").rel
 	q-list.q-mt-lg
-		q-item(clickable v-ripple v-for="page in pages" :to="page.url")
+		q-item(clickable v-ripple v-for="page in mystore.pages" :to="page.url")
 			q-item-section(avatar)
 				q-icon(:name="page.icon")
 			q-item-section
@@ -63,6 +24,7 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="mystore.mini" :width
 	q-btn(round flat dense  @click="mystore.toggleMini").mini.gt-sm
 		q-icon(name="mdi-backburger" v-if="!mystore.mini")
 		q-icon(name="mdi-forwardburger" v-else)
+
 
 </template>
 

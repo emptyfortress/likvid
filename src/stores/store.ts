@@ -12,7 +12,6 @@ export const useStore = defineStore({
 		treeChanged: false,
 		draggedNode: null as N,
 		currentNode: null as C,
-		mytree: [] as Stat[],
 		selected: 'Контракт',
 		packet: [
 			{
@@ -57,8 +56,42 @@ export const useStore = defineStore({
 				text: 'Root',
 				header: 'root',
 				selected: false,
-				children: [],
+				children: [
+					{
+						id: 1,
+						text: 'Node',
+						selected: false,
+						children: [],
+					},
+				],
 			},
+		],
+		pages: [
+			{
+				id: 0,
+				title: 'Главная',
+				icon: 'mdi-home-roof',
+				url: '/',
+			},
+			{
+				id: 1,
+				title: 'Design mode',
+				icon: 'mdi-ruler-square-compass',
+				url: '/new/0',
+			},
+			{},
+			{
+				id: 4,
+				title: 'Контракт',
+				icon: 'mdi-folder-outline',
+				url: '/view',
+			},
+			// {
+			// 	id: 2,
+			// 	title: 'Edit mode',
+			// 	icon: 'mdi-folder-outline',
+			// 	url: '/view1',
+			// },
 		],
 	}),
 	getters: {
@@ -83,9 +116,9 @@ export const useStore = defineStore({
 		setCurrentNode(e: C) {
 			this.currentNode = e
 		},
-		setMyTree(e: any) {
-			this.mytree = [...e]
-		},
+		// setMyTree(e: any) {
+		// 	this.mytree = [...e]
+		// },
 		showRightDrawer() {
 			this.rightDrawer = true
 		},
