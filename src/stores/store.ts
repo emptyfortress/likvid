@@ -116,9 +116,6 @@ export const useStore = defineStore({
 		setCurrentNode(e: C) {
 			this.currentNode = e
 		},
-		// setMyTree(e: any) {
-		// 	this.mytree = [...e]
-		// },
 		showRightDrawer() {
 			this.rightDrawer = true
 		},
@@ -144,6 +141,7 @@ export const useStore = defineStore({
 			this.packet[0].children.pop()
 			this.selected = 'Контракт'
 		},
+
 		addNewItemToAddDialog(e: string) {
 			const temp = {
 				id: this.createList.length + 1,
@@ -153,6 +151,15 @@ export const useStore = defineStore({
 				className: 'act',
 			}
 			this.createList.push(temp)
+		},
+		addNewItemToDrawer(e: string) {
+			const temp = {
+				id: Math.floor(Math.random() * 10000),
+				icon: 'mdi-folder-outline',
+				title: e,
+				url: '/view1',
+			}
+			this.pages.push(temp)
 		},
 	},
 })

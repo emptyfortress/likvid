@@ -5,59 +5,27 @@ import '@he-tree/vue/style/default.css'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
 
-type C = Stat | null
-
 const tree = ref()
 const trigger = ref()
 const store = useStore()
-
-let treedata = reactive([
-	{
-		id: 0,
-		text: 'Root',
-		header: 'root',
-		selected: false,
-		children: [],
-	},
-])
-
-watch(treedata, () => {
-	store.setTreeChanged(true)
-})
 
 const toggle = (stat: any) => {
 	stat.open = !stat.open
 }
 
-const add = () => {
-	const temp = {
-		text: 'node',
-		id: Date.now(),
-		selected: false,
-		children: [],
-	}
-	tree.value.add(temp, null)
-}
 const del = (e: Stat) => {
 	tree.value.remove(e)
 	store.setCurrentNode(null)
 }
-
-const save = (e: string) => {
-	store.addNewItemToAddDialog(e)
-	store.setMyTree(treedata)
-}
-
-defineExpose({ add, save })
 
 const select = (e: Stat) => {
 	tree.value.statsFlat.map((item: any) => (item.data.selected = false))
 	e.data.selected = true
 	store.setCurrentNode(e)
 	store.selection = true
-	console.log(e)
 }
 const externalDataHandler = () => {
+	store.setTreeChanged(true)
 	return {
 		text: store.draggedNode,
 		id: Date.now(),
@@ -70,7 +38,7 @@ const externalDataHandler = () => {
 .test
 	component(:is="Draggable"
 		ref="tree"
-		v-model="treedata"
+		v-model="store.treedata"
 		virtualization
 		:triggerClass="trigger"
 		:onExternalDragOver="()=> true"
@@ -85,6 +53,7 @@ const externalDataHandler = () => {
 					q-menu
 						q-list
 							q-item(clickable @click="del(stat)" v-close-popup).pink
+	pre {{ store.treedata }}
 </template>
 
 <style scoped lang="scss">

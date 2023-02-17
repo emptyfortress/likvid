@@ -10,20 +10,18 @@ const newName = ref('')
 
 const dragtree = ref(DragTree)
 
-const add = () => {
-	dragtree.value.add()
-}
-
 const save = () => {
 	newSprav.value = true
 }
+
+const newSprav = ref(false)
+
 const addnew = () => {
-	dragtree.value.save(newName.value)
+	store.addNewItemToDrawer(newName.value)
 	newSprav.value = false
 	newName.value = ''
 	store.setTreeChanged(false)
 }
-const newSprav = ref(false)
 </script>
 
 <template lang="pug">
