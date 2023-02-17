@@ -61,7 +61,7 @@ const ondragend = () => {
 </script>
 
 <template lang="pug">
-q-drawer(:model-value="props.modelValue" side="right" :width="300" overlay bordered)
+q-drawer(:model-value="props.modelValue" side="right" :width="600" overlay bordered)
 	.zg
 		div Библиотека
 		q-badge {{ list.length }}

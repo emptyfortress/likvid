@@ -14,7 +14,7 @@ const store = useStore()
 let treedata = reactive([
 	{
 		id: 0,
-		text: 'Справочник',
+		text: 'Root',
 		header: 'root',
 		selected: false,
 		children: [],

@@ -21,21 +21,33 @@ const pages = [
 	{
 		id: 1,
 		title: 'Design mode',
-		icon: 'mdi-plus-box-multiple',
+		icon: 'mdi-ruler-square-compass',
 		url: '/new/0',
 	},
 	{
 		id: 2,
-		title: 'View mode',
-		icon: 'mdi-folder-outline',
-		url: '/view',
+		title: 'Edit mode',
+		icon: 'mdi-pencil-ruler',
+		url: '/view1',
 	},
 	{
 		id: 3,
-		title: 'Runtime mode',
-		icon: 'mdi-folder-outline',
-		url: '/run',
+		// title: '',
+		// icon: 'mdi-ruler-square-compass',
+		// url: '/new/0',
 	},
+	{
+		id: 4,
+		title: 'Контракт',
+		icon: 'mdi-folder-outline',
+		url: '/view',
+	},
+	// {
+	// 	id: 3,
+	// 	title: 'Runtime mode',
+	// 	icon: 'mdi-folder-outline',
+	// 	url: '/run',
+	// },
 ]
 </script>
 

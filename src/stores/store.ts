@@ -62,6 +62,9 @@ export const useStore = defineStore({
 		},
 	},
 	actions: {
+		toggleRight() {
+			this.rightDrawer = !this.rightDrawer
+		},
 		toggleMini() {
 			this.mini = !this.mini
 		},
