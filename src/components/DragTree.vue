@@ -45,8 +45,9 @@ component(:is="Draggable"
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
-				component(:is="SvgIcon" name="book" size="20px" v-if="node.root === true").sp
 				label {{ node.text }}
+					q-popup-edit(v-if="node.id === 0" v-model="node.text" auto-save v-slot="scope")
+						q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set")
 				q-btn(flat round icon="mdi-close" size="sm")
 					q-menu
 						q-list
@@ -86,9 +87,5 @@ component(:is="Draggable"
 	&.closed {
 		transform: rotate(-90deg);
 	}
-}
-.sp {
-	transform: translateY(3px);
-	margin-right: 0.5rem;
 }
 </style>
