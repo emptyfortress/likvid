@@ -33,23 +33,23 @@ q-page(padding)
 				
 			q-btn(v-if="store.treeChanged" unelevated  color="primary" label="Сохранить" @click="save").fab1
 		template(#after)
-			q-scroll-area.home.pr
+			q-scroll-area.home
 				component(:is="PropsTab" )
 
 	q-dialog(:model-value="newSprav")
-		q-card(style="min-width: 400px")
-			q-card-section.row.items-center.q-pb-none
-				.text-h6 Назовите справочник
-				q-space
-				q-btn(icon="mdi-close" flat round dense @click="newSprav = false")
-			q-card-section
-				q-input(v-model="newName" autofocus).inp
-			q-card-section
-				q-card-actions(align="right")
-					q-btn(flat color="primary" label="Отмена" @click="newSprav = false") 
-					q-btn(unelevated color="primary" label="Сохранить" @click="addnew") 
+		q-form(@submit="addnew")
+			q-card(style="min-width: 400px")
+				q-card-section.row.items-center.q-pb-none
+					.text-h6 Назовите справочник
+					q-space
+					q-btn(icon="mdi-close" flat round dense @click="newSprav = false")
+				q-card-section
+					q-input(v-model="newName" autofocus).inp
+				q-card-section
+					q-card-actions(align="right")
+						q-btn(flat color="primary" label="Отмена" @click="newSprav = false") 
+						q-btn(unelevated color="primary" label="Сохранить" type="submit") 
 		
-
 </template>
 
 <style scoped lang="scss">
@@ -73,5 +73,8 @@ h2 {
 }
 .inp {
 	font-size: 1.1rem;
+}
+:deep(.q-tab-panels) {
+	background: transparent;
 }
 </style>

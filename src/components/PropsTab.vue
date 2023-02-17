@@ -24,16 +24,12 @@ const tabs = [
 q-tabs(v-model='activeTab' dense align="left").text-primary
 	q-tab(v-for='tab in tabs' :key='tab.id' :name='tab.name')
 		span {{tab.label}}
-			// q-badge(rounded float color="red" align="top" v-if="tab.modified")
 
 q-tab-panels(v-model='activeTab' animated)
 	q-tab-panel(name='zero')
 		LibList
-	// q-tab-panel(name='one')
-	// 	CommonProps( )
 	q-tab-panel(name='two')
 		NodeProps
-		// AsyncComp
 	q-tab-panel(name='three')
 		ViewProps()
 	q-tab-panel(name='four')
@@ -48,9 +44,4 @@ q-tab-panels(v-model='activeTab' animated)
 	padding: 0 4px;
 	min-height: 8px;
 }
-/* .q-tab-panels, */
-/* .q-tab-panel { */
-/* 	height: 100%; */
-/* 	background: #ccc; */
-/* } */
 </style>
