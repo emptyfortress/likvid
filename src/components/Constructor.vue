@@ -31,8 +31,8 @@ q-page(padding)
 			q-scroll-area.home
 				component(:is="DragTree" ref="dragtree")
 				
-				q-btn(round icon="mdi-plus" dark color="primary" @click="store.toggleRight" size="md").fab
-				q-btn(v-if="store.treeChanged" flat color="primary" label="Сохранить" @click="save").fab1
+				// q-btn(round icon="mdi-plus" dark color="primary" @click="store.toggleRight" size="md").fab
+				q-btn(v-if="store.treeChanged" unelevated  color="primary" label="Сохранить" @click="save").fab1
 		template(#after)
 			q-scroll-area.home.pr
 				component(:is="PropsTab" )
@@ -70,7 +70,7 @@ h2 {
 	transition: 0.2s ease all;
 	position: absolute;
 	bottom: 0.5rem;
-	right: 3.5rem;
+	right: 0.5rem;
 }
 .inp {
 	font-size: 1.1rem;

@@ -22,7 +22,7 @@ const select = (e: Stat) => {
 
 <template lang="pug">
 BaseTree(v-model="store.treedata"
-	:triggerClass="trigger"
+	triggerClass="trigger"
 	ref="tree")
 	template(#default="{ node, stat }")
 		.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")

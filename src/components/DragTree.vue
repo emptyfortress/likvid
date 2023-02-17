@@ -6,7 +6,7 @@ import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
 
 const tree = ref()
-const trigger = ref()
+// const trigger = ref()
 const store = useStore()
 
 const toggle = (stat: any) => {
@@ -40,7 +40,7 @@ const externalDataHandler = () => {
 		ref="tree"
 		v-model="store.treedata"
 		virtualization
-		:triggerClass="trigger"
+		triggerClass="trigger"
 		:onExternalDragOver="()=> true"
 		:externalDataHandler="externalDataHandler"
 		:watermark="false")
