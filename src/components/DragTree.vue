@@ -35,15 +35,14 @@ const externalDataHandler = () => {
 </script>
 
 <template lang="pug">
-.test
-	component(:is="Draggable"
-		ref="tree"
-		v-model="store.treedata"
-		virtualization
-		triggerClass="trigger"
-		:onExternalDragOver="()=> true"
-		:externalDataHandler="externalDataHandler"
-		:watermark="false")
+component(:is="Draggable"
+	ref="tree"
+	v-model="store.treedata"
+	virtualization
+	triggerClass="trigger"
+	:onExternalDragOver="()=> true"
+	:externalDataHandler="externalDataHandler"
+	:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
@@ -53,7 +52,7 @@ const externalDataHandler = () => {
 					q-menu
 						q-list
 							q-item(clickable @click="del(stat)" v-close-popup).pink
-	pre {{ store.treedata }}
+pre {{ store.treedata }}
 </template>
 
 <style scoped lang="scss">
