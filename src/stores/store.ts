@@ -51,6 +51,15 @@ export const useStore = defineStore({
 			},
 			{ id: 4, icon: 'cran', label: 'С нуля', to: '/new/0', className: 'act' },
 		],
+		treedata: [
+			{
+				id: 0,
+				text: 'Root',
+				header: 'root',
+				selected: false,
+				children: [],
+			},
+		],
 	}),
 	getters: {
 		currentNode1(state) {
