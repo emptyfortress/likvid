@@ -56,7 +56,15 @@ export const useStore = defineStore({
 				text: 'Root',
 				header: 'root',
 				selected: false,
-				children: [],
+				isDrop: true,
+				children: [
+					{
+						id: 1,
+						text: 'node',
+						selected: false,
+						quan: 0,
+					},
+				],
 			},
 		],
 		pages: [

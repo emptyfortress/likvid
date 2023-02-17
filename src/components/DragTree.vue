@@ -4,6 +4,7 @@ import { Draggable } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
+import { is } from 'quasar'
 
 const tree = ref()
 // const trigger = ref()
@@ -23,6 +24,7 @@ const select = (e: Stat) => {
 	e.data.selected = true
 	store.setCurrentNode(e)
 	store.selection = true
+	console.log(e)
 }
 const externalDataHandler = () => {
 	store.setTreeChanged(true)
@@ -30,7 +32,11 @@ const externalDataHandler = () => {
 		text: store.draggedNode,
 		id: Date.now(),
 		selected: false,
+		quan: 0,
 	}
+}
+const setDrag = (e: Stat) => {
+	e.draggable = false
 }
 </script>
 
@@ -41,17 +47,26 @@ component(:is="Draggable"
 	virtualization
 	:onExternalDragOver="()=> true"
 	:externalDataHandler="externalDataHandler"
+	:rootDroppable="false"
 	:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
-				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
-				label {{ node.text }}
-					q-popup-edit(v-if="node.id === 0" v-model="node.text" auto-save v-slot="scope")
-						q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set")
-				q-btn(flat round icon="mdi-close" size="sm")
+				div
+					q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
+					label {{ node.text }}
+						q-popup-edit(v-if="node.id === 0" v-model="node.text" auto-save v-slot="scope")
+							q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set")
+
+				.infi( v-if="node.id !== 0") {{ node.quan }}
+					q-tooltip Допустимое количество. 0 - неограничено.
+					q-popup-edit(v-model="node.quan" v-slot="scope" buttons)
+						q-input(v-model.number="scope.value" dense autofocus type="number" @keyup.enter="scope.set")
+
+				q-btn( v-if="node.id !== 0" flat round icon="mdi-close" size="sm")
 					q-menu
 						q-list
-							q-item(clickable @click="del(stat)" label="Удалить" v-close-popup).pink
+							q-item(clickable @click="del(stat)" v-close-popup).pink
+								q-item-section Удалить
 </template>
 
 <style scoped lang="scss">
@@ -62,16 +77,10 @@ component(:is="Draggable"
 	background: $borderColor;
 	margin-bottom: 2px;
 	cursor: pointer;
-	position: relative;
-	.q-btn {
-		position: absolute;
-		right: 5px;
-		top: 2px;
-		color: hsla(77, 13%, 74%, 1);
-		&:hover {
-			color: hsla(77, 13%, 40%, 1);
-		}
-	}
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	align-items: center;
+
 	&.selected {
 		background: #b1ddfc;
 		color: $primary;
@@ -87,5 +96,8 @@ component(:is="Draggable"
 	&.closed {
 		transform: rotate(-90deg);
 	}
+}
+.infi {
+	margin-right: 0.5rem;
 }
 </style>
