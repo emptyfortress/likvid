@@ -41,12 +41,28 @@ const reset = () => {
 	val3.value = null
 	val4.value = null
 	val5.value = null
+	val6.value = null
+	val7.value = null
+	val8.value = null
+	val9.value = null
+	val10.value = null
+	val11.value = null
+	val12.value = null
+	val13.value = null
 }
 const val1 = ref(null)
 const val2 = ref(null)
 const val3 = ref(null)
 const val4 = ref(null)
 const val5 = ref(null)
+const val6 = ref(null)
+const val7 = ref(null)
+const val8 = ref(null)
+const val9 = ref(null)
+const val10 = ref(null)
+const val11 = ref(null)
+const val12 = ref(null)
+const val13 = ref(null)
 </script>
 
 <template lang="pug">
@@ -106,31 +122,37 @@ q-tab-panels(v-model="store.selected"
 
 	q-tab-panel(name="Исполнение контракта")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-		q-form.mygrid
-			.label Сумма контракта:
-			q-input(dense v-model="id" type="number")
-			.label Стоимость исполненных работ:
-			q-input(dense v-model="id" type="number")
-			.label Фактически оплачено:
-			q-input(dense v-model="id" type="number")
-		q-separator.q-my-md
-		.title Этап контракта
-		q-form.mygrid
-			.label Название этапа:
-			q-input(dense v-model="id" type="number")
-			.label Срок исполнения этапа:
-			q-input(dense v-model="id" type="number")
-			.label Стоимость этапа:
-			q-input(dense v-model="id" type="number")
-			.label Содержание этапа:
-			q-input(dense v-model="id" type="number")
-			.label Статус:
-			q-input(dense v-model="id" type="number")
-		q-separator.q-my-md
-		.inf Список документов:
-		q-btn(unelevated color="primary" label="Добавить" size="sm")
-		ul(v-if="docs.length > 0")
-			li(v-for="item in docs" :key="item.label") {item.label}
+		q-form
+			.mygrid
+				.label Сумма контракта:
+				q-input(dense v-model="val6" type="number" lazy-rules :rules="rule")
+				.label Стоимость исполненных работ:
+				q-input(dense v-model="val7" type="number" lazy-rules :rules="rule")
+				.label Фактически оплачено:
+				q-input(dense v-model="val8" type="number" lazy-rules :rules="rule")
+
+				q-separator.q-my-md
+				.title Этап контракта
+
+				.label Название этапа:
+				q-input(dense v-model="val9" type="number" lazy-rules :rules="rule")
+				.label Срок исполнения этапа:
+				q-input(dense v-model="val10" type="number" lazy-rules :rules="rule")
+				.label Стоимость этапа:
+				q-input(dense v-model="val11" type="number" lazy-rules :rules="rule")
+				.label Содержание этапа:
+				q-input(dense v-model="val12" type="number" lazy-rules :rules="rule")
+				.label Статус:
+				q-input(dense v-model="val13" type="number" lazy-rules :rules="rule")
+				.fil
+					q-separator.q-my-md
+					.inf Список документов:
+					q-btn(unelevated color="primary" label="Добавить" size="sm")
+			q-card-actions(align="right")
+				q-btn(flat color="primary" label="Отмена" type="reset") 
+				q-btn(unelevated color="primary" label="Сохранить" type="submit") 
+		// ul(v-if="docs.length > 0")
+		// 	li(v-for="item in docs" :key="item.label") {item.label}
 
 	q-tab-panel(name="Изменение контракта")
 		.row.justify-between.items-center
@@ -160,11 +182,16 @@ q-tab-panels(v-model="store.selected"
 	grid-template-columns: auto 2fr;
 	align-items: center;
 	column-gap: 1rem;
-	row-gap: 0.5rem;
+	row-gap: 0.3rem;
 	font-size: 0.9rem;
 	.q-input {
 		max-width: 350px;
 		font-size: 1.1rem;
+	}
+	.q-separator,
+	.title,
+	.fil {
+		grid-column: 1/-1;
 	}
 }
 .label {
