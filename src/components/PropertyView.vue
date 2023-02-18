@@ -7,6 +7,8 @@ import DocsVision from '@/components/DocsVision.vue'
 interface Docs {
 	label: string
 }
+const emit = defineEmits(['remove'])
+
 const store = useStore()
 const $q = useQuasar()
 
@@ -18,6 +20,7 @@ const sum = ref(null)
 const deadline = ref(null)
 const remove = () => {
 	store.removeNode()
+	emit('remove')
 }
 const rule = computed(() => {
 	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']

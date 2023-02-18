@@ -4,11 +4,13 @@ import { BaseTree } from '@he-tree/vue'
 import { useStore } from '@/stores/store'
 import { tree, select, toggle } from '@/composables/hetree'
 import PropertyView from '@/components/PropertyView.vue'
+import PropsTab from './PropsTab.vue'
 
 const store = useStore()
 const ratio = ref(32)
 
 const add = () => {
+	store.addNode()
 	const node = {
 		id: 9,
 		text: 'Изменение контракта',
@@ -19,6 +21,12 @@ const add = () => {
 		(item: Stat) => item.data.text === 'Изменение контракта'
 	)
 	select(current)
+}
+const remove = () => {
+	const node = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Изменение контракта')
+	const root = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
+	tree.value.remove(node)
+	select(root)
 }
 </script>
 
@@ -34,7 +42,6 @@ q-page(padding)
 				component(:is="BaseTree" v-model="store.packet"
 					:indent="30"
 					:watermark="false"
-					updateBehavior="new"
 					ref="tree").tree
 					template(#default="{ node, stat }")
 						.node(@click="select(stat)" :class="{'selected' : stat.data.selected | node.selected}")
@@ -46,7 +53,7 @@ q-page(padding)
 
 		template(#after)
 			q-scroll-area.home
-				PropertyView
+				component(:is="PropertyView" @remove="remove")
 
 </template>
 

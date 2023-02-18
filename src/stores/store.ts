@@ -141,7 +141,7 @@ export const useStore = defineStore({
 		},
 		setCurrentNode(e: C) {
 			this.currentNode = e
-			this.selected = e?.data.text
+			this.selected = e!.data.text
 		},
 		showRightDrawer() {
 			this.rightDrawer = true
@@ -155,14 +155,14 @@ export const useStore = defineStore({
 		setTreeChanged(payload: boolean) {
 			this.treeChanged = payload
 		},
-		// addNode() {
-		// 	const change = {
-		// 		id: 9,
-		// 		text: 'Изменение контракта',
-		// 	}
-		// 	this.packet[0].children.push(change)
-		// 	this.selected = 'Изменение контракта'
-		// },
+		addNode() {
+			const change = {
+				id: 9,
+				text: 'Изменение контракта',
+			}
+			this.packet[0].children.push(change)
+			this.selected = 'Изменение контракта'
+		},
 		removeNode() {
 			this.packet[0].children.pop()
 			this.selected = 'Контракт'
