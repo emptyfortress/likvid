@@ -58,17 +58,4 @@ q-page(padding)
 	margin-left: 1rem;
 	margin-top: 1rem;
 }
-:deep(.q-tree__arrow) {
-	font-size: 1.3rem;
-}
-.q-tree:deep(.q-icon) {
-	color: $primary;
-}
-:deep(.q-tree__node--selected) {
-	background: #b1ddfc;
-	color: $primary;
-}
-:deep(.q-tree__node--selected .q-tree__node-header-content) {
-	color: $primary;
-}
 </style>

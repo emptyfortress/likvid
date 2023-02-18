@@ -28,6 +28,33 @@ export const useStore = defineStore({
 						id: 2,
 						text: 'Исполнитель',
 						icon: 'mdi-folder-outline',
+						children: [
+							{
+								id: 4,
+								text: 'Выписка из ЕГРЮЛ',
+								icon: 'pdf',
+							},
+							{
+								id: 5,
+								text: 'Устав предприятия',
+								icon: 'doc',
+							},
+							{
+								id: 6,
+								text: 'Доверенность',
+								icon: 'doc',
+							},
+							{
+								id: 7,
+								text: 'Учредительные документы',
+								icon: 'zip',
+							},
+							{
+								id: 8,
+								text: 'Декларация о доходах за 2021 год',
+								icon: '',
+							},
+						],
 					},
 					{
 						id: 3,
@@ -45,7 +72,7 @@ export const useStore = defineStore({
 				id: 2,
 				icon: 'packet',
 				label: 'Пакет документов "Контракт"',
-				to: '/view',
+				to: '/contract',
 				className: 'act',
 			},
 			{ id: 4, icon: 'cran', label: 'С нуля', to: '/new/0', className: 'act' },
@@ -85,13 +112,13 @@ export const useStore = defineStore({
 				id: 4,
 				title: 'Контракт',
 				icon: 'mdi-folder-outline',
-				url: '/view',
+				url: '/contract',
 			},
 			// {
 			// 	id: 2,
 			// 	title: 'Edit mode',
 			// 	icon: 'mdi-folder-outline',
-			// 	url: '/view1',
+			// 	url: '/contract1',
 			// },
 		],
 	}),
@@ -148,7 +175,7 @@ export const useStore = defineStore({
 				id: this.createList.length + 1,
 				icon: 'book',
 				label: e,
-				to: '/view1',
+				to: '/view',
 				className: 'act',
 			}
 			this.createList.push(temp)
@@ -158,7 +185,7 @@ export const useStore = defineStore({
 				id: Math.floor(Math.random() * 10000),
 				icon: 'mdi-folder-outline',
 				title: e,
-				url: '/view1',
+				url: '/view',
 			}
 			this.pages.push(temp)
 		},

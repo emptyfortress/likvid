@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { BaseTree } from '@he-tree/vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
 import PropertyView from '@/components/PropertyView.vue'
+import { tree, select, toggle } from '@/composables/hetree'
 
 const store = useStore()
 const ratio = ref(32)
@@ -20,7 +22,18 @@ q-page(padding)
 		template(#before)
 			q-scroll-area.home
 				q-btn(:disable="store.packet[0].children.length > 3" icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
-				q-tree(:nodes="store.packet"
+
+				component(:is="BaseTree" v-model="store.packet"
+					:indent="40"
+					:watermark="false"
+					ref="tree").tree
+					template(#default="{ node, stat }")
+						.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
+							q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
+							component(:is="SvgIcon" name="packet" size="28px" v-if="node.header === 'root'").sp
+							label {{ node.text }}
+
+				// q-tree(:nodes="store.packet"
 					node-key="text"
 					default-expand-all
 					v-model:selected="store.selected"
@@ -42,6 +55,7 @@ q-page(padding)
 
 <style scoped lang="scss">
 @import '@/assets/styles/myvariables.scss';
+@import '@/assets/styles/hetree.scss';
 
 .home {
 	height: calc(100vh - 150px);
@@ -68,17 +82,7 @@ q-page(padding)
 	margin-left: 1rem;
 	margin-top: 1rem;
 }
-:deep(.q-tree__arrow) {
-	font-size: 1.3rem;
-}
-.q-tree:deep(.q-icon) {
-	color: $primary;
-}
-:deep(.q-tree__node--selected) {
-	background: #b1ddfc;
-	color: $primary;
-}
-:deep(.q-tree__node--selected .q-tree__node-header-content) {
-	color: $primary;
+.node {
+	display: block;
 }
 </style>
