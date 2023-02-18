@@ -50,7 +50,7 @@ export const useStore = defineStore({
 							},
 							{
 								id: 8,
-								text: 'Декларация о доходах за 2021 год',
+								text: 'Декларация о доходах за 2021г.',
 								icon: 'pdf',
 							},
 						],
@@ -155,15 +155,14 @@ export const useStore = defineStore({
 		setTreeChanged(payload: boolean) {
 			this.treeChanged = payload
 		},
-		addNode() {
-			const change = {
-				id: 4,
-				text: 'Изменение контракта',
-				icon: 'mdi-file-document-outline',
-			}
-			this.packet[0].children.push(change)
-			this.selected = 'Изменение контракта'
-		},
+		// addNode() {
+		// 	const change = {
+		// 		id: 9,
+		// 		text: 'Изменение контракта',
+		// 	}
+		// 	this.packet[0].children.push(change)
+		// 	this.selected = 'Изменение контракта'
+		// },
 		removeNode() {
 			this.packet[0].children.pop()
 			this.selected = 'Контракт'

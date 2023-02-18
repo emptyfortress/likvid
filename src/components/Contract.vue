@@ -9,7 +9,16 @@ const store = useStore()
 const ratio = ref(32)
 
 const add = () => {
-	store.addNode()
+	const node = {
+		id: 9,
+		text: 'Изменение контракта',
+	}
+	const par = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
+	tree.value.add(node, par)
+	const current = tree.value.statsFlat.find(
+		(item: Stat) => item.data.text === 'Изменение контракта'
+	)
+	select(current)
 }
 </script>
 
@@ -25,6 +34,7 @@ q-page(padding)
 				component(:is="BaseTree" v-model="store.packet"
 					:indent="30"
 					:watermark="false"
+					updateBehavior="new"
 					ref="tree").tree
 					template(#default="{ node, stat }")
 						.node(@click="select(stat)" :class="{'selected' : stat.data.selected | node.selected}")
