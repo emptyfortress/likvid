@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { BaseTree } from '@he-tree/vue'
-import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
-import PropertyView from '@/components/PropertyView.vue'
 import { tree, select, toggle } from '@/composables/hetree'
+import PropertyView from '@/components/PropertyView.vue'
 
 const store = useStore()
 const ratio = ref(32)
@@ -24,29 +23,17 @@ q-page(padding)
 				q-btn(:disable="store.packet[0].children.length > 3" icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
 
 				component(:is="BaseTree" v-model="store.packet"
-					:indent="40"
+					:indent="30"
 					:watermark="false"
 					ref="tree").tree
 					template(#default="{ node, stat }")
-						.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
-							q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
-							component(:is="SvgIcon" name="packet" size="28px" v-if="node.header === 'root'").sp
+						.node(@click="select(stat)" :class="{'selected' : stat.data.selected | node.selected}")
+							template(v-if="stat.children.length")
+								q-icon(name="mdi-chevron-down" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
+								q-icon(name="mdi-folder-outline" ).trig
+							img(:src="`${node.icon}.svg`" v-if="node.icon").ic
 							label {{ node.text }}
 
-				// q-tree(:nodes="store.packet"
-					node-key="text"
-					default-expand-all
-					v-model:selected="store.selected"
-					icon="mdi-chevron-right")
-					template(v-slot:header-root="prop")
-						.row.items-center
-							component(:is="SvgIcon" name="packet" size="30px").q-mr-sm
-							div {{ prop.node.text }}
-					template(v-slot:default-header="prop")
-						.row.items-center
-							q-icon(:name="prop.node.icon" size="24px").q-mr-sm
-							span {{ prop.node.text }}
-				
 		template(#after)
 			q-scroll-area.home
 				PropertyView
@@ -84,5 +71,11 @@ q-page(padding)
 }
 .node {
 	display: block;
+	background: #f7f7f7;
+}
+.ic {
+	width: 14px;
+	transform: translateY(3px);
+	margin-right: 0.4rem;
 }
 </style>

@@ -18,16 +18,15 @@ export const useStore = defineStore({
 				id: 0,
 				text: 'Контракт',
 				header: 'root',
+				selected: true,
 				children: [
 					{
 						id: 1,
 						text: 'Информация о заказчике',
-						icon: 'mdi-file-document-outline',
 					},
 					{
 						id: 2,
 						text: 'Исполнитель',
-						icon: 'mdi-folder-outline',
 						children: [
 							{
 								id: 4,
@@ -52,14 +51,13 @@ export const useStore = defineStore({
 							{
 								id: 8,
 								text: 'Декларация о доходах за 2021 год',
-								icon: '',
+								icon: 'pdf',
 							},
 						],
 					},
 					{
 						id: 3,
 						text: 'Исполнение контракта',
-						icon: 'mdi-file-document-outline',
 					},
 				],
 			},
@@ -143,6 +141,7 @@ export const useStore = defineStore({
 		},
 		setCurrentNode(e: C) {
 			this.currentNode = e
+			this.selected = e?.data.text
 		},
 		showRightDrawer() {
 			this.rightDrawer = true
