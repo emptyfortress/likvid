@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { Draggable } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
 import { useStore } from '@/stores/store'
@@ -14,15 +15,20 @@ const del = (e: Stat) => {
 const externalDataHandler = () => {
 	store.setTreeChanged(true)
 	return {
-		text: store.draggedNode,
 		id: Date.now(),
+		text: store.draggedNode!.name,
 		selected: false,
+		branch: store.draggedNode!.branch,
 		quan: 0,
 	}
 }
 // const setDrag = (e: Stat) => {
 // 	e.draggable = false
 // }
+const test = (e: any) => {
+	if (e.data.branch) return true
+	else return false
+}
 </script>
 
 <template lang="pug">
@@ -32,12 +38,13 @@ component(:is="Draggable"
 	virtualization
 	:onExternalDragOver="()=> true"
 	:externalDataHandler="externalDataHandler"
-	:rootDroppable="false"
+	:eachDroppable="test" 
 	:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
 				div
 					q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trig
+					q-icon(v-if="stat.data.branch" name="mdi-folder-outline" ).fold
 					label {{ node.text }}
 						q-popup-edit(v-if="node.id === 0" v-model="node.text" auto-save v-slot="scope")
 							q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set")
@@ -68,5 +75,10 @@ component(:is="Draggable"
 }
 .infi {
 	margin-right: 0.5rem;
+}
+.fold {
+	font-size: 1.3rem;
+	margin-right: 0.5rem;
+	transform: translateY(-1px);
 }
 </style>

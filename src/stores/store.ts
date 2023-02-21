@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia'
 
-type N = string | null
+type A = {
+	id: number
+	name: string
+	branch?: boolean
+} | null
 type C = Stat | null
 
 export const useStore = defineStore({
@@ -10,7 +14,8 @@ export const useStore = defineStore({
 		selection: false,
 		rightDrawer: false,
 		treeChanged: false,
-		draggedNode: null as N,
+		draggedNode: null as A,
+		// drNod: null as A,
 		currentNode: null as C,
 		selected: 'Контракт',
 		packet: [
@@ -81,8 +86,21 @@ export const useStore = defineStore({
 				text: 'Root',
 				header: 'root',
 				selected: false,
-				isDrop: true,
-				children: [],
+				// isDrop: true,
+				children: [
+					{
+						id: 1,
+						text: 'node',
+						selected: false,
+						branch: true,
+					},
+					{
+						id: 2,
+						text: 'node1',
+						selected: false,
+						branch: false,
+					},
+				],
 			},
 		],
 		pages: [
@@ -129,7 +147,7 @@ export const useStore = defineStore({
 		toggleMini() {
 			this.mini = !this.mini
 		},
-		setDraggedNode(e: N) {
+		setDraggedNode(e: A) {
 			this.draggedNode = e
 		},
 		setCurrentNode(e: C) {

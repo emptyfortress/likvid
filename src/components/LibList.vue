@@ -3,6 +3,7 @@ import { ref, reactive, computed } from 'vue'
 import draggable from 'vuedraggable'
 import { useStore } from '@/stores/store'
 import WordHighlighter from 'vue-word-highlighter'
+// import { elementsFromPoint } from 'helper-js'
 
 const props = defineProps({
 	zag: {
@@ -12,35 +13,33 @@ const props = defineProps({
 })
 const store = useStore()
 const list = reactive([
-	{ id: 0, branch: true, name: 'Справочник' },
-	{ id: 1, branch: true, name: 'Организация' },
-	{ id: 2, branch: true, name: 'Филиал' },
-	{ id: 4, branch: true, name: 'Подразделение' },
+	{ id: 0, branch: true, name: 'Организация' },
+	{ id: 1, branch: true, name: 'Филиал' },
+	{ id: 2, branch: true, name: 'Подразделение' },
 	{ id: 3, branch: true, name: 'Контрагент' },
-	{ id: 6, branch: true, name: 'Группа' },
-	{ id: 9, branch: true, name: 'Папка' },
-	{ id: 5, name: 'Сотрудник' },
-	{ id: 7, name: 'Роль' },
-	{ id: 8, name: 'Должность' },
-	{ id: 10, name: 'Файл' },
-	{ id: 11, name: 'Вложение' },
-	{ id: 12, name: 'Документ' },
-	{ id: 13, name: 'Задание' },
-	{ id: 14, name: 'Группа заданий' },
-	{ id: 15, name: 'Согласование' },
-	{ id: 16, name: 'Карточка' },
-	{ id: 17, name: 'Ссылка' },
-	{ id: 18, name: 'Отчет' },
-	{ id: 19, name: 'Этап' },
-	{ id: 20, name: 'Цикл' },
-	{ id: 21, name: 'База данных' },
-	{ id: 22, name: 'Запись' },
-	{ id: 23, name: 'Логин' },
-	{ id: 24, name: 'Журнал' },
-	{ id: 25, name: 'Таблица' },
-	{ id: 26, name: 'Строка' },
-	{ id: 27, name: 'Поисковый запрос' },
-	{ id: 28, name: 'Объект' },
+	{ id: 4, branch: true, name: 'Группа' },
+	{ id: 5, branch: true, name: 'Папка' },
+	{ id: 6, branch: false, name: 'Сотрудник' },
+	{ id: 7, branch: false, name: 'Роль' },
+	{ id: 8, branch: false, name: 'Должность' },
+	{ id: 9, branch: false, name: 'Вложение' },
+	{ id: 10, branch: false, name: 'Документ' },
+	{ id: 11, branch: false, name: 'Задание' },
+	{ id: 12, branch: false, name: 'Группа заданий' },
+	{ id: 13, branch: false, name: 'Карточка' },
+	{ id: 14, branch: false, name: 'Файл' },
+	{ id: 15, branch: false, name: 'Ссылка' },
+	{ id: 16, branch: false, name: 'Отчет' },
+	{ id: 17, branch: false, name: 'Этап' },
+	{ id: 18, branch: false, name: 'Цикл' },
+	{ id: 19, branch: false, name: 'База данных' },
+	{ id: 20, branch: false, name: 'Запись' },
+	{ id: 21, branch: false, name: 'Логин' },
+	{ id: 22, branch: false, name: 'Журнал' },
+	{ id: 23, branch: false, name: 'Таблица' },
+	{ id: 24, branch: false, name: 'Строка' },
+	{ id: 25, branch: false, name: 'Поисковый запрос' },
+	{ id: 26, branch: false, name: 'Объект' },
 ])
 const drag = ref(false)
 const filter = ref('')
@@ -49,7 +48,10 @@ const filteredList = computed(() => {
 })
 const ondragstart = (e: any) => {
 	drag.value = true
-	store.setDraggedNode(e.item.innerText)
+	const node = list.find((item) => item.name === e.item.innerText)
+	if (node) {
+		store.setDraggedNode(node)
+	}
 }
 const ondragend = () => {
 	drag.value = false
@@ -78,7 +80,7 @@ component(:is="draggable" :list="filteredList"
 				q-icon(name="mdi-folder-outline" size="20px" color="primary" v-if="element.branch")
 				q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;" v-else)
 				span.q-ml-sm
-					WordHighlighter(:query="filter") {{ element.name }}
+					component(:is="WordHighlighter" :query="filter") {{ element.name }}
 			q-btn(dense flat round icon="mdi-information-outline" size="sm")
 </template>
 
