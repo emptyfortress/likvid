@@ -2,7 +2,7 @@
 import { useStore } from '@/stores/store'
 import DocsVision from '@/components/DocsVision.vue'
 import Files from '@/components/Files.vue'
-import Contract from '@/components/TabPanels/Contract.vue'
+import ContractInner from '@/components/TabPanels/ContractInner.vue'
 import Info from '@/components/TabPanels/Info.vue'
 import ChangeContract from '@/components/TabPanels/ChangeContract.vue'
 import Ispolnenie from '@/components/TabPanels/Ispolnenie.vue'
@@ -22,7 +22,7 @@ q-tab-panels(v-model="store.selected"
 
 	q-tab-panel(name="Контракт")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-		component(:is="Contract" )
+		component(:is="ContractInner" )
 
 	q-tab-panel(name="Информация о заказчике")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
@@ -41,8 +41,20 @@ q-tab-panels(v-model="store.selected"
 		component(:is="ChangeContract" @remove="remove")
 
 	q-tab-panel(v-for="item in store.packet[0].children[1].children" :key="item.id" :name="item.text")
-		.title {{item.text}} fuck
-		// component(:is="Files")
+		.row.justify-between.items-center
+			.row.items-center
+				img(:src="`${item.icon}.svg`").im
+				.title {{item.text}}
+			q-btn(unelevated color="primary" label="Скачать") 	
+		component(:is="Files" :item="item")
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.title {
+	font-size: 1.3rem;
+}
+.im {
+	height: 32px;
+	margin-right: 0.5rem;
+}
+</style>
