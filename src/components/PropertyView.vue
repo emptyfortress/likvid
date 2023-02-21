@@ -37,7 +37,6 @@ q-tab-panels(v-model="store.selected"
 		component(:is="Ispolnenie" )
 
 	q-tab-panel(name="Изменение контракта")
-		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
 		component(:is="ChangeContract" @remove="remove")
 
 	q-tab-panel(v-for="item in store.packet[0].children[1].children" :key="item.id" :name="item.text")

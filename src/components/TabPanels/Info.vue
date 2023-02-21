@@ -45,13 +45,14 @@ div
 			q-input(dense v-model="val4" type="text" lazy-rules :rules="rule")
 			.label Руководитель:
 			q-input(dense v-model="val5" type="text" lazy-rules :rules="rule")
-		q-card-actions(align="right")
-			q-btn(flat color="primary" label="Отмена" type="reset") 
-			q-btn(unelevated color="primary" label="Сохранить" type="submit") 
 
 		q-separator.q-my-md
 		.inf Документы, подтверждающие статус, необходимый для заключения контракта:
 		q-btn(unelevated color="primary" label="Добавить" size="sm")
+
+		q-card-actions(align="right")
+			q-btn(flat color="primary" label="Отмена" type="reset") 
+			q-btn(unelevated color="primary" label="Сохранить" type="submit") 
 </template>
 
 <style scoped lang="scss">
