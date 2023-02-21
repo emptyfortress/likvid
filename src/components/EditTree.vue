@@ -23,7 +23,7 @@ component(:is="BaseTree" v-model="store.treedata"
 
 <style scoped lang="scss">
 @import '@/assets/styles/myvariables.scss';
-@import url('@/assets/styles/hetree.scss');
+@import '@/assets/styles/hetree.scss';
 
 .node {
 	display: block;
