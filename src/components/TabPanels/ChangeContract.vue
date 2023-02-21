@@ -16,7 +16,6 @@ const remove = () => {
 <template lang="pug">
 div
 	.row.justify-between.items-center
-		.title {{store.currentNode1.text}}
 		q-btn(unelevated color="primary" label="Удалить документ" @click="remove") 
 	br
 	q-form.mygrid

@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useQuasar } from 'quasar'
-import { useStore } from '@/stores/store'
 
-const store = useStore()
 const $q = useQuasar()
 
 const rule = computed(() => {
@@ -32,8 +30,6 @@ const save = () => {
 
 <template lang="pug">
 div
-	.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-
 	q-form(@submit="save" @reset="reset")
 		.mygrid
 			.label id:

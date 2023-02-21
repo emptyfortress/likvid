@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useQuasar } from 'quasar'
-import { useStore } from '@/stores/store'
 
-interface Docs {
-	label: string
-}
-
-const store = useStore()
 const $q = useQuasar()
 
 const val1 = ref(null)
@@ -35,13 +29,10 @@ const reset = () => {
 	val4.value = null
 	val5.value = null
 }
-const docs = ref([] as Docs[])
 </script>
 
 <template lang="pug">
 div
-	.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-
 	q-form(@submit="save" @reset="reset")
 		.mygrid
 			.label Заказчик:
@@ -61,8 +52,6 @@ div
 		q-separator.q-my-md
 		.inf Документы, подтверждающие статус, необходимый для заключения контракта:
 		q-btn(unelevated color="primary" label="Добавить" size="sm")
-		ul(v-if="docs.length > 0")
-			li(v-for="item in docs" :key="item.label") {item.label}
 </template>
 
 <style scoped lang="scss">

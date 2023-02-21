@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import type { QTableProps } from 'quasar'
 
 const columns: QTableProps['columns'] = [
@@ -55,33 +54,34 @@ const rows = [
 </script>
 
 <template lang="pug">
-q-form.mygrid
-	.label Исполнитель:
-	.val ООО "Доксвижн"
-	.label ИНН:
-	.val 45438899338292
-	.label КПП:
-	.val 569043
-	.label Юридический адрес:
-	.val Спб, наб. р. Смоленки 31
-	.label Руководитель:
-	.val Федорович Ю.
-br
-br
-.inf Список документов:
-q-table(:columns="columns"
-	:rows="rows"
-	row-key="name"
-	hide-bottom
-	flat
-	)
-	template(v-slot:body-cell-name='props')
-		q-td(:props="props")
-			.row.items-center
-				img(src="@/assets/img/doc.svg" v-if="props.row.typ === 1")
-				img(src="@/assets/img/pdf.svg" v-if="props.row.typ === 2")
-				img(src="@/assets/img/zip.svg" v-if="props.row.typ === 3")
-				.link {{props.row.name}}
+div
+	q-form.mygrid
+		.label Исполнитель:
+		.val ООО "Доксвижн"
+		.label ИНН:
+		.val 45438899338292
+		.label КПП:
+		.val 569043
+		.label Юридический адрес:
+		.val Спб, наб. р. Смоленки 31
+		.label Руководитель:
+		.val Федорович Ю.
+	br
+	br
+	.inf Список документов:
+	q-table(:columns="columns"
+		:rows="rows"
+		row-key="name"
+		hide-bottom
+		flat
+		)
+		template(v-slot:body-cell-name='props')
+			q-td(:props="props")
+				.row.items-center
+					img(src="@/assets/img/doc.svg" v-if="props.row.typ === 1")
+					img(src="@/assets/img/pdf.svg" v-if="props.row.typ === 2")
+					img(src="@/assets/img/zip.svg" v-if="props.row.typ === 3")
+					.link {{props.row.name}}
 </template>
 
 <style scoped lang="scss">

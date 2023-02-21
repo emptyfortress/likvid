@@ -5,7 +5,13 @@ const store = useStore()
 </script>
 
 <template lang="pug">
-p {{ store.selected }}
+div
+	.title(v-if="store.currentNode") {{store.currentNode.data.text}} fuck
+	p lakjsdl
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.title {
+	font-size: 1.3rem;
+}
+</style>
