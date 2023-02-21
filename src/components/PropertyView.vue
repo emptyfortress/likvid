@@ -3,25 +3,19 @@ import { ref, computed } from 'vue'
 import { useQuasar } from 'quasar'
 import { useStore } from '@/stores/store'
 import DocsVision from '@/components/DocsVision.vue'
+import Files from '@/components/Files.vue'
+import Contract from '@/components/TabPanels/Contract.vue'
+import Info from '@/components/TabPanels/Info.vue'
+import ChangeContract from '@/components/TabPanels/ChangeContract.vue'
 
-interface Docs {
-	label: string
-}
 const emit = defineEmits(['remove'])
+const remove = () => {
+	emit('remove')
+}
 
 const store = useStore()
 const $q = useQuasar()
 
-const docs = ref([] as Docs[])
-
-const id = ref(null)
-const num = ref(null)
-const sum = ref(null)
-const deadline = ref(null)
-const remove = () => {
-	store.removeNode()
-	emit('remove')
-}
 const rule = computed(() => {
 	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']
 })
@@ -35,15 +29,6 @@ const save = () => {
 	})
 }
 const reset = () => {
-	id.value = null
-	num.value = null
-	sum.value = null
-	deadline.value = null
-	val1.value = null
-	val2.value = null
-	val3.value = null
-	val4.value = null
-	val5.value = null
 	val6.value = null
 	val7.value = null
 	val8.value = null
@@ -53,11 +38,6 @@ const reset = () => {
 	val12.value = null
 	val13.value = null
 }
-const val1 = ref(null)
-const val2 = ref(null)
-const val3 = ref(null)
-const val4 = ref(null)
-const val5 = ref(null)
 const val6 = ref(null)
 const val7 = ref(null)
 const val8 = ref(null)
@@ -75,49 +55,10 @@ q-tab-panels(v-model="store.selected"
 	transition-next="jump-up").rel
 
 	q-tab-panel(name="Контракт")
-		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-
-		q-form(@submit="save" @reset="reset")
-			.mygrid
-				.label id:
-				q-input(dense v-model="id" type="number" lazy-rules :rules="rule")
-				.label Номер контракта:
-				q-input(dense v-model="num" type="number" lazy-rules :rules="rule")
-				.label Исполнитель:
-				.link ООО "Доквижн"
-				.label Общая стоимость контракта:
-				q-input(dense v-model="sum" type="number" lazy-rules :rules="rule")
-				.label Сроки исполнения:
-				q-input(dense v-model="deadline" type="date" lazy-rules :rules="rule").dat
-
-			q-card-actions(align="right")
-				q-btn(flat color="primary" label="Отмена" type="reset") 
-				q-btn(unelevated color="primary" label="Сохранить" type="submit") 
+		component(:is="Contract" )
 
 	q-tab-panel(name="Информация о заказчике")
-		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-	
-		q-form(@submit="save" @reset="reset")
-			.mygrid
-				.label Заказчик:
-				q-input(dense v-model="val1" type="text" lazy-rules :rules="rule")
-				.label ИНН:
-				q-input(dense v-model="val2" type="number" lazy-rules :rules="rule")
-				.label КПП:
-				q-input(dense v-model="val3" type="number" lazy-rules :rules="rule")
-				.label Юридический адрес:
-				q-input(dense v-model="val4" type="text" lazy-rules :rules="rule")
-				.label Руководитель:
-				q-input(dense v-model="val5" type="text" lazy-rules :rules="rule")
-			q-card-actions(align="right")
-				q-btn(flat color="primary" label="Отмена" type="reset") 
-				q-btn(unelevated color="primary" label="Сохранить" type="submit") 
-
-		q-separator.q-my-md
-		.inf Документы, подтверждающие статус, необходимый для заключения контракта:
-		q-btn(unelevated color="primary" label="Добавить" size="sm")
-		ul(v-if="docs.length > 0")
-			li(v-for="item in docs" :key="item.label") {item.label}
+		component(:is="Info" )
 
 	q-tab-panel(name="Исполнитель")
 		.title(v-if="store.currentNode1") {{store.currentNode1.text}}
@@ -158,22 +99,10 @@ q-tab-panels(v-model="store.selected"
 		// 	li(v-for="item in docs" :key="item.label") {item.label}
 
 	q-tab-panel(name="Изменение контракта")
-		.row.justify-between.items-center
-			.title(v-if="store.currentNode1") {{store.currentNode1.text}}
-			q-btn(unelevated color="primary" label="Удалить документ" @click="remove") 
-		br
-		q-form.mygrid
-			.label Условие 1:
-			q-input(dense v-model="id" type="number")
-			.label Условие 2:
-			q-input(dense v-model="id" type="number")
-			.label Условие 3:
-			q-input(dense v-model="id" type="number")
-		q-separator.q-my-md
-		.inf Список документов:
-		q-btn(unelevated color="primary" label="Добавить" size="sm")
-		ul(v-if="docs.length > 0")
-			li(v-for="item in docs" :key="item.label") {item.label}
+		component(:is="ChangeContract" @remove="remove")
+
+	q-tab-panel(name="Выписка из ЕГРЮЛ")
+		component(:is="Files")
 </template>
 
 <style scoped lang="scss">
