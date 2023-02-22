@@ -31,23 +31,23 @@ q-page(padding)
 			q-scroll-area.home
 				component(:is="DragTree" ref="dragtree")
 				
-			q-btn(v-if="store.treeChanged" unelevated  color="primary" label="Сохранить" @click="save").fab1
+				q-btn(v-if="store.treeChanged" unelevated  color="primary" label="Сохранить" @click="save").fab1
 		template(#after)
 			q-scroll-area.home
 				component(:is="PropsTab" )
 
-	q-dialog(:model-value="newSprav")
-		q-form(@submit="addnew")
-			q-card(style="min-width: 400px")
+	q-dialog(v-model="newSprav")
+		q-card(style="min-width: 400px")
+			q-form(@submit="addnew")
 				q-card-section.row.items-center.q-pb-none
-					.text-h6 Назовите справочник
+					.text-h6 Назовите справочник:
 					q-space
 					q-btn(icon="mdi-close" flat round dense @click="newSprav = false")
 				q-card-section
 					q-input(v-model="newName" autofocus).inp
 				q-card-section
 					q-card-actions(align="right")
-						q-btn(flat color="primary" label="Отмена" @click="newSprav = false") 
+						q-btn(flat color="primary" label="Отмена" @click="newSprav = false")
 						q-btn(unelevated color="primary" label="Сохранить" type="submit") 
 		
 </template>

@@ -19,16 +19,22 @@ const externalDataHandler = () => {
 		text: store.draggedNode!.name,
 		selected: false,
 		branch: store.draggedNode!.branch,
+		drag: true,
 		quan: 0,
 	}
 }
-// const setDrag = (e: Stat) => {
-// 	e.draggable = false
-// }
-const test = (e: any) => {
+
+const isDrop = (e: any) => {
 	if (e.data.branch) return true
 	else return false
 }
+// const isDrag = (e: any) => {
+// 	if (e.data.drag) return true
+// 	else return false
+// }
+// const pin = (e: any) => {
+// 	e.draggable = !e.draggable
+// }
 </script>
 
 <template lang="pug">
@@ -38,7 +44,7 @@ component(:is="Draggable"
 	virtualization
 	:onExternalDragOver="()=> true"
 	:externalDataHandler="externalDataHandler"
-	:eachDroppable="test" 
+	:eachDroppable="isDrop" 
 	:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
@@ -46,9 +52,10 @@ component(:is="Draggable"
 					q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trig
 					q-icon(v-if="stat.data.branch" name="mdi-folder-outline" ).fold
 					label {{ node.text }}
-						q-popup-edit(v-if="node.id === 0" v-model="node.text" auto-save v-slot="scope")
+						q-popup-edit(v-if="node.branch" v-model="node.text" auto-save v-slot="scope")
 							q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set")
 
+				q-btn(v-if="node.id !== 0" flat round dense icon="mdi-pin-outline" size="sm" color="primary" @click.stop).q-mr-sm
 				.infi( v-if="node.id !== 0") {{ node.quan }}
 					q-tooltip Допустимое количество. 0 - неограничено.
 					q-popup-edit(v-model="node.quan" v-slot="scope" buttons)
@@ -70,7 +77,7 @@ component(:is="Draggable"
 	margin-bottom: 2px;
 	cursor: pointer;
 	display: grid;
-	grid-template-columns: 1fr auto auto;
+	grid-template-columns: 1fr auto auto auto;
 	align-items: center;
 }
 .infi {

@@ -15,9 +15,10 @@ export const useStore = defineStore({
 		rightDrawer: false,
 		treeChanged: false,
 		draggedNode: null as A,
-		// drNod: null as A,
 		currentNode: null as C,
 		selected: 'Контракт',
+		// bookName: 'Root',
+
 		packet: [
 			{
 				id: 0,
@@ -86,20 +87,22 @@ export const useStore = defineStore({
 				text: 'Root',
 				header: 'root',
 				selected: false,
-				// isDrop: true,
+				branch: true,
 				children: [
-					{
-						id: 1,
-						text: 'node',
-						selected: false,
-						branch: true,
-					},
-					{
-						id: 2,
-						text: 'node1',
-						selected: false,
-						branch: false,
-					},
+					// {
+					// 	id: 1,
+					// 	text: 'Node 1',
+					// 	selected: false,
+					// 	branch: true,
+					// 	children: [
+					// 		{
+					// 			id: 2,
+					// 			text: 'Node 2',
+					// 			selected: false,
+					// 			branch: false,
+					// 		},
+					// 	],
+					// },
 				],
 			},
 		],
@@ -123,12 +126,6 @@ export const useStore = defineStore({
 				icon: 'mdi-folder-outline',
 				url: '/contract',
 			},
-			// {
-			// 	id: 2,
-			// 	title: 'Edit mode',
-			// 	icon: 'mdi-folder-outline',
-			// 	url: '/contract1',
-			// },
 		],
 	}),
 	getters: {
@@ -198,5 +195,8 @@ export const useStore = defineStore({
 			}
 			this.pages.push(temp)
 		},
+		// setBookName(e: string) {
+		// 	this.bookName = e
+		// },
 	},
 })

@@ -2,7 +2,7 @@
 // import { ref } from 'vue'
 import { useStore } from '@/stores/store'
 
-const mystore = useStore()
+const store = useStore()
 
 const props = defineProps({
 	modelValue: {
@@ -13,16 +13,16 @@ const props = defineProps({
 </script>
 
 <template lang="pug">
-q-drawer(:model-value="props.modelValue" side="left" :mini="mystore.mini" :width="200").rel
+q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="200").rel
 	q-list.q-mt-lg
-		q-item(clickable v-ripple v-for="page in mystore.pages" :to="page.url")
+		q-item(clickable v-ripple v-for="page in store.pages" :to="page.url" :key="page.id")
 			q-item-section(avatar)
 				q-icon(:name="page.icon")
 			q-item-section
 				q-item-label {{ page.title }}
 
-	q-btn(round flat dense  @click="mystore.toggleMini").mini.gt-sm
-		q-icon(name="mdi-backburger" v-if="!mystore.mini")
+	q-btn(round flat dense  @click="store.toggleMini").mini.gt-sm
+		q-icon(name="mdi-backburger" v-if="!store.mini")
 		q-icon(name="mdi-forwardburger" v-else)
 
 

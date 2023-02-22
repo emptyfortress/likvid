@@ -2,7 +2,7 @@
 import { BaseTree } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
 import { useStore } from '@/stores/store'
-import SvgIcon from '@/components/global/SvgIcon.vue'
+// import SvgIcon from '@/components/global/SvgIcon.vue'
 import { tree, select, toggle } from '@/composables/hetree'
 
 const store = useStore()
@@ -10,13 +10,14 @@ const store = useStore()
 
 <template lang="pug">
 component(:is="BaseTree" v-model="store.treedata"
-	:indent="40"
 	:watermark="false"
 	ref="tree")
 	template(#default="{ node, stat }")
-		.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
-			q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trigger
-			component(:is="SvgIcon" name="book" size="20px" v-if="node.root === true").sp
+		.node(@click="select(stat)" :class="{'selected' : stat.data.selected | node.selected}")
+			template(v-if="stat.children.length")
+				q-icon(name="mdi-chevron-down" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
+				q-icon(name="mdi-folder-outline" ).trig
+			img(:src="`${node.icon}.svg`" v-if="node.icon").ic
 			label {{ node.text }}
 
 </template>
@@ -27,5 +28,11 @@ component(:is="BaseTree" v-model="store.treedata"
 
 .node {
 	display: block;
+	background: #f7f7f7;
+}
+.ic {
+	width: 14px;
+	transform: translateY(3px);
+	margin-right: 0.4rem;
 }
 </style>

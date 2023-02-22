@@ -22,7 +22,7 @@ q-page(padding)
 			q-scroll-area.home
 				q-btn(icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
 				component(:is="EditTree" ref="dragtree" :watermark="false")
-				pre {{ store.treedata }}
+				// pre {{ store.treedata }}
 
 		template(#after)
 			q-scroll-area.home
@@ -32,6 +32,7 @@ q-page(padding)
 
 <style scoped lang="scss">
 @import '@/assets/styles/myvariables.scss';
+@import '@/assets/styles/hetree.scss';
 
 .home {
 	height: calc(100vh - 150px);
