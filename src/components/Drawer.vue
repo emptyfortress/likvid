@@ -13,7 +13,7 @@ const props = defineProps({
 </script>
 
 <template lang="pug">
-q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="200").rel
+q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="250").rel
 	q-list.q-mt-lg
 		q-item(clickable v-ripple v-for="page in store.pages" :to="page.url" :key="page.id")
 			q-item-section(avatar)

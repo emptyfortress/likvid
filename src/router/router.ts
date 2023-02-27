@@ -29,6 +29,12 @@ export const router = createRouter({
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 		{
+			path: '/polnomoch',
+			name: 'polnomoch',
+			component: () => import('@/components/Polnomoch.vue'),
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
+		{
 			path: '/view',
 			name: 'view',
 			component: () => import('@/components/View1.vue'),
