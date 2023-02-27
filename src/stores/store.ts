@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { getMembers } from '@/utils/utils'
 
 type A = {
 	id: number
@@ -11,12 +12,15 @@ export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
 		mini: false,
-		selection: false,
+		// selection: false,
+		// selection1: false,
 		rightDrawer: false,
 		treeChanged: false,
 		draggedNode: null as A,
 		currentNode: null as C,
+		currentCode: null as C,
 		selected: 'Контракт',
+		selected1: 'ООО "Доксвижн"',
 
 		packet: [
 			{
@@ -70,19 +74,10 @@ export const useStore = defineStore({
 		codes: [
 			{
 				id: 0,
-				text: 'Коды полномочий',
+				text: 'ООО "Доксвижн"',
 				header: 'root',
 				selected: true,
 				children: [
-					{
-						id: 1,
-						icon: 'keychain',
-						text: 'CPDV_1 договоры до 50 т. руб.',
-						code: 'CPDV_1',
-						name: 'Подписание договоров до 50 т. руб',
-						descr: 'Подписание и отправка договоров до 50 т. руб',
-						doveritel: 'ООО "ДоксВижн"',
-					},
 					{
 						id: 2,
 						icon: 'keychain',
@@ -129,15 +124,6 @@ export const useStore = defineStore({
 						doveritel: 'ООО "ДоксВижн"',
 					},
 					{
-						id: 7,
-						icon: 'keychain',
-						text: 'CPDV_7 приказы по филиалу',
-						code: 'CPDV_7',
-						name: 'Приказы по филиалу',
-						descr: 'Подписание и отправка приказов по филиалу',
-						doveritel: 'ООО "ДоксВижн"',
-					},
-					{
 						id: 8,
 						icon: 'keychain',
 						text: 'CPDV_8 больничные листы',
@@ -154,6 +140,31 @@ export const useStore = defineStore({
 						name: 'Служебные записки',
 						descr: 'Подписание внутренних служебных записок',
 						doveritel: 'ООО "ДоксВижн"',
+					},
+				],
+			},
+			{
+				id: 10,
+				text: 'МинЦифры',
+				selected: false,
+				children: [
+					{
+						id: 11,
+						text: 'CPMD-1 Приказы по министерству',
+						icon: 'keychain',
+						code: 'CPMD-1',
+						name: 'Подписание приказов',
+						descr: 'Подписание и отправка приказов по министерству',
+						doveritel: 'Минцифры',
+					},
+					{
+						id: 12,
+						text: 'CPMD-2 Приказы по управлению',
+						icon: 'keychain',
+						code: 'CPMD-2',
+						name: 'Подписание приказов',
+						descr: 'Подписание и отправка приказов по управлению',
+						doveritel: 'Минцифры',
 					},
 				],
 			},
@@ -232,6 +243,9 @@ export const useStore = defineStore({
 				return state.packet[0].children.find((item) => item.text === state.selected)
 			}
 		},
+		flatCodes(state) {
+			return getMembers(state.codes)
+		},
 	},
 	actions: {
 		toggleRight() {
@@ -246,6 +260,10 @@ export const useStore = defineStore({
 		setCurrentNode(e: C) {
 			this.currentNode = e
 			this.selected = e!.data.text
+		},
+		setCurrentCode(e: C) {
+			this.currentCode = e
+			this.selected1 = e!.data.text
 		},
 		showRightDrawer() {
 			this.rightDrawer = true

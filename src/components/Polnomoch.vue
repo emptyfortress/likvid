@@ -1,32 +1,42 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { compile, ref } from 'vue'
 import { BaseTree } from '@he-tree/vue'
 import { useStore } from '@/stores/store'
-import { tree, select, toggle } from '@/composables/hetree'
-import PropertyView from '@/components/PropertyView.vue'
-import PropsTab from './PropsTab.vue'
+import { tree, select1, toggle } from '@/composables/hetree'
+import PropertyView1 from '@/components/PropertyView1.vue'
+import SvgIcon from '@/components/global/SvgIcon.vue'
+import CreateCode from '@/components/CreateCode.vue'
+// import PropsTab from './PropsTab.vue'
 
 const store = useStore()
-const ratio = ref(32)
+const ratio = ref(38)
 
-const add = () => {
-	store.addNode()
-	const node = {
-		id: 9,
-		text: 'Изменение контракта',
-	}
-	const par = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
-	tree.value.add(node, par)
-	const current = tree.value.statsFlat.find(
-		(item: Stat) => item.data.text === 'Изменение контракта'
-	)
-	select(current)
+// const add = () => {
+// 	store.addNode()
+// 	const node = {
+// 		id: 9,
+// 		text: 'Изменение контракта',
+// 	}
+// 	const par = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
+// 	tree.value.add(node, par)
+// 	const current = tree.value.statsFlat.find(
+// 		(item: Stat) => item.data.text === 'Изменение контракта'
+// 	)
+// 	select1(current)
+// }
+const dialog = ref(false)
+
+const mode = ref('code')
+
+const addFolder = () => {
+	mode.value = 'code'
+	dialog.value = true
 }
 const remove = () => {
 	const node = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Изменение контракта')
 	const root = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
 	tree.value.remove(node)
-	select(root)
+	select1(root)
 }
 </script>
 
@@ -37,23 +47,28 @@ q-page(padding)
 	q-splitter(v-model="ratio").q-mt-md
 		template(#before)
 			q-scroll-area.home
-				q-btn(:disable="store.packet[0].children.length > 3" icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
+				q-fab(icon="mdi-plus" size="sm" dark color="primary" direction="up").fab
+					q-fab-action(color="secondary" icon="mdi-folder-outline" @click="addFolder" )
+					q-fab-action(color="secondary" icon="mdi-key-chain-variant" @click="addCode" )
 
-				component(:is="BaseTree" v-model="store.packet"
+				component(:is="BaseTree" v-model="store.codes"
 					:indent="30"
 					:watermark="false"
 					ref="tree").tree
 					template(#default="{ node, stat }")
-						.node(@click="select(stat)" :class="{'selected' : stat.data.selected | node.selected}")
+						.node(@click="select1(stat)" :class="{'selected' : stat.data.selected | node.selected}")
 							template(v-if="stat.children.length")
 								q-icon(name="mdi-chevron-down" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
 								q-icon(name="mdi-folder-outline" ).trig
-							img(:src="`${node.icon}.svg`" v-if="node.icon").ic
+							component(v-if="!stat.children.length" :is="SvgIcon" name="keychain" size="20px").ic
 							label {{ node.text }}
 
 		template(#after)
 			q-scroll-area.home
-				component(:is="PropertyView" @remove="remove")
+				component(:is="PropertyView1" @remove="remove")
+
+	q-dialog(:model-value="dialog")
+		component(:is="CreateCode" v-if="mode == 'code'")
 
 </template>
 
@@ -91,8 +106,7 @@ q-page(padding)
 	background: #f7f7f7;
 }
 .ic {
-	width: 14px;
-	transform: translateY(3px);
-	margin-right: 0.4rem;
+	margin-right: 0.5rem;
+	transform: translateY(2px);
 }
 </style>
