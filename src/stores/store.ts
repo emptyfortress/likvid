@@ -8,6 +8,19 @@ type A = {
 } | null
 type C = Stat | null
 
+type Code = {
+	id: number
+	selected: boolean
+	text: string
+	header?: string
+	icon?: string
+	code?: string
+	name?: string
+	descr?: string
+	doveritel?: string
+	children?: Code[]
+}
+
 export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
@@ -77,6 +90,7 @@ export const useStore = defineStore({
 				text: 'ООО "Доксвижн"',
 				header: 'root',
 				selected: true,
+				icon: 'NodeFolder',
 				children: [
 					{
 						id: 2,
@@ -147,6 +161,7 @@ export const useStore = defineStore({
 				id: 10,
 				text: 'МинЦифры',
 				selected: false,
+				icon: 'NodeFolder',
 				children: [
 					{
 						id: 11,
@@ -168,7 +183,7 @@ export const useStore = defineStore({
 					},
 				],
 			},
-		],
+		] as Code[],
 		createList: [
 			{ id: 0, icon: 'users', label: 'Сотрудников', to: '', className: '' },
 			{ id: 1, icon: 'partner', label: 'Контрагентов', to: '', className: '' },
@@ -309,8 +324,5 @@ export const useStore = defineStore({
 			}
 			this.pages.push(temp)
 		},
-		// setBookName(e: string) {
-		// 	this.bookName = e
-		// },
 	},
 })

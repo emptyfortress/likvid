@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import SvgIcon from '@/components/global/SvgIcon.vue'
+
+const props = defineProps({
+	dialog: Boolean,
+})
+
+const emit = defineEmits(['update:modelValue'])
 
 const name = ref('')
 const code = ref('')
@@ -7,36 +14,37 @@ const descr = ref('')
 const doveritel = ref('')
 
 const cancel = () => {
-	console.log(111)
+	emit('update:modelValue', false)
 }
 const save = () => {
-	console.log(111)
+	emit('update:modelValue', false)
 }
 </script>
 
 <template lang="pug">
-q-card.create
-	.row.justify-between.items-center
-		.text-h6.q-mt-none
-			component(:is="SvgIcon" name="keychain").q-mr-md
-			span Новый код полномочий
-		q-btn(flat round icon="mdi-close" @click="cancel")
+q-dialog(:model-value="props.dialog")
+	q-card.create
+		.row.justify-between.items-center
+			.text-h6.q-mt-none
+				component(:is="SvgIcon" name="keychain").q-mr-md
+				span Новый код полномочий
+			q-btn(flat round icon="mdi-close" @click="cancel")
 
-	q-card-section.mygrid
-		.label Название:
-		q-input(dense v-model="name" ).quick
-		.label Код полномочий:
-		q-input(dense v-model="code" ).quick
-		.label  Описание:
-		q-input(dense v-model="descr" ).quick
-		.label  Доверитель:
-		q-select(dense v-model="doveritel" ).quick
-			template(v-slot:prepend)
-				q-icon(name="mdi-book-open-page-variant-outline")
+		q-card-section.mygrid
+			.label Название:
+			q-input(dense v-model="name" ).quick
+			.label Код полномочий:
+			q-input(dense v-model="code" ).quick
+			.label  Описание:
+			q-input(dense v-model="descr" ).quick
+			.label  Доверитель:
+			q-select(dense v-model="doveritel" ).quick
+				template(v-slot:prepend)
+					q-icon(name="mdi-book-open-page-variant-outline")
 
-	q-card-actions(align="right")
-		q-btn(label="Отмена" flat color="primary" @click="cancel")
-		q-btn(label="Добавить" flat color="primary" @click="save")
+		q-card-actions(align="right")
+			q-btn(label="Отмена" flat color="primary" @click="cancel")
+			q-btn(label="Добавить" flat color="primary" @click="save")
 </template>
 
 <style scoped lang="scss">

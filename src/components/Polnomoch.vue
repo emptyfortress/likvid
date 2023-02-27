@@ -1,37 +1,38 @@
 <script setup lang="ts">
-import { compile, ref } from 'vue'
+import { ref } from 'vue'
 import { BaseTree } from '@he-tree/vue'
 import { useStore } from '@/stores/store'
 import { tree, select1, toggle } from '@/composables/hetree'
 import PropertyView1 from '@/components/PropertyView1.vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import CreateCode from '@/components/CreateCode.vue'
+import CreateFolder from '@/components/CreateFolder.vue'
 // import PropsTab from './PropsTab.vue'
 
 const store = useStore()
 const ratio = ref(38)
-
-// const add = () => {
-// 	store.addNode()
-// 	const node = {
-// 		id: 9,
-// 		text: 'Изменение контракта',
-// 	}
-// 	const par = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
-// 	tree.value.add(node, par)
-// 	const current = tree.value.statsFlat.find(
-// 		(item: Stat) => item.data.text === 'Изменение контракта'
-// 	)
-// 	select1(current)
-// }
 const dialog = ref(false)
+const dialog1 = ref(false)
 
-const mode = ref('code')
-
-const addFolder = () => {
-	mode.value = 'code'
+const addCode = () => {
 	dialog.value = true
 }
+
+const addFolderToCodes = (e: string) => {
+	// console.log('fuuuuu')
+	const temp = {
+		id: Date.now(),
+		text: e,
+		selected: false,
+		icon: 'NodeFolder',
+	}
+	tree.value.add(temp)
+}
+
+const addFolder = () => {
+	dialog1.value = true
+}
+
 const remove = () => {
 	const node = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Изменение контракта')
 	const root = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
@@ -52,6 +53,7 @@ q-page(padding)
 					q-fab-action(color="secondary" icon="mdi-key-chain-variant" @click="addCode" )
 
 				component(:is="BaseTree" v-model="store.codes"
+					updateBehavior="new"
 					:indent="30"
 					:watermark="false"
 					ref="tree").tree
@@ -59,16 +61,15 @@ q-page(padding)
 						.node(@click="select1(stat)" :class="{'selected' : stat.data.selected | node.selected}")
 							template(v-if="stat.children.length")
 								q-icon(name="mdi-chevron-down" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
-								q-icon(name="mdi-folder-outline" ).trig
-							component(v-if="!stat.children.length" :is="SvgIcon" name="keychain" size="20px").ic
+							component(:is="SvgIcon" :name="stat.data.icon" size="20px").ic
 							label {{ node.text }}
 
 		template(#after)
 			q-scroll-area.home
 				component(:is="PropertyView1" @remove="remove")
 
-	q-dialog(:model-value="dialog")
-		component(:is="CreateCode" v-if="mode == 'code'")
+	component(:is="CreateCode" v-model="dialog")
+	component(:is="CreateFolder"  v-model="dialog1" @add="addFolderToCodes")
 
 </template>
 
@@ -107,6 +108,6 @@ q-page(padding)
 }
 .ic {
 	margin-right: 0.5rem;
-	transform: translateY(2px);
+	transform: translateY(3px);
 }
 </style>

@@ -18,11 +18,9 @@ q-tab-panels(v-model="store.selected1"
 	transition-next="jump-up").rel
 
 	q-tab-panel(v-for="item in store.flatCodes" :key="item.id" :name="item.text")
-		.row.justify-between.items-center
-			.row.items-center
-				component(:is="SvgIcon" name="keychain" size="md")
-				.title {{item.text}}
-			// q-btn(unelevated color="primary" label="Скачать")
+		.row.items-center
+			component(:is="SvgIcon" :name="item.icon").im
+			.title {{item.text}}
 		q-separator.q-my-sm
 		component(:is="Codes" :item="item")
 </template>
@@ -30,10 +28,9 @@ q-tab-panels(v-model="store.selected1"
 <style scoped lang="scss">
 .title {
 	font-size: 1.3rem;
-	margin-left: 0.5rem;
 }
 .im {
-	height: 32px;
-	margin-right: 0.5rem;
+	transform: translateY(-2px);
+	margin-right: 0.7rem;
 }
 </style>
