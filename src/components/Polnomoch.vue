@@ -22,10 +22,13 @@ const addFolderToTree = (e: string) => {
 	const temp = {
 		id: Date.now(),
 		text: e,
-		selected: false,
+		selected: true,
 		icon: 'NodeFolder',
 	}
+	tree.value.statsFlat.map((item: Stat) => (item.data.selected = false))
 	tree.value.add(temp)
+	const currCode = tree.value.statsFlat.find((item: Stat) => item.data.selected === true)
+	store.setCurrentCode(currCode)
 }
 const addCodeToTree = (e: Code) => {
 	const temp = {
@@ -38,6 +41,8 @@ const addCodeToTree = (e: Code) => {
 	const parent = node.parent || node
 	tree.value.statsFlat.map((item: Stat) => (item.data.selected = false))
 	tree.value.add(temp, parent)
+	const currCode = tree.value.statsFlat.find((item: Stat) => item.data.selected === true)
+	store.setCurrentCode(currCode)
 }
 
 const addFolder = () => {

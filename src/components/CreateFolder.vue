@@ -15,6 +15,7 @@ const cancel = () => {
 const save = () => {
 	emit('add', name.value)
 	emit('update:modelValue', false)
+	name.value = ''
 }
 </script>
 
@@ -23,7 +24,7 @@ q-dialog(:model-value="props.dialog1")
 	q-card.create
 		.row.justify-between.items-center
 			.text-h6.q-mt-none
-				q-icon(name="mdi-folder-outline" color="primary")
+				q-icon(name="mdi-folder-outline" color="primary").q-mr-sm
 				span Новая папка
 			q-btn(flat round icon="mdi-close" @click="cancel")
 
