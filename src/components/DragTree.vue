@@ -53,6 +53,7 @@ component(:is="Draggable"
 	virtualization
 	:onExternalDragOver="()=> true"
 	:externalDataHandler="externalDataHandler"
+	updateBehavior="disabled"
 	:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
