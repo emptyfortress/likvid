@@ -78,12 +78,14 @@ export const useStore = defineStore({
 				header: 'root',
 				selected: false,
 				icon: 'mdi-folder-outline',
+				branch: true,
 				children: [
 					{
 						id: 1,
 						text: 'Информация о заказчике',
 						selected: false,
 						quan: 1,
+						branch: false,
 					},
 					{
 						id: 2,
@@ -91,11 +93,13 @@ export const useStore = defineStore({
 						selected: false,
 						icon: 'mdi-folder-outline',
 						quan: 1,
+						branch: true,
 						children: [
 							{
 								id: 3,
 								text: 'Файл',
 								quan: 0,
+								branch: false,
 							},
 						],
 					},
@@ -103,11 +107,13 @@ export const useStore = defineStore({
 						id: 4,
 						text: 'Исполнение контракта',
 						quan: 1,
+						branch: false,
 					},
 					{
 						id: 5,
 						text: 'Изменение контракта',
 						quan: 1,
+						branch: false,
 					},
 				],
 			},
@@ -119,6 +125,7 @@ export const useStore = defineStore({
 				header: 'root',
 				selected: false,
 				icon: 'mdi-folder-outline',
+				branch: true,
 				children: [
 					{
 						id: 1,
@@ -126,6 +133,7 @@ export const useStore = defineStore({
 						icon: 'mdi-folder-outline',
 						selected: false,
 						quan: 0,
+						branch: true,
 						children: [
 							{
 								id: 2,
@@ -133,6 +141,7 @@ export const useStore = defineStore({
 								icon: 'mdi-key-chain-variant',
 								selected: false,
 								quan: 0,
+								branch: false,
 							},
 						],
 					},

@@ -40,10 +40,10 @@ const treedata = computed(() => {
 	}
 })
 
-// const isDrop = (e: any) => {
-// 	if (e.data.branch) return true
-// 	else return false
-// }
+const isDrop = (e: any) => {
+	if (e.data.branch) return true
+	else return false
+}
 </script>
 
 <template lang="pug">
@@ -54,6 +54,7 @@ component(:is="Draggable"
 	:onExternalDragOver="()=> true"
 	:externalDataHandler="externalDataHandler"
 	updateBehavior="disabled"
+	:eachDroppable="isDrop"
 	:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")

@@ -6,7 +6,6 @@ ul
 	li Списки объектов
 	li Глубина просмотра
 
-q-form.form
 </template>
 
 <style scoped lang="scss"></style>

@@ -1,61 +1,12 @@
-<script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { useStore } from '@/stores/store'
-import draggable from 'vuedraggable'
-
-const list1 = reactive([{ id: 0, name: 'Объект' }])
-
-const remove = (ind: number) => {
-	list1.splice(ind, 1)
-}
-const store = useStore()
-</script>
+<script setup lang="ts"></script>
 
 <template lang="pug">
-.text-h6(v-if="store.currentNode") {{ store.currentNode.data.text}}
 ul
-	li Возможные подчиненные объекты
-	li Порядок следования подчиненных объектов
-	li Способ сортировки
+	li Возможные подчиненные объекты - <span>нет</span>
+	li Порядок следования подчиненных объектов - <span>нет</span>
+	li Способ сортировки - <span>нет</span>
 	li Правила наследования
 q-separator
-.q-mb-md Список возможных подчиненных объектов:
-
-component(:is="draggable" :list="list1"
-	item-key="id"
-	group="node"
-	ghost-class='ghost'
-	).list-group
-	template(#item="{ element, index }")
-		.tabel
-			div
-				q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;")
-				span.q-ml-sm {{ element.name }}
-
-			div
-				q-btn(flat round dense icon="mdi-information-outline" size="sm" ).q-mr-sm
-					q-menu
-						q-card.hrinfo
-							.label Псевдоним:
-							div {{ element.name}}
-							.label Тип:
-							div {{ element.type}}
-							.label Состояние:
-							div {{ element.state}}
-							.label Размер:
-							div {{ element.size}} Gb
-							.label Раздел:
-							div
-								span(v-if="element.main") основной, 
-								span(v-if="element.arch") архивный, 
-								span(v-if="element.temp") временный
-
-				q-btn(flat round dense icon="mdi-close" size="sm" )
-					q-menu
-						q-list
-							q-item(clickable v-close-popup @click="remove(index)").pink
-								q-item-section Удалить
-
 
 </template>
 
@@ -92,5 +43,8 @@ component(:is="draggable" :list="list1"
 		color: grey;
 		justify-self: end;
 	}
+}
+li span {
+	color: red;
 }
 </style>
