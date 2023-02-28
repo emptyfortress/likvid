@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { Draggable } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
 import { useStore } from '@/stores/store'
@@ -24,38 +25,44 @@ const externalDataHandler = () => {
 	}
 }
 
-const isDrop = (e: any) => {
-	if (e.data.branch) return true
-	else return false
-}
-// const isDrag = (e: any) => {
-// 	if (e.data.drag) return true
+const route = useRoute()
+
+const treedata = computed(() => {
+	switch (route.params.id) {
+		case '0':
+			return store.treedata
+		case '1':
+			return store.contract
+		case '2':
+			return store.cod
+		default:
+			return null
+	}
+})
+
+// const isDrop = (e: any) => {
+// 	if (e.data.branch) return true
 // 	else return false
-// }
-// const pin = (e: any) => {
-// 	e.draggable = !e.draggable
 // }
 </script>
 
 <template lang="pug">
 component(:is="Draggable"
 	ref="tree"
-	v-model="store.treedata"
+	v-model="treedata"
 	virtualization
 	:onExternalDragOver="()=> true"
 	:externalDataHandler="externalDataHandler"
-	:eachDroppable="isDrop" 
 	:watermark="false")
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{'selected' : stat.data.selected}")
 				div
 					q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}").trig
-					q-icon(v-if="stat.data.branch" name="mdi-folder-outline" ).fold
+					q-icon(:name="node.icon" v-if="stat.data.icon").fold
 					label {{ node.text }}
-						q-popup-edit(v-if="node.branch" v-model="node.text" auto-save v-slot="scope")
-							q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set")
+						q-popup-edit(v-model="node.text" auto-save v-slot="scope")
+							q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set").pop
 
-				q-btn(v-if="node.id !== 0" flat round dense icon="mdi-pin-outline" size="sm" color="primary" @click.stop).q-mr-sm
 				.infi( v-if="node.id !== 0") {{ node.quan }}
 					q-tooltip Допустимое количество. 0 - неограничено.
 					q-popup-edit(v-model="node.quan" v-slot="scope" buttons)
@@ -66,6 +73,7 @@ component(:is="Draggable"
 						q-list
 							q-item(clickable @click="del(stat)" v-close-popup).pink
 								q-item-section Удалить
+
 </template>
 
 <style scoped lang="scss">
@@ -87,5 +95,8 @@ component(:is="Draggable"
 	font-size: 1.3rem;
 	margin-right: 0.5rem;
 	transform: translateY(-1px);
+}
+.pop {
+	width: 200px;
 }
 </style>

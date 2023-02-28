@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { useStore } from '@/stores/store'
-
 interface Item {
 	id: number
 	text: string
 	icon: string
+	code?: string
+	name?: string
+	descr?: string
+	doveritel?: string
 }
 const props = defineProps<{
 	item: Item

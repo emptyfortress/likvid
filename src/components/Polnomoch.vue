@@ -49,11 +49,8 @@ const addFolder = () => {
 	dialog1.value = true
 }
 
-const remove = () => {
-	const node = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Изменение контракта')
-	const root = tree.value.statsFlat.find((item: Stat) => item.data.text === 'Контракт')
-	tree.value.remove(node)
-	select1(root)
+const remove = (e: Stat) => {
+	tree.value.remove(e)
 }
 </script>
 
@@ -79,6 +76,10 @@ q-page(padding)
 								q-icon(name="mdi-chevron-down" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
 							component(:is="SvgIcon" :name="stat.data.icon" size="20px").ic
 							label {{ node.text }}
+							q-menu(context-menu)
+								q-list
+									q-item(clickable v-close-popup @click="remove(stat)").pink
+										q-item-section Удалить
 
 		template(#after)
 			q-scroll-area.home

@@ -30,6 +30,7 @@ const list = reactive([
 	{ id: 14, branch: false, name: 'Файл' },
 	{ id: 15, branch: false, name: 'Ссылка' },
 	{ id: 16, branch: false, name: 'Отчет' },
+	{ id: 27, branch: false, name: 'Код полномочий' },
 	{ id: 17, branch: false, name: 'Этап' },
 	{ id: 18, branch: false, name: 'Цикл' },
 	{ id: 19, branch: false, name: 'База данных' },

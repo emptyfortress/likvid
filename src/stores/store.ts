@@ -71,6 +71,74 @@ export const useStore = defineStore({
 				],
 			},
 		],
+		contract: [
+			{
+				id: 0,
+				text: 'Контракт',
+				header: 'root',
+				selected: false,
+				icon: 'mdi-folder-outline',
+				children: [
+					{
+						id: 1,
+						text: 'Информация о заказчике',
+						selected: false,
+						quan: 1,
+					},
+					{
+						id: 2,
+						text: 'Исполнитель',
+						selected: false,
+						icon: 'mdi-folder-outline',
+						quan: 1,
+						children: [
+							{
+								id: 3,
+								text: 'Файл',
+								quan: 0,
+							},
+						],
+					},
+					{
+						id: 4,
+						text: 'Исполнение контракта',
+						quan: 1,
+					},
+					{
+						id: 5,
+						text: 'Изменение контракта',
+						quan: 1,
+					},
+				],
+			},
+		],
+		cod: [
+			{
+				id: 0,
+				text: 'Коды полномочий',
+				header: 'root',
+				selected: false,
+				icon: 'mdi-folder-outline',
+				children: [
+					{
+						id: 1,
+						text: 'Папка',
+						icon: 'mdi-folder-outline',
+						selected: false,
+						quan: 0,
+						children: [
+							{
+								id: 2,
+								text: 'Код полномочий',
+								icon: 'mdi-key-chain-variant',
+								selected: false,
+								quan: 0,
+							},
+						],
+					},
+				],
+			},
+		],
 		codes: [
 			{
 				id: 0,
@@ -221,6 +289,18 @@ export const useStore = defineStore({
 				title: 'Design mode',
 				icon: 'mdi-ruler-square-compass',
 				url: '/new/0',
+			},
+			{
+				id: 2,
+				title: 'Контракт',
+				icon: 'mdi-ruler-square-compass',
+				url: '/new/1',
+			},
+			{
+				id: 3,
+				title: 'Коды полномочий',
+				icon: 'mdi-ruler-square-compass',
+				url: '/new/2',
 			},
 			{},
 			{
