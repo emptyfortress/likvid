@@ -6,7 +6,7 @@ const props = defineProps({
 	dialog: Boolean,
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue', 'add'])
 
 const name = ref('')
 const code = ref('')
@@ -17,7 +17,20 @@ const cancel = () => {
 	emit('update:modelValue', false)
 }
 const save = () => {
+	const temp = {
+		id: Date.now(),
+		text: name.value,
+		code: code.value,
+		descr: descr.value,
+		selected: false,
+		icon: 'keychain',
+	}
+	emit('add', temp)
 	emit('update:modelValue', false)
+	name.value = ''
+	code.value = ''
+	descr.value = ''
+	doveritel.value = ''
 }
 </script>
 

@@ -17,3 +17,16 @@ interface Stat {
 	style: any // Customize node style. Vue's style format.
 	class: any // Customize node class name. Vue's class format.
 }
+
+interface Code {
+	id: number
+	selected: boolean
+	text: string
+	header?: string
+	icon?: string
+	code?: string
+	name?: string
+	descr?: string
+	doveritel?: string
+	children?: Code[]
+}

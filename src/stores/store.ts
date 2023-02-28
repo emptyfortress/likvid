@@ -8,19 +8,6 @@ type A = {
 } | null
 type C = Stat | null
 
-type Code = {
-	id: number
-	selected: boolean
-	text: string
-	header?: string
-	icon?: string
-	code?: string
-	name?: string
-	descr?: string
-	doveritel?: string
-	children?: Code[]
-}
-
 export const useStore = defineStore({
 	id: 'store',
 	state: () => ({

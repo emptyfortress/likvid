@@ -18,8 +18,7 @@ const addCode = () => {
 	dialog.value = true
 }
 
-const addFolderToCodes = (e: string) => {
-	// console.log('fuuuuu')
+const addFolderToTree = (e: string) => {
 	const temp = {
 		id: Date.now(),
 		text: e,
@@ -27,6 +26,18 @@ const addFolderToCodes = (e: string) => {
 		icon: 'NodeFolder',
 	}
 	tree.value.add(temp)
+}
+const addCodeToTree = (e: Code) => {
+	const temp = {
+		id: Date.now(),
+		text: e.text,
+		selected: true,
+		icon: 'keychain',
+	}
+	const node = tree.value.statsFlat.find((item: Stat) => item.data.selected === true)
+	const parent = node.parent || node
+	tree.value.statsFlat.map((item: Stat) => (item.data.selected = false))
+	tree.value.add(temp, parent)
 }
 
 const addFolder = () => {
@@ -68,8 +79,8 @@ q-page(padding)
 			q-scroll-area.home
 				component(:is="PropertyView1" @remove="remove")
 
-	component(:is="CreateCode" v-model="dialog")
-	component(:is="CreateFolder"  v-model="dialog1" @add="addFolderToCodes")
+	component(:is="CreateCode" v-model="dialog" @add="addCodeToTree")
+	component(:is="CreateFolder"  v-model="dialog1" @add="addFolderToTree")
 
 </template>
 

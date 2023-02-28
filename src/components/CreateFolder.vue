@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useStore } from '@/stores/store'
 
 const props = defineProps({
 	dialog1: Boolean,
@@ -8,7 +7,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue', 'add'])
 
-const store = useStore()
 const name = ref('')
 
 const cancel = () => {
