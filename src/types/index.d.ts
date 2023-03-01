@@ -7,6 +7,7 @@ interface NodeData {
 	quan?: number
 	icon?: string
 	header?: string
+	mandatory?: boolean
 }
 
 interface Stat {

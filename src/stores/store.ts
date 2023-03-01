@@ -81,6 +81,7 @@ export const useStore = defineStore({
 				icon: 'mdi-folder-outline',
 				branch: true,
 				restrict: false,
+				mandatory: false,
 				quan: 1,
 				children: [
 					{
@@ -89,6 +90,7 @@ export const useStore = defineStore({
 						selected: false,
 						restrict: false,
 						quan: 1,
+						mandatory: false,
 						branch: false,
 					},
 					{
@@ -99,6 +101,7 @@ export const useStore = defineStore({
 						restrict: false,
 						quan: 1,
 						branch: true,
+						mandatory: true,
 						children: [
 							{
 								id: 3,
@@ -106,6 +109,7 @@ export const useStore = defineStore({
 								restrict: false,
 								quan: 1,
 								branch: false,
+								mandatory: false,
 							},
 						],
 					},
@@ -116,6 +120,7 @@ export const useStore = defineStore({
 						quan: 1,
 						selected: false,
 						branch: false,
+						mandatory: false,
 					},
 					{
 						id: 5,
@@ -124,6 +129,7 @@ export const useStore = defineStore({
 						quan: 1,
 						selected: false,
 						branch: false,
+						mandatory: false,
 					},
 				],
 			},

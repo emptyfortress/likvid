@@ -3,7 +3,6 @@ import { ref, computed } from 'vue'
 import { useStore } from '@/stores/store'
 const store = useStore()
 
-const ban = ref(false)
 const opt = ref(false)
 // const quan = ref(store.currentNode?.data.quan) | 0
 
@@ -21,25 +20,24 @@ template(v-if="!store.currentNode")
 	.text-bold.text-center.q-mt-lg Выберите узел
 template(v-else)
 	.mygr
-		q-input(v-model="store.selected" type="text" label="Название").ful
+		q-input(v-model="store.currentNode.data.text" type="text" label="Название").ful
 		.label Тип:
 		div
-			q-radio(dense v-model="typ" val="branch" label="Папка").q-mr-lg
-			q-radio(dense v-model="typ" val="node" label="Узел")
+			q-radio(disable dense v-model="typ" val="branch" label="Папка").q-mr-lg
+			q-radio(disable dense v-model="typ" val="node" label="Узел")
 		.quan
 			q-checkbox(v-model="store.currentNode.data.restrict" dense label="Ограничить количество")
 			q-input(v-model="store.currentNode.data.quan" type="number" dense v-if="store.currentNode.data.restrict" min="1")
 			div(v-if="store.currentNode.data.restrict") шт.
 		.quan
-			q-checkbox(v-model="opt" dense label="Обязательный узел")
+			q-checkbox(v-model="store.currentNode.data.mandatory" dense label="Обязательный узел")
 
-	br
-	br
-	q-card-actions(align="left")
-		q-btn(flat color="primary" label="Отмена" size="sm") 
-		q-btn(unelevated color="primary" label="Применить" @click="apply" size="sm") 
-
-	q-separator
+	// br
+	// br
+	// q-card-actions(align="left")
+	// 	q-btn(flat color="primary" label="Отмена" size="sm") 
+	// 	q-btn(unelevated color="primary" label="Применить" @click="apply" size="sm") 
+	// q-separator
 
 </template>
 
