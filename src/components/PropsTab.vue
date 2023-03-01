@@ -9,7 +9,7 @@ import StateProps from '@/components/tabs/StateProps.vue'
 import { useStore } from '@/stores/store'
 const store = useStore()
 
-const activeTab = ref('zero')
+const activeTab = ref('two')
 
 const tabs = [
 	{ id: 0, modified: false, name: 'zero', label: 'Библиотека' },
@@ -25,8 +25,7 @@ q-tabs(v-model='activeTab' dense align="left").text-primary
 	q-tab(v-for='tab in tabs' :key='tab.id' :name='tab.name')
 		span {{tab.label}}
 
-.sel(v-if="store.currentNode") {{ store.currentNode.data.text }}
-.sel(v-else) {{ store.selected }}
+.sel {{ store.selected }}
 
 q-tab-panels(v-model='activeTab' animated)
 	q-tab-panel(name='zero')
