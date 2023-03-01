@@ -31,7 +31,7 @@ q-page(padding)
 			q-scroll-area.home
 				component(:is="DragTree" ref="dragtree")
 				
-				q-btn(v-if="store.treeChanged" unelevated  color="primary" label="Сохранить" @click="save").fab1
+				q-btn(unelevated  color="primary" label="Сохранить" @click="save").fab1
 		template(#after)
 			q-scroll-area.home
 				component(:is="PropsTab" )

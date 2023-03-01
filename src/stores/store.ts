@@ -76,9 +76,10 @@ export const useStore = defineStore({
 				id: 0,
 				text: 'Контракт',
 				header: 'root',
-				selected: false,
+				selected: true,
 				icon: 'mdi-folder-outline',
 				branch: true,
+				quan: 1,
 				children: [
 					{
 						id: 1,
@@ -107,12 +108,14 @@ export const useStore = defineStore({
 						id: 4,
 						text: 'Исполнение контракта',
 						quan: 1,
+						selected: false,
 						branch: false,
 					},
 					{
 						id: 5,
 						text: 'Изменение контракта',
 						quan: 1,
+						selected: false,
 						branch: false,
 					},
 				],
@@ -126,6 +129,7 @@ export const useStore = defineStore({
 				selected: false,
 				icon: 'mdi-folder-outline',
 				branch: true,
+				quan: 1,
 				children: [
 					{
 						id: 1,
@@ -268,6 +272,7 @@ export const useStore = defineStore({
 				header: 'root',
 				selected: false,
 				branch: true,
+				quan: 0,
 				children: [
 					// {
 					// 	id: 1,

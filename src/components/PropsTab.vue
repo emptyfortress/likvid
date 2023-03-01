@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
 import LibList from '@/components/LibList.vue'
 // import CommonProps from '@/components/tabs/CommonProps.vue'
 import NodeProps from '@/components/tabs/NodeProps.vue'
 import ViewProps from '@/components/tabs/ViewProps.vue'
 import RightsProps from '@/components/tabs/RightsProps.vue'
 import StateProps from '@/components/tabs/StateProps.vue'
+import { useStore } from '@/stores/store'
+const store = useStore()
 
 const activeTab = ref('zero')
 
@@ -23,6 +24,9 @@ const tabs = [
 q-tabs(v-model='activeTab' dense align="left").text-primary
 	q-tab(v-for='tab in tabs' :key='tab.id' :name='tab.name')
 		span {{tab.label}}
+
+.sel(v-if="store.currentNode") {{ store.currentNode.data.text }}
+.sel(v-else) {{ store.selected }}
 
 q-tab-panels(v-model='activeTab' animated)
 	q-tab-panel(name='zero')
@@ -42,5 +46,9 @@ q-tab-panels(v-model='activeTab' animated)
 .q-badge {
 	padding: 0 4px;
 	min-height: 8px;
+}
+.sel {
+	margin-top: 2rem;
+	font-weight: 600;
 }
 </style>

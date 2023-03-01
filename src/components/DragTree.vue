@@ -65,12 +65,12 @@ component(:is="Draggable"
 						q-popup-edit(v-model="node.text" auto-save v-slot="scope")
 							q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set").pop
 
-				.infi( v-if="node.id !== 0") {{ node.quan }}
+				.infi {{ node.quan }}
 					q-tooltip Допустимое количество. 0 - неограничено.
 					q-popup-edit(v-model="node.quan" v-slot="scope" buttons)
 						q-input(v-model.number="scope.value" dense autofocus type="number" @keyup.enter="scope.set")
 
-				q-btn(v-if="node.id !== 0" flat round icon="mdi-close" size="sm")
+				q-btn(flat round icon="mdi-close" size="sm")
 					q-menu
 						q-list
 							q-item(clickable @click="del(stat)" v-close-popup).pink
