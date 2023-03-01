@@ -6,8 +6,6 @@ import NodeProps from '@/components/tabs/NodeProps.vue'
 import ViewProps from '@/components/tabs/ViewProps.vue'
 import RightsProps from '@/components/tabs/RightsProps.vue'
 import StateProps from '@/components/tabs/StateProps.vue'
-import { useStore } from '@/stores/store'
-const store = useStore()
 
 const activeTab = ref('two')
 
@@ -24,8 +22,6 @@ const tabs = [
 q-tabs(v-model='activeTab' dense align="left").text-primary
 	q-tab(v-for='tab in tabs' :key='tab.id' :name='tab.name')
 		span {{tab.label}}
-
-.sel {{ store.selected }}
 
 q-tab-panels(v-model='activeTab' animated)
 	q-tab-panel(name='zero')

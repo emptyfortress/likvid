@@ -1,40 +1,45 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from '@/stores/store'
 const store = useStore()
 
-const typ = ref('one')
 const ban = ref(false)
-const quan = ref(1)
+const opt = ref(false)
+// const quan = ref(store.currentNode?.data.quan) | 0
+
+// const typ = ref('one')
+const typ = computed(() => {
+	if (store.currentNode?.data.branch === true) {
+		return 'branch'
+	}
+	return 'node'
+})
 </script>
 
 <template lang="pug">
+template(v-if="!store.currentNode")
+	.text-bold.text-center.q-mt-lg Выберите узел
+template(v-else)
+	.mygr
+		q-input(v-model="store.selected" type="text" label="Название").ful
+		.label Тип:
+		div
+			q-radio(dense v-model="typ" val="branch" label="Папка").q-mr-lg
+			q-radio(dense v-model="typ" val="node" label="Узел")
+		.quan
+			q-checkbox(v-model="store.currentNode.data.restrict" dense label="Ограничить количество")
+			q-input(v-model="store.currentNode.data.quan" type="number" dense v-if="store.currentNode.data.restrict" min="1")
+			div(v-if="store.currentNode.data.restrict") шт.
+		.quan
+			q-checkbox(v-model="opt" dense label="Обязательный узел")
 
-.mygr
-	q-input(v-model="store.selected" type="text" label="Название").ful
-	// .label Тип:
-	// div
-		q-radio(dense v-model="typ" val="one" label="Папка").q-mr-lg
-		q-radio(dense v-model="typ" val="two" label="Узел")
-	.label Количество:
-	.quan
-		q-checkbox(v-model="ban" dense label="Ограничить")
-		q-input(v-model="quan" type="number" dense v-if="ban")
-		div(v-if="ban") шт.
+	br
+	br
+	q-card-actions(align="left")
+		q-btn(flat color="primary" label="Отмена" size="sm") 
+		q-btn(unelevated color="primary" label="Применить" @click="apply" size="sm") 
 
-br
-br
-q-card-actions(align="left")
-	q-btn(flat color="primary" label="Отмена" @click="action" size="sm") 
-	q-btn(unelevated color="primary" label="Применить" @click="action" size="sm") 
-
-q-separator
-ul
-	li Возможные подчиненные объекты - <span>нет</span>
-	li Порядок следования подчиненных объектов - <span>нет</span>
-	li Способ сортировки - <span>нет</span>
-	li Правила наследования
-q-separator
+	q-separator
 
 </template>
 
@@ -59,6 +64,7 @@ li span {
 	color: red;
 }
 .quan {
+	grid-column: 1/-1;
 	display: flex;
 	align-items: center;
 	gap: 3rem;

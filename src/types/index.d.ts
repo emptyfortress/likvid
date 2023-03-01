@@ -1,6 +1,12 @@
 interface NodeData {
+	id: number
 	text: string
 	selected: boolean
+	branch?: boolean
+	restrict?: boolean
+	quan?: number
+	icon?: string
+	header?: string
 }
 
 interface Stat {
