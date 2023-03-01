@@ -5,7 +5,7 @@ type A = {
 	id: number
 	name: string
 	branch?: boolean
-	quan: num
+	quan?: number
 } | null
 type C = Stat | null
 
@@ -142,6 +142,8 @@ export const useStore = defineStore({
 				selected: false,
 				icon: 'mdi-folder-outline',
 				branch: true,
+				restrict: false,
+				mandatory: false,
 				quan: 1,
 				children: [
 					{
@@ -149,7 +151,9 @@ export const useStore = defineStore({
 						text: 'Папка',
 						icon: 'mdi-folder-outline',
 						selected: false,
-						quan: 0,
+						restrict: false,
+						mandatory: false,
+						quan: 1,
 						branch: true,
 						children: [
 							{
@@ -157,7 +161,9 @@ export const useStore = defineStore({
 								text: 'Код полномочий',
 								icon: 'mdi-key-chain-variant',
 								selected: false,
-								quan: 0,
+								restrict: false,
+								mandatory: false,
+								quan: 1,
 								branch: false,
 							},
 						],
