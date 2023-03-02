@@ -37,6 +37,7 @@ export const useStore = defineStore({
 					{
 						id: 2,
 						text: 'Исполнитель',
+						mandatory: true,
 						children: [
 							{
 								id: 4,

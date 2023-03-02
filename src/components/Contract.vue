@@ -4,7 +4,7 @@ import { BaseTree } from '@he-tree/vue'
 import { useStore } from '@/stores/store'
 import { tree, select, toggle } from '@/composables/hetree'
 import PropertyView from '@/components/PropertyView.vue'
-import PropsTab from './PropsTab.vue'
+// import PropsTab from './PropsTab.vue'
 
 const store = useStore()
 const ratio = ref(32)
@@ -45,11 +45,13 @@ q-page(padding)
 					ref="tree").tree
 					template(#default="{ node, stat }")
 						.node(@click="select(stat)" :class="{'selected' : stat.data.selected | node.selected}")
-							template(v-if="stat.children.length")
-								q-icon(name="mdi-chevron-down" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
-								q-icon(name="mdi-folder-outline" ).trig
-							img(:src="`${node.icon}.svg`" v-if="node.icon").ic
+							.row
+								template(v-if="stat.children.length")
+									q-icon(name="mdi-chevron-down" @click.stop="toggle(stat)" :class="{'closed' : !stat.open}" size="20px").trig
+									q-icon(name="mdi-folder-outline" ).trig
+								img(:src="`${node.icon}.svg`" v-if="node.icon").ic
 							label {{ node.text }}
+							q-icon(v-if="node.mandatory" name="mdi-lock" color="primary")
 
 		template(#after)
 			q-scroll-area.home
@@ -87,12 +89,16 @@ q-page(padding)
 	margin-top: 1rem;
 }
 .node {
-	display: block;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	justify-items: start;
+	align-items: center;
+	column-gap: 0.5rem;
 	background: #f7f7f7;
 }
 .ic {
 	width: 14px;
 	transform: translateY(3px);
-	margin-right: 0.4rem;
+	margin-right: 0.2rem;
 }
 </style>
