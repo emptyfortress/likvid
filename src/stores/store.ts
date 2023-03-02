@@ -6,6 +6,8 @@ type A = {
 	name: string
 	branch?: boolean
 	quan?: number
+	icon?: string
+	mandatory?: boolean
 } | null
 type C = Stat | null
 

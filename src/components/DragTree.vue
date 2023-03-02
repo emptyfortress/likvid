@@ -18,10 +18,13 @@ const externalDataHandler = () => {
 	return {
 		id: Date.now(),
 		text: store.draggedNode!.name,
+		icon: store.draggedNode!.icon,
 		selected: false,
 		branch: store.draggedNode!.branch,
 		drag: true,
-		quan: 0,
+		restrict: false,
+		quan: 1,
+		mandatory: false,
 	}
 }
 

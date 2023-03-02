@@ -13,13 +13,13 @@ const props = defineProps({
 })
 const store = useStore()
 const list = reactive([
-	{ id: 0, branch: true, name: 'Организация' },
-	{ id: 1, branch: true, name: 'Филиал' },
-	{ id: 2, branch: true, name: 'Подразделение' },
-	{ id: 3, branch: true, name: 'Контрагент' },
-	{ id: 4, branch: true, name: 'Группа' },
-	{ id: 5, branch: true, name: 'Папка' },
-	{ id: 7, branch: true, name: 'Роль' },
+	{ id: 0, icon: 'mdi-folder-outline', branch: true, name: 'Организация' },
+	{ id: 1, icon: 'mdi-folder-outline', branch: true, name: 'Филиал' },
+	{ id: 2, icon: 'mdi-folder-outline', branch: true, name: 'Подразделение' },
+	{ id: 3, icon: 'mdi-folder-outline', branch: true, name: 'Контрагент' },
+	{ id: 4, icon: 'mdi-folder-outline', branch: true, name: 'Группа' },
+	{ id: 5, icon: 'mdi-folder-outline', branch: true, name: 'Папка' },
+	{ id: 7, icon: 'mdi-folder-outline', branch: true, name: 'Роль' },
 	{ id: 6, branch: false, name: 'Сотрудник' },
 	{ id: 8, branch: false, name: 'Должность' },
 	{ id: 9, branch: false, name: 'Вложение' },
