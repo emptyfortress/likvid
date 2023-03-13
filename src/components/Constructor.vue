@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import PropsTab from '@/components/PropsTab.vue'
 import DragTree from '@/components/DragTree.vue'
 import { useStore } from '@/stores/store'
 
 const ratio = ref(40)
 const store = useStore()
+const route = useRoute()
 const newName = ref('')
 
 const dragtree = ref(DragTree)
@@ -17,7 +19,7 @@ const save = () => {
 const newSprav = ref(false)
 
 const addnew = () => {
-	store.addNewItemToDrawer(newName.value)
+	store.addNewItemToDrawer(newName.value, route.params.id)
 	newSprav.value = false
 	newName.value = ''
 	store.setTreeChanged(false)

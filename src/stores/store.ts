@@ -11,6 +11,13 @@ type A = {
 } | null
 type C = Stat | null
 
+interface Folder {
+	id: number
+	icon: string
+	title: string
+	url: string
+}
+
 export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
@@ -298,23 +305,7 @@ export const useStore = defineStore({
 				children: [],
 			},
 		],
-		myfolders: [
-			{
-				id: 0,
-				title: 'one',
-				url: '/folders/1',
-			},
-			{
-				id: 1,
-				title: 'two',
-				url: '/folders/2',
-			},
-			{
-				id: 2,
-				title: 'three',
-				url: '/folders/3',
-			},
-		],
+		myfolders: [] as Folder[],
 		pages1: [
 			{
 				id: 0,
@@ -438,14 +429,14 @@ export const useStore = defineStore({
 			}
 			this.createList.push(temp)
 		},
-		addNewItemToDrawer(e: string) {
+		addNewItemToDrawer(e: string, id: string) {
 			const temp = {
 				id: Math.floor(Math.random() * 10000),
 				icon: 'mdi-folder-outline',
 				title: e,
-				url: '/view',
+				url: '/folders/' + id,
 			}
-			this.pages.push(temp)
+			this.myfolders.push(temp)
 		},
 	},
 })
