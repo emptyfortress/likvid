@@ -5,13 +5,9 @@
 <template lang="pug">
 q-page(padding)
 	.container
-		h2 Home
+		h4 home
 		// SvgIcon(name="test" color="var:info" hover-color)
 		// SvgIcon(name="packet")
 </template>
 
-<style scoped lang="scss">
-h2 {
-	margin: 0;
-}
-</style>
+<style scoped lang="scss"></style>

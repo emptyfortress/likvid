@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '@/components/Home.vue'
+import Path from '@/components/Path.vue'
 
 declare module 'vue-router' {
 	interface Bread {
@@ -21,6 +22,11 @@ export const router = createRouter({
 			name: 'home',
 			component: Home,
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
+		{
+			path: '/path/:id',
+			component: Path,
+			props: true,
 		},
 		{
 			path: '/contract',

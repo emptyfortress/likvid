@@ -313,13 +313,31 @@ export const useStore = defineStore({
 				],
 			},
 		],
-		pages: [
+		pages1: [
 			{
 				id: 0,
 				title: 'Главная',
 				icon: 'mdi-home-roof',
 				url: '/',
 			},
+			{
+				id: 1,
+				title: 'Последние карточки',
+				icon: 'mdi-history',
+				url: '/path/history',
+			},
+			{
+				id: 2,
+				title: 'Мои задания',
+				url: '/path/task',
+			},
+			{
+				id: 2,
+				title: 'Мои документы',
+				url: '/path/doc',
+			},
+		],
+		pages: [
 			{
 				id: 1,
 				title: 'Design mode',
@@ -339,18 +357,18 @@ export const useStore = defineStore({
 				url: '/new/2',
 			},
 			{},
-			{
-				id: 4,
-				title: 'Контракт',
-				icon: 'mdi-folder-outline',
-				url: '/contract',
-			},
-			{
-				id: 5,
-				title: 'Коды полномочий',
-				icon: 'mdi-folder-outline',
-				url: '/polnomoch',
-			},
+			// {
+			// 	id: 4,
+			// 	title: 'Контракт',
+			// 	icon: 'mdi-folder-outline',
+			// 	url: '/contract',
+			// },
+			// {
+			// 	id: 5,
+			// 	title: 'Коды полномочий',
+			// 	icon: 'mdi-folder-outline',
+			// 	url: '/polnomoch',
+			// },
 		],
 	}),
 	getters: {

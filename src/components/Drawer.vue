@@ -20,6 +20,14 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 				q-icon(:name="page.icon")
 			q-item-section
 				q-item-label {{ page.title }}
+	.spi(v-if="!store.mini") Дерево папок ДВ
+	q-list
+		q-item(clickable v-ripple v-for="page in store.pages1" :to="page.url" :key="page.id")
+			q-item-section(avatar)
+				q-icon(:name="page.icon")
+			q-item-section
+				q-item-label {{ page.title }}
+	q-expansion-item(label="Мои папки" switch-toggle-side)
 
 	q-btn(round flat dense  @click="store.toggleMini").mini.gt-sm
 		q-icon(name="mdi-backburger" v-if="!store.mini")
@@ -41,5 +49,12 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 .q-item.q-router-link--active {
 	background: $accent1;
 	color: $primary;
+}
+.spi {
+	font-size: 0.9rem;
+	background: $primary;
+	color: white;
+	text-align: center;
+	padding: 3px 0;
 }
 </style>
