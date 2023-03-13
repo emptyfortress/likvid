@@ -40,7 +40,7 @@ q-page(padding)
 		q-card(style="min-width: 400px")
 			q-form(@submit="addnew")
 				q-card-section.row.items-center.q-pb-none
-					.text-h6 Назовите справочник:
+					.text-h6 Родительская папка:
 					q-space
 					q-btn(icon="mdi-close" flat round dense @click="newSprav = false")
 				q-card-section

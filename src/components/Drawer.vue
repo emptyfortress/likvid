@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// import { ref } from 'vue'
+import { ref } from 'vue'
 import { useStore } from '@/stores/store'
 
 const store = useStore()
@@ -10,6 +10,7 @@ const props = defineProps({
 		default: true,
 	},
 })
+const fold = ref(true)
 </script>
 
 <template lang="pug">
@@ -27,7 +28,13 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 				q-icon(:name="page.icon")
 			q-item-section
 				q-item-label {{ page.title }}
-	q-expansion-item(label="Мои папки" switch-toggle-side)
+	q-expansion-item(v-model="fold" label="Мои папки" switch-toggle-side :class="{open : fold}")
+		q-list
+			q-item(clickable v-ripple v-for="page in store.myfolders" :to="page.url" :key="page.id")
+				q-item-section(avatar)
+					q-icon( name="mdi-folder-outline")
+				q-item-section
+					q-item-label {{ page.title }}
 
 	q-btn(round flat dense  @click="store.toggleMini").mini.gt-sm
 		q-icon(name="mdi-backburger" v-if="!store.mini")
@@ -52,9 +59,14 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 }
 .spi {
 	font-size: 0.9rem;
-	background: $primary;
-	color: white;
+	/* background: $primary; */
+	color: $primary;
 	text-align: center;
 	padding: 3px 0;
+	border-top: 1px solid $primary;
+	border-bottom: 1px solid $primary;
+}
+.open {
+	background: $bgDark;
 }
 </style>

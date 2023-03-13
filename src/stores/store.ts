@@ -295,22 +295,24 @@ export const useStore = defineStore({
 				selected: false,
 				branch: true,
 				quan: 0,
-				children: [
-					// {
-					// 	id: 1,
-					// 	text: 'Node 1',
-					// 	selected: false,
-					// 	branch: true,
-					// 	children: [
-					// 		{
-					// 			id: 2,
-					// 			text: 'Node 2',
-					// 			selected: false,
-					// 			branch: false,
-					// 		},
-					// 	],
-					// },
-				],
+				children: [],
+			},
+		],
+		myfolders: [
+			{
+				id: 0,
+				title: 'one',
+				url: '/folders/1',
+			},
+			{
+				id: 1,
+				title: 'two',
+				url: '/folders/2',
+			},
+			{
+				id: 2,
+				title: 'three',
+				url: '/folders/3',
 			},
 		],
 		pages1: [
