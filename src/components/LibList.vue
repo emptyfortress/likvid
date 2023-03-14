@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref, computed } from 'vue'
 import draggable from 'vuedraggable'
 import { useStore } from '@/stores/store'
+import { useLib } from '@/stores/library'
 import WordHighlighter from 'vue-word-highlighter'
-// import { elementsFromPoint } from 'helper-js'
 
 const props = defineProps({
 	zag: {
@@ -12,44 +12,18 @@ const props = defineProps({
 	},
 })
 const store = useStore()
-const list = reactive([
-	{ id: 0, icon: 'mdi-folder-outline', branch: true, name: 'Организация' },
-	{ id: 1, icon: 'mdi-folder-outline', branch: true, name: 'Филиал' },
-	{ id: 2, icon: 'mdi-folder-outline', branch: true, name: 'Подразделение' },
-	{ id: 3, icon: 'mdi-folder-outline', branch: true, name: 'Контрагент' },
-	{ id: 4, icon: 'mdi-folder-outline', branch: true, name: 'Группа' },
-	{ id: 5, icon: 'mdi-folder-outline', branch: true, name: 'Папка' },
-	{ id: 7, icon: 'mdi-folder-outline', branch: true, name: 'Роль' },
-	{ id: 6, branch: false, name: 'Сотрудник' },
-	{ id: 8, branch: false, name: 'Должность' },
-	{ id: 9, branch: false, name: 'Вложение' },
-	{ id: 10, branch: false, name: 'Документ' },
-	{ id: 11, branch: false, name: 'Задание' },
-	{ id: 12, branch: false, name: 'Группа заданий' },
-	{ id: 13, branch: false, name: 'Карточка' },
-	{ id: 14, branch: false, name: 'Файл' },
-	{ id: 15, branch: false, name: 'Ссылка' },
-	{ id: 16, branch: false, name: 'Отчет' },
-	{ id: 27, branch: false, name: 'Код полномочий' },
-	{ id: 17, branch: false, name: 'Этап' },
-	{ id: 18, branch: false, name: 'Цикл' },
-	{ id: 19, branch: false, name: 'База данных' },
-	{ id: 20, branch: false, name: 'Запись' },
-	{ id: 21, branch: false, name: 'Логин' },
-	{ id: 22, branch: false, name: 'Журнал' },
-	{ id: 23, branch: false, name: 'Таблица' },
-	{ id: 24, branch: false, name: 'Строка' },
-	{ id: 25, branch: false, name: 'Поисковый запрос' },
-	{ id: 26, branch: false, name: 'Объект' },
-])
+const lib = useLib()
+
+const list = ref(lib.list)
+
 const drag = ref(false)
 const filter = ref('')
 const filteredList = computed(() => {
-	return list.filter((item) => item.name.toLowerCase().includes(filter.value.toLowerCase()))
+	return list.value.filter((item) => item.name.toLowerCase().includes(filter.value.toLowerCase()))
 })
 const ondragstart = (e: any) => {
 	drag.value = true
-	const node = list.find((item) => item.name === e.item.innerText)
+	const node = list.value.find((item) => item.name === e.item.innerText)
 	if (node) {
 		store.setDraggedNode(node)
 	}
@@ -76,10 +50,11 @@ component(:is="draggable" :list="filteredList"
 	ghost-class="ghost"
 	).list-group
 	template(#item="{ element, index }")
-		.tabel(:class="{ multi : element.branch}")
+		.tabel(:class="{ multi : element.branch === 1}")
 			div
-				q-icon(name="mdi-folder-outline" size="20px" color="primary" v-if="element.branch")
-				q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;" v-else)
+				q-icon(name="mdi-ruler-square-compass" size="20px" color="primary" v-if="element.branch === 0")
+				q-icon(name="mdi-folder-outline" size="20px" color="primary" v-if="element.branch === 1")
+				q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;" v-if="element.branch === 2")
 				span.q-ml-sm
 					component(:is="WordHighlighter" :query="filter") {{ element.name }}
 			q-btn(dense flat round icon="mdi-information-outline" size="sm")

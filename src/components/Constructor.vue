@@ -4,9 +4,11 @@ import { useRoute } from 'vue-router'
 import PropsTab from '@/components/PropsTab.vue'
 import DragTree from '@/components/DragTree.vue'
 import { useStore } from '@/stores/store'
+import { useLib } from '@/stores/library'
 
 const ratio = ref(40)
 const store = useStore()
+const lib = useLib()
 const route = useRoute()
 const newName = ref('')
 
@@ -20,20 +22,20 @@ const save = () => {
 const addnew = () => {
 	store.addNewItemToDrawer(newName.value, route.params.id[0])
 	newSprav.value = false
+	if (shab.value === true) {
+		lib.addItem({
+			id: Date.now(),
+			name: 'Контракт',
+			branch: 0,
+		})
+	}
 	newName.value = ''
-	// store.setTreeChanged(false)
 }
 const shab = ref(false)
 
 const rule = computed(() => {
 	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']
 })
-// const disab = computed(() => {
-// 	if (route.path === '/new/2') {
-// 		return true
-// 	}
-// 	return false
-// })
 </script>
 
 <template lang="pug">

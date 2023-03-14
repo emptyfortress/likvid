@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { Draggable } from '@he-tree/vue'
 import '@he-tree/vue/style/default.css'
@@ -14,7 +14,6 @@ const del = (e: Stat) => {
 }
 
 const externalDataHandler = () => {
-	// store.setTreeChanged(true)
 	return {
 		id: Date.now(),
 		text: store.draggedNode!.name,

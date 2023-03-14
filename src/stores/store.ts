@@ -397,9 +397,6 @@ export const useStore = defineStore({
 		toggleRightDrawer() {
 			this.rightDrawer = !this.rightDrawer
 		},
-		// setTreeChanged(payload: boolean) {
-		// 	this.treeChanged = payload
-		// },
 		addNode() {
 			const change = {
 				id: 9,
