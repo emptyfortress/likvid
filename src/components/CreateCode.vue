@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
-import { useStore } from '@/stores/store'
+// import { useStore } from '@/stores/store'
 
 const props = defineProps({
 	dialog: Boolean,
 })
 
 const emit = defineEmits(['update:modelValue', 'add'])
-const store = useStore()
+// const store = useStore()
 
 const text = ref('')
 const code = ref('')
@@ -28,7 +28,6 @@ const save = () => {
 		descr: descr.value,
 		doveritel: 'ООО "Доксвижн"',
 	}
-	store.addCode(temp)
 	emit('add', temp)
 	emit('update:modelValue', false)
 	text.value = ''

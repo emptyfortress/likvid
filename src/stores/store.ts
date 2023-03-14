@@ -434,11 +434,11 @@ export const useStore = defineStore({
 			this.myfolders.push(temp)
 		},
 		addContract(e: Contract) {
-			this.myfolders[0].children.push(e)
+			this.myfolders[1].children.push(e)
 		},
-		addCode(e: Code) {
-			console.log(e)
-			this.codes[0].children?.push(e)
-		},
+		// addCode(e: Code) {
+		// 	console.log(e)
+		// 	this.codes[0].children?.push(e)
+		// },
 	},
 })
