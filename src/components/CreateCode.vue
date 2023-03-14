@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
+import { useStore } from '@/stores/store'
 
 const props = defineProps({
 	dialog: Boolean,
 })
 
 const emit = defineEmits(['update:modelValue', 'add'])
+const store = useStore()
 
-const name = ref('')
+const text = ref('')
 const code = ref('')
 const descr = ref('')
-const doveritel = ref('')
+const doveritel = ref('ООО "Доксвижн"')
 
 const cancel = () => {
 	emit('update:modelValue', false)
@@ -19,18 +21,19 @@ const cancel = () => {
 const save = () => {
 	const temp = {
 		id: Date.now(),
-		text: name.value,
+		selected: false,
+		text: text.value,
+		icon: 'keychain',
 		code: code.value,
 		descr: descr.value,
-		selected: false,
-		icon: 'keychain',
+		doveritel: 'ООО "Доксвижн"',
 	}
+	store.addCode(temp)
 	emit('add', temp)
 	emit('update:modelValue', false)
-	name.value = ''
+	text.value = ''
 	code.value = ''
 	descr.value = ''
-	doveritel.value = ''
 }
 </script>
 
@@ -45,7 +48,7 @@ q-dialog(:model-value="props.dialog")
 
 		q-card-section.mygrid
 			.label Название:
-			q-input(dense v-model="name" ).quick
+			q-input(dense v-model="text" ).quick
 			.label Код полномочий:
 			q-input(dense v-model="code" ).quick
 			.label  Описание:

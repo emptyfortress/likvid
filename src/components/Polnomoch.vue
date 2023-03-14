@@ -36,6 +36,9 @@ const addCodeToTree = (e: Code) => {
 		text: e.text,
 		selected: true,
 		icon: 'keychain',
+		code: e.code,
+		descr: e.descr,
+		doveritel: e.doveritel,
 	}
 	const node = tree.value.statsFlat.find((item: Stat) => item.data.selected === true)
 	const parent = node.parent || node

@@ -21,7 +21,7 @@ div
 		.label Код полномочий:
 		.val {{ props.item.code}}
 		.label Название полномочий:
-		.val {{ props.item.name}}
+		.val {{ props.item.text}}
 		.label Описание:
 		.val {{ props.item.descr }}
 		.label Доверитель:

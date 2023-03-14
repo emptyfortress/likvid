@@ -27,7 +27,7 @@ interface Stat {
 
 interface Code {
 	id: number
-	selected: boolean
+	selected?: boolean
 	text: string
 	header?: string
 	icon?: string

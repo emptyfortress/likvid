@@ -25,14 +25,6 @@ export const useStore = defineStore({
 		selected: 'Контракт',
 		selected1: 'ООО "Доксвижн"',
 
-		// newContract: {
-		// 	number: null,
-		// 	due: null,
-		// 	executor: null,
-		// 	sum: null,
-		// 	client: 'ООО "Доксвижн"',
-		// } as Contract,
-
 		packet: [
 			{
 				id: 0,
@@ -307,22 +299,13 @@ export const useStore = defineStore({
 			},
 		],
 		myfolders: [
-			// {
-			// 	id: 0,
-			// 	icon: 'mdi-folder-outline',
-			// 	title: 'контракты',
-			// 	url: '/folders/1',
-			// 	typ: '1',
-			// 	children: [
-			// 		{
-			// 			num: 2,
-			// 			due: '1 april',
-			// 			sum: 300000,
-			// 			executor: 'docsvision',
-			// 			client: 'Роснефть',
-			// 		},
-			// 	],
-			// },
+			{
+				id: 0,
+				icon: 'mdi-folder-outline',
+				title: 'Коды полномочий',
+				url: '/folders/2',
+				typ: '2',
+			},
 		] as Folder[],
 
 		pages1: [
@@ -369,18 +352,6 @@ export const useStore = defineStore({
 				url: '/new/2',
 			},
 			{},
-			// {
-			// 	id: 4,
-			// 	title: 'Контракт',
-			// 	icon: 'mdi-folder-outline',
-			// 	url: '/contract',
-			// },
-			// {
-			// 	id: 5,
-			// 	title: 'Коды полномочий',
-			// 	icon: 'mdi-folder-outline',
-			// 	url: '/polnomoch',
-			// },
 		],
 	}),
 	getters: {
@@ -392,7 +363,11 @@ export const useStore = defineStore({
 			}
 		},
 		flatCodes(state) {
+			// return getMembers(state.codes).filter((item) => item.icon === 'keychain')
 			return getMembers(state.codes)
+		},
+		flatCodes1(state) {
+			return getMembers(state.codes).filter((item) => item.icon === 'keychain')
 		},
 	},
 	actions: {
@@ -437,7 +412,6 @@ export const useStore = defineStore({
 			this.packet[0].children.pop()
 			this.selected = 'Контракт'
 		},
-
 		addNewItemToAddDialog(e: string) {
 			const temp = {
 				id: this.createList.length + 1,
@@ -461,6 +435,10 @@ export const useStore = defineStore({
 		},
 		addContract(e: Contract) {
 			this.myfolders[0].children.push(e)
+		},
+		addCode(e: Code) {
+			console.log(e)
+			this.codes[0].children?.push(e)
 		},
 	},
 })

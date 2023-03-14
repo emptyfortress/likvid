@@ -43,4 +43,39 @@ const columns: QTableProps['columns'] = [
 	},
 ]
 
-export { columns }
+const columns1: QTableProps['columns'] = [
+	{
+		name: 'code',
+		required: true,
+		label: 'Код полномочий',
+		field: 'code',
+		sortable: true,
+		align: 'left',
+	},
+	{
+		name: 'text',
+		required: true,
+		label: 'Название',
+		field: 'text',
+		sortable: true,
+		align: 'left',
+	},
+	{
+		name: 'descr',
+		required: true,
+		label: 'Описание',
+		field: 'descr',
+		sortable: true,
+		align: 'left',
+	},
+	{
+		name: 'doveritel',
+		required: true,
+		label: 'Доверитель',
+		field: 'doveritel',
+		sortable: true,
+		align: 'left',
+	},
+]
+
+export { columns, columns1 }
