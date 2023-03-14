@@ -37,3 +37,20 @@ interface Code {
 	doveritel?: string
 	children?: Code[]
 }
+
+interface Contract {
+	num: null | number
+	due: null | string
+	sum: null | number
+	executor: null | string
+	client: null | string
+}
+
+interface Folder {
+	id: number
+	icon: string
+	title: string
+	url: string
+	children: Contract[]
+	typ: string
+}

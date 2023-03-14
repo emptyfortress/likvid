@@ -1,24 +1,34 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed, reactive } from 'vue'
 import { useQuasar } from 'quasar'
+import { useStore } from '@/stores/store'
+import { useRouter } from 'vue-router'
 
+const store = useStore()
+const router = useRouter()
 const $q = useQuasar()
 
 const rule = computed(() => {
 	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']
 })
-const id = ref(null)
-const num = ref(null)
-const sum = ref(null)
-const deadline = ref(null)
+
+const newContract: Contract = reactive({
+	num: null,
+	due: null,
+	client: null,
+	executor: 'ООО "Доксвижн"',
+	sum: null,
+})
 
 const reset = () => {
-	id.value = null
-	num.value = null
-	sum.value = null
-	deadline.value = null
+	// id.value = null
+	// num.value = null
+	// sum.value = null
+	// due.value = null
 }
 const save = () => {
+	store.addContract(newContract)
+	router.push('/folders/1')
 	$q.notify({
 		color: 'positive',
 		textColor: 'white',
@@ -32,21 +42,21 @@ const save = () => {
 div
 	q-form(@submit="save" @reset="reset")
 		.mygrid
-			.label id:
-			q-input(dense v-model="id" type="number" lazy-rules :rules="rule")
 			.label Номер контракта:
-			q-input(dense v-model="num" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="newContract.num" type="number" lazy-rules :rules="rule")
 
 			.label Исполнитель:
 			.link ООО "Доквижн"
+			.label Заказчик:
+			q-input(dense v-model="newContract.client" lazy-rules :rules="rule")
 			.label Общая стоимость контракта:
-			q-input(dense v-model="sum" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="newContract.sum" type="number" lazy-rules :rules="rule")
 			.label Сроки исполнения:
-			q-input(dense v-model="deadline" type="date" lazy-rules :rules="rule").dat
+			q-input(dense v-model="newContract.due" type="date" lazy-rules :rules="rule").dat
 
-	q-card-actions(align="right")
-		q-btn(flat color="primary" label="Отмена" type="reset") 
-		q-btn(unelevated color="primary" label="Сохранить" type="submit") 
+		q-card-actions(align="right")
+			q-btn(flat color="primary" label="Отмена" to="/folders/1" type="reset")
+			q-btn(unelevated color="primary" type="submit" label="Сохранить")
 </template>
 
 <style scoped lang="scss">

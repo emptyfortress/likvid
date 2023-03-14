@@ -46,6 +46,7 @@ q-tab-panels(v-model="store.selected"
 				.title {{item.text}}
 			q-btn(unelevated color="primary" label="Скачать") 	
 		component(:is="Files" :item="item")
+
 </template>
 
 <style scoped lang="scss">

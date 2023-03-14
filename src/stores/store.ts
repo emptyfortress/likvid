@@ -11,13 +11,6 @@ type A = {
 } | null
 type C = Stat | null
 
-interface Folder {
-	id: number
-	icon: string
-	title: string
-	url: string
-}
-
 export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
@@ -31,6 +24,14 @@ export const useStore = defineStore({
 		currentCode: null as C,
 		selected: 'Контракт',
 		selected1: 'ООО "Доксвижн"',
+
+		// newContract: {
+		// 	number: null,
+		// 	due: null,
+		// 	executor: null,
+		// 	sum: null,
+		// 	client: 'ООО "Доксвижн"',
+		// } as Contract,
 
 		packet: [
 			{
@@ -305,7 +306,25 @@ export const useStore = defineStore({
 				children: [],
 			},
 		],
-		myfolders: [] as Folder[],
+		myfolders: [
+			{
+				id: 0,
+				icon: 'mdi-folder-outline',
+				title: 'контракты',
+				url: '/folders/1',
+				typ: '1',
+				children: [
+					{
+						num: 2,
+						due: '1 april',
+						sum: 300000,
+						executor: 'docsvision',
+						client: 'Роснефть',
+					},
+				],
+			},
+		] as Folder[],
+
 		pages1: [
 			{
 				id: 0,
@@ -435,8 +454,13 @@ export const useStore = defineStore({
 				icon: 'mdi-folder-outline',
 				title: e,
 				url: '/folders/' + id,
+				children: [],
+				typ: id,
 			}
 			this.myfolders.push(temp)
+		},
+		addContract(e: Contract) {
+			this.myfolders[0].children.push(e)
 		},
 	},
 })

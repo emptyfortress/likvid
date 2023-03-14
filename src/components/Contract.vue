@@ -57,6 +57,10 @@ q-page(padding)
 			q-scroll-area.home
 				component(:is="PropertyView" @remove="remove")
 
+			// q-card-actions(align="right")
+			// 	q-btn(flat color="primary" label="Отмена" to="/folders/1") 
+			// 	q-btn(unelevated color="primary" label="Сохранить") 
+
 </template>
 
 <style scoped lang="scss">
@@ -70,6 +74,13 @@ q-page(padding)
 	padding: 1rem;
 	background: #fff;
 }
+// .home1 {
+// 	height: calc(100vh - 200px);
+// 	position: relative;
+// 	margin-right: 0.5rem;
+// 	padding: 1rem;
+// 	background: #fff;
+// }
 .fab {
 	position: absolute;
 	bottom: 0.5rem;

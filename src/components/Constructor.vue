@@ -19,7 +19,7 @@ const save = () => {
 const newSprav = ref(false)
 
 const addnew = () => {
-	store.addNewItemToDrawer(newName.value, route.params.id)
+	store.addNewItemToDrawer(newName.value, route.params.id[0])
 	newSprav.value = false
 	newName.value = ''
 	store.setTreeChanged(false)

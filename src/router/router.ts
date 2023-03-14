@@ -29,6 +29,11 @@ export const router = createRouter({
 			props: true,
 		},
 		{
+			path: '/folders/:id',
+			component: () => import('@/components/Folders.vue'),
+			props: true,
+		},
+		{
 			path: '/contract',
 			name: 'contract',
 			component: () => import('@/components/Contract.vue'),

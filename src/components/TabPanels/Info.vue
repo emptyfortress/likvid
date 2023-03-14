@@ -1,58 +1,32 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useQuasar } from 'quasar'
-
-const $q = useQuasar()
+import { ref } from 'vue'
 
 const val1 = ref(null)
 const val2 = ref(null)
 const val3 = ref(null)
 const val4 = ref(null)
 const val5 = ref(null)
-
-const rule = computed(() => {
-	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']
-})
-
-const save = () => {
-	$q.notify({
-		color: 'positive',
-		textColor: 'white',
-		icon: 'mdi-check-bold',
-		message: 'Сохранено',
-	})
-}
-const reset = () => {
-	val1.value = null
-	val2.value = null
-	val3.value = null
-	val4.value = null
-	val5.value = null
-}
 </script>
 
 <template lang="pug">
 div
-	q-form(@submit="save" @reset="reset")
+	q-form
 		.mygrid
 			.label Заказчик:
-			q-input(dense v-model="val1" type="text" lazy-rules :rules="rule")
+			q-input(dense v-model="val1" type="text" )
 			.label ИНН:
-			q-input(dense v-model="val2" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val2" type="number" )
 			.label КПП:
-			q-input(dense v-model="val3" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val3" type="number" )
 			.label Юридический адрес:
-			q-input(dense v-model="val4" type="text" lazy-rules :rules="rule")
+			q-input(dense v-model="val4" type="text" )
 			.label Руководитель:
-			q-input(dense v-model="val5" type="text" lazy-rules :rules="rule")
+			q-input(dense v-model="val5" type="text" )
 
 		q-separator.q-my-md
 		.inf Документы, подтверждающие статус, необходимый для заключения контракта:
 		q-btn(unelevated color="primary" label="Добавить" size="sm")
 
-		q-card-actions(align="right")
-			q-btn(flat color="primary" label="Отмена" type="reset") 
-			q-btn(unelevated color="primary" label="Сохранить" type="submit") 
 </template>
 
 <style scoped lang="scss">

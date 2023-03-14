@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useQuasar } from 'quasar'
-
-const $q = useQuasar()
-
-const rule = computed(() => {
-	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']
-})
+import { ref } from 'vue'
 
 const val6 = ref(null)
 const val7 = ref(null)
@@ -16,26 +9,6 @@ const val10 = ref(null)
 const val11 = ref(null)
 const val12 = ref(null)
 const val13 = ref(null)
-
-const reset = () => {
-	val6.value = null
-	val7.value = null
-	val8.value = null
-	val9.value = null
-	val10.value = null
-	val11.value = null
-	val12.value = null
-	val13.value = null
-}
-
-const save = () => {
-	$q.notify({
-		color: 'positive',
-		textColor: 'white',
-		icon: 'mdi-check-bold',
-		message: 'Сохранено',
-	})
-}
 </script>
 
 <template lang="pug">
@@ -43,32 +16,30 @@ div
 	q-form
 		.mygrid
 			.label Сумма контракта:
-			q-input(dense v-model="val6" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val6" type="number" )
 			.label Стоимость исполненных работ:
-			q-input(dense v-model="val7" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val7" type="number" )
 			.label Фактически оплачено:
-			q-input(dense v-model="val8" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val8" type="number" )
 
 			q-separator.q-my-md
 			.title Этап контракта
 
 			.label Название этапа:
-			q-input(dense v-model="val9" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val9" type="number" )
 			.label Срок исполнения этапа:
-			q-input(dense v-model="val10" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val10" type="number" )
 			.label Стоимость этапа:
-			q-input(dense v-model="val11" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val11" type="number" )
 			.label Содержание этапа:
-			q-input(dense v-model="val12" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val12" type="number" )
 			.label Статус:
-			q-input(dense v-model="val13" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="val13" type="number" )
 			.fil
 				q-separator.q-my-md
 				.inf Список документов:
 				q-btn(unelevated color="primary" label="Добавить" size="sm")
-		q-card-actions(align="right")
-			q-btn(flat color="primary" label="Отмена" type="reset") 
-			q-btn(unelevated color="primary" label="Сохранить" type="submit") 
+
 </template>
 
 <style scoped lang="scss">

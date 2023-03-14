@@ -3,7 +3,7 @@
 <template lang="pug">
 q-page(padding)
 	.container
-		h4 home
+		.zag Home
 </template>
 
 <style scoped lang="scss"></style>
