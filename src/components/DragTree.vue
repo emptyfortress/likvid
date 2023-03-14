@@ -14,7 +14,7 @@ const del = (e: Stat) => {
 }
 
 const externalDataHandler = () => {
-	store.setTreeChanged(true)
+	// store.setTreeChanged(true)
 	return {
 		id: Date.now(),
 		text: store.draggedNode!.name,
