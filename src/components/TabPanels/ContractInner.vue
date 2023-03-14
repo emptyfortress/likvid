@@ -20,12 +20,6 @@ const newContract: Contract = reactive({
 	sum: null,
 })
 
-const reset = () => {
-	// id.value = null
-	// num.value = null
-	// sum.value = null
-	// due.value = null
-}
 const save = () => {
 	store.addContract(newContract)
 	router.push('/folders/1')
@@ -40,7 +34,7 @@ const save = () => {
 
 <template lang="pug">
 div
-	q-form(@submit="save" @reset="reset")
+	q-form(@submit="save")
 		.mygrid
 			.label Номер контракта:
 			q-input(dense v-model="newContract.num" type="number" lazy-rules :rules="rule")
