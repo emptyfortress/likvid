@@ -29,7 +29,11 @@ q-page(padding)
 		.row.items-baseline.justify-between.q-gutter-x-lg
 			.zag {{ item.title }}
 			q-btn(round color="primary" icon="mdi-plus" size="sm" :to="calcTo")
-		q-table(:columns="columns" :rows="rows").q-mt-md
+		q-table(:columns="columns"
+			:rows="rows"
+			rows-per-page-label="Показать на странице"
+			:rows-per-page-options=[10,20,50,0]
+			).q-mt-md
 </template>
 
 <style scoped lang="scss">

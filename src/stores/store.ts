@@ -307,22 +307,22 @@ export const useStore = defineStore({
 			},
 		],
 		myfolders: [
-			{
-				id: 0,
-				icon: 'mdi-folder-outline',
-				title: 'контракты',
-				url: '/folders/1',
-				typ: '1',
-				children: [
-					{
-						num: 2,
-						due: '1 april',
-						sum: 300000,
-						executor: 'docsvision',
-						client: 'Роснефть',
-					},
-				],
-			},
+			// {
+			// 	id: 0,
+			// 	icon: 'mdi-folder-outline',
+			// 	title: 'контракты',
+			// 	url: '/folders/1',
+			// 	typ: '1',
+			// 	children: [
+			// 		{
+			// 			num: 2,
+			// 			due: '1 april',
+			// 			sum: 300000,
+			// 			executor: 'docsvision',
+			// 			client: 'Роснефть',
+			// 		},
+			// 	],
+			// },
 		] as Folder[],
 
 		pages1: [
