@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { getMembers } from '@/utils/utils'
+// import cloneDeepWith from 'lodash.clonedeepwith'
 
 type A = {
 	id: number
@@ -23,7 +24,7 @@ export const useStore = defineStore({
 		currentNode: null as C,
 		currentCode: null as C,
 		selected: 'Контракт',
-		selected1: 'ООО "Доксвижн"',
+		selected1: 'МинЦифры',
 
 		packet: [
 			{
@@ -179,7 +180,7 @@ export const useStore = defineStore({
 				id: 0,
 				text: 'ООО "Доксвижн"',
 				header: 'root',
-				selected: true,
+				selected: false,
 				icon: 'NodeFolder',
 				children: [
 					{
@@ -190,6 +191,7 @@ export const useStore = defineStore({
 						name: 'Подписание договоров до 100 т. руб',
 						descr: 'Подписание и отправка договоров до 100 т. руб',
 						doveritel: 'ООО "ДоксВижн"',
+						selected: false,
 					},
 					{
 						id: 3,
@@ -199,6 +201,7 @@ export const useStore = defineStore({
 						name: 'Подписание и отправка договоров от 500 т. руб',
 						descr: 'Подписание договоров от 500 т. руб',
 						doveritel: 'ООО "ДоксВижн"',
+						selected: false,
 					},
 					{
 						id: 4,
@@ -208,6 +211,7 @@ export const useStore = defineStore({
 						name: 'Подписание договоров от 1 млн. руб',
 						descr: 'Подписание и отправка договоров от 1 млн. руб',
 						doveritel: 'ООО "ДоксВижн"',
+						selected: false,
 					},
 					{
 						id: 5,
@@ -217,6 +221,7 @@ export const useStore = defineStore({
 						name: 'Подписание договоров с зарубежными партнерами',
 						descr: 'Подписание и отправка договоров с зарубежными партнерами',
 						doveritel: 'ООО "ДоксВижн"',
+						selected: false,
 					},
 					{
 						id: 6,
@@ -226,6 +231,7 @@ export const useStore = defineStore({
 						name: 'Приказы по группе компаний',
 						descr: 'Подписание и отправка приказов по группе компаний',
 						doveritel: 'ООО "ДоксВижн"',
+						selected: false,
 					},
 					{
 						id: 8,
@@ -235,6 +241,7 @@ export const useStore = defineStore({
 						name: 'Подписание больничных',
 						descr: 'Оформление и подписание больничных листов',
 						doveritel: 'ООО "ДоксВижн"',
+						selected: false,
 					},
 					{
 						id: 9,
@@ -244,6 +251,7 @@ export const useStore = defineStore({
 						name: 'Служебные записки',
 						descr: 'Подписание внутренних служебных записок',
 						doveritel: 'ООО "ДоксВижн"',
+						selected: false,
 					},
 				],
 			},
@@ -261,6 +269,7 @@ export const useStore = defineStore({
 						name: 'Подписание приказов',
 						descr: 'Подписание и отправка приказов по министерству',
 						doveritel: 'Минцифры',
+						selected: false,
 					},
 					{
 						id: 12,
@@ -270,6 +279,7 @@ export const useStore = defineStore({
 						name: 'Подписание приказов',
 						descr: 'Подписание и отправка приказов по управлению',
 						doveritel: 'Минцифры',
+						selected: false,
 					},
 				],
 			},
@@ -388,6 +398,9 @@ export const useStore = defineStore({
 			this.currentCode = e
 			this.selected1 = e!.data.text
 		},
+		setCodes(payload: any) {
+			this.codes = payload
+		},
 		showRightDrawer() {
 			this.rightDrawer = true
 		},
@@ -433,9 +446,5 @@ export const useStore = defineStore({
 		addContract(e: Contract) {
 			this.myfolders[1].children.push(e)
 		},
-		// addCode(e: Code) {
-		// 	console.log(e)
-		// 	this.codes[0].children?.push(e)
-		// },
 	},
 })
