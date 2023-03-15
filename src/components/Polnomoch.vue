@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 import { BaseTree } from '@he-tree/vue'
 import { useStore } from '@/stores/store'
 import { tree, select1, toggle } from '@/composables/hetree'
@@ -55,6 +55,9 @@ const addFolder = () => {
 const remove = (e: Stat) => {
 	tree.value.remove(e)
 }
+onBeforeUnmount(() => {
+	tree.value.statsFlat.map((item: Stat) => (item.data.selected = false))
+})
 </script>
 
 <template lang="pug">

@@ -40,7 +40,6 @@ function selectCode(tree: any, id: number) {
 }
 
 const select1 = (e: any) => {
-	console.log(e)
 	let temp = selectCode(store.codes, e.id)
 	store.setCodes(temp)
 	store.selected1 = e.text
