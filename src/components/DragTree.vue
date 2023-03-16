@@ -22,6 +22,7 @@ const externalDataHandler = () => {
 		icon: store.draggedNode!.icon,
 		selected: false,
 		branch: store.draggedNode!.branch,
+		vid: store.draggedNode!.vid,
 		drag: true,
 		restrict: false,
 		quan: 1,

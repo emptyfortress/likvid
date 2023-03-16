@@ -28,7 +28,7 @@ const selected = ref([])
 const selected1 = ref([])
 
 const select = (e: any) => {
-	console.log(e)
+	router.push('/contract')
 }
 
 function selectCode(tree: any, id: number) {

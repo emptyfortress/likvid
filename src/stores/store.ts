@@ -5,7 +5,7 @@ import { getMembers } from '@/utils/utils'
 type A = {
 	id: number
 	name: string
-	branch?: boolean
+	branch?: number
 	quan?: number
 	icon?: string
 	mandatory?: boolean
@@ -83,10 +83,11 @@ export const useStore = defineStore({
 				header: 'root',
 				selected: false,
 				icon: 'mdi-folder-outline',
-				branch: true,
+				branch: 1,
 				restrict: false,
 				mandatory: false,
 				quan: 1,
+				vid: 'шаблон',
 				children: [
 					{
 						id: 1,
@@ -95,7 +96,8 @@ export const useStore = defineStore({
 						restrict: false,
 						quan: 1,
 						mandatory: false,
-						branch: false,
+						branch: 2,
+						vid: 'карточка',
 					},
 					{
 						id: 2,
@@ -104,16 +106,18 @@ export const useStore = defineStore({
 						icon: 'mdi-folder-outline',
 						restrict: false,
 						quan: 1,
-						branch: true,
+						branch: 0,
 						mandatory: true,
+						vid: 'шаблон',
 						children: [
 							{
 								id: 3,
 								text: 'Файл',
 								restrict: false,
 								quan: 1,
-								branch: false,
+								branch: 2,
 								mandatory: false,
+								vid: 'file',
 							},
 						],
 					},
@@ -123,8 +127,9 @@ export const useStore = defineStore({
 						restrict: false,
 						quan: 1,
 						selected: false,
-						branch: false,
+						branch: 2,
 						mandatory: false,
+						vid: 'карточка',
 					},
 					{
 						id: 5,
@@ -132,8 +137,9 @@ export const useStore = defineStore({
 						restrict: false,
 						quan: 1,
 						selected: false,
-						branch: false,
+						branch: 2,
 						mandatory: false,
+						vid: 'карточка',
 					},
 				],
 			},

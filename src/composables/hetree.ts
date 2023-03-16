@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useStore } from '@/stores/store'
 
 const store = useStore()

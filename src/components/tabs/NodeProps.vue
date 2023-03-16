@@ -3,16 +3,17 @@ import { ref, computed } from 'vue'
 import { useStore } from '@/stores/store'
 const store = useStore()
 
-const opt = ref(false)
-// const quan = ref(store.currentNode?.data.quan) | 0
-
-// const typ = ref('one')
 const typ = computed(() => {
-	if (store.currentNode?.data.branch === true) {
-		return 'branch'
+	if (store.currentNode?.data.branch === 2) {
+		return 'node'
 	}
-	return 'node'
+	return 'branch'
 })
+const filetype = ref(false)
+const sel = ref('Не указано')
+const options = ['Не указано', 'word', 'excel', 'txt', 'pdf', 'zip']
+const shab = ref(false)
+const path = ref('C:/Program Files/Docsvision/Examples/Files/test.docx')
 </script>
 
 <template lang="pug">
@@ -20,24 +21,25 @@ template(v-if="!store.currentNode")
 	.text-bold.text-center.q-mt-lg Выберите узел
 template(v-else)
 	.mygr
-		q-input(v-model="store.currentNode.data.text" type="text" label="Название").ful
 		.label Тип:
 		div
 			q-radio(disable dense v-model="typ" val="branch" label="Папка").q-mr-lg
 			q-radio(disable dense v-model="typ" val="node" label="Узел")
+		.label Вид карточки:
+		.row.items-center
+			.q-mr-xl {{ store.currentNode.data.vid }}
+			q-select(v-if="store.currentNode.data.vid === 'file'" v-model="sel" dense label="Тип файла" :options="options").typ
+
+		q-input(v-model="store.currentNode.data.text" type="text" label="Название").ful
 		.quan
 			q-checkbox(v-model="store.currentNode.data.restrict" dense label="Ограничить количество")
 			q-input(v-model="store.currentNode.data.quan" type="number" dense v-if="store.currentNode.data.restrict" min="1")
 			div(v-if="store.currentNode.data.restrict") шт.
 		.quan
 			q-checkbox(v-model="store.currentNode.data.mandatory" dense label="Обязательный узел")
-
-	// br
-	// br
-	// q-card-actions(align="left")
-	// 	q-btn(flat color="primary" label="Отмена" size="sm") 
-	// 	q-btn(unelevated color="primary" label="Применить" @click="apply" size="sm") 
-	// q-separator
+	.row.items-center
+		q-checkbox(v-model="shab" dense label="Заполнить по шаблону").q-mr-xl
+		q-input(v-model="path" label="Выбрать" style="width: 400px" :disable="!shab")
 
 </template>
 
@@ -72,5 +74,11 @@ li span {
 	:deep(.q-field__native) {
 		text-align: center;
 	}
+}
+.typ {
+	width: 150px;
+}
+.full {
+	widows: 300px;
 }
 </style>

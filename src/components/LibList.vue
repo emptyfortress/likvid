@@ -32,6 +32,14 @@ const ondragend = () => {
 	drag.value = false
 	store.setDraggedNode(null)
 }
+const calcClass = (e: any) => {
+	if (e.branch === 1) {
+		return 'multi'
+	} else if (e.branch === 0) {
+		return 'templ'
+	}
+	return ''
+}
 </script>
 
 <template lang="pug">
@@ -50,7 +58,7 @@ component(:is="draggable" :list="filteredList"
 	ghost-class="ghost"
 	).list-group
 	template(#item="{ element, index }")
-		.tabel(:class="{ multi : element.branch === 1}")
+		.tabel(:class="calcClass(element)")
 			div
 				q-icon(name="mdi-ruler-square-compass" size="20px" color="primary" v-if="element.branch === 0")
 				q-icon(name="mdi-folder-outline" size="20px" color="primary" v-if="element.branch === 1")
@@ -73,6 +81,9 @@ component(:is="draggable" :list="filteredList"
 	grid-template-columns: 1fr auto;
 	&.multi {
 		background: #dbded3;
+	}
+	&.templ {
+		background: #dce7bd;
 	}
 	.q-icon,
 	.q-btn {

@@ -7,7 +7,6 @@ import PropertyView1 from '@/components/PropertyView1.vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import CreateCode from '@/components/CreateCode.vue'
 import CreateFolder from '@/components/CreateFolder.vue'
-// import PropsTab from './PropsTab.vue'
 
 const store = useStore()
 const ratio = ref(38)
