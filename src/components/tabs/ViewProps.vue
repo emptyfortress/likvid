@@ -32,7 +32,12 @@ div
 			ul
 				li(v-for="item in tasks" :key="item.id")
 					q-radio(v-model="rdoc" :val="item.id" dense :label="item.label")
+		li И т.д...
 
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+ul ul {
+	list-style: none;
+}
+</style>

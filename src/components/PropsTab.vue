@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import LibList from '@/components/LibList.vue'
-// import CommonProps from '@/components/tabs/CommonProps.vue'
 import NodeProps from '@/components/tabs/NodeProps.vue'
 import ViewProps from '@/components/tabs/ViewProps.vue'
 import RightsProps from '@/components/tabs/RightsProps.vue'
-import StateProps from '@/components/tabs/StateProps.vue'
+// import StateProps from '@/components/tabs/StateProps.vue'
 
 const activeTab = ref('zero')
 
@@ -14,7 +13,7 @@ const tabs = [
 	{ id: 2, modified: true, name: 'two', label: 'Узел' },
 	{ id: 3, modified: false, name: 'three', label: 'Представления' },
 	{ id: 4, modified: false, name: 'four', label: 'Права' },
-	{ id: 5, modified: false, name: 'five', label: 'Состояния' },
+	// { id: 5, modified: false, name: 'five', label: 'Состояния' },
 ]
 </script>
 
@@ -32,8 +31,8 @@ q-tab-panels(v-model='activeTab' animated)
 		component(:is="ViewProps")
 	q-tab-panel(name='four')
 		component(:is="RightsProps")
-	q-tab-panel(name='five')
-		component(:is="StateProps")
+	// q-tab-panel(name='five')
+	// 	component(:is="StateProps")
 	
 </template>
 
