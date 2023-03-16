@@ -18,7 +18,7 @@ const del = (e: Stat) => {
 const externalDataHandler = () => {
 	return {
 		id: Date.now(),
-		text: store.draggedNode!.name,
+		text: store.draggedNode!.text,
 		icon: store.draggedNode!.icon,
 		selected: false,
 		branch: store.draggedNode!.branch,
@@ -46,7 +46,7 @@ const treedata = computed(() => {
 })
 
 const isDrop = (e: any) => {
-	if (e.data.branch) return true
+	if (e.data.branch == 1) return true
 	else return false
 }
 

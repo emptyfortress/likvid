@@ -1,23 +1,13 @@
 import { defineStore } from 'pinia'
 import { getMembers } from '@/utils/utils'
-// import cloneDeepWith from 'lodash.clonedeepwith'
 
-type A = {
-	id: number
-	name: string
-	branch?: number
-	quan?: number
-	icon?: string
-	mandatory?: boolean
-} | null
+type A = NodeData | null
 type C = Stat | null
 
 export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
 		mini: false,
-		// selection: false,
-		// selection1: false,
 		rightDrawer: false,
 		treeChanged: false,
 		draggedNode: null as A,
@@ -151,10 +141,11 @@ export const useStore = defineStore({
 				header: 'root',
 				selected: false,
 				icon: 'mdi-folder-outline',
-				branch: true,
+				branch: 1,
 				restrict: false,
 				mandatory: false,
 				quan: 1,
+				vid: 'шаблон',
 				children: [
 					{
 						id: 1,
@@ -164,7 +155,8 @@ export const useStore = defineStore({
 						restrict: false,
 						mandatory: false,
 						quan: 1,
-						branch: true,
+						branch: 1,
+						vid: 'папка',
 						children: [
 							{
 								id: 2,
@@ -174,7 +166,8 @@ export const useStore = defineStore({
 								restrict: false,
 								mandatory: false,
 								quan: 1,
-								branch: false,
+								branch: 2,
+								vid: 'карточка',
 							},
 						],
 					},

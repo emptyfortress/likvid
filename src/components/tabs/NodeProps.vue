@@ -4,16 +4,18 @@ import { useStore } from '@/stores/store'
 const store = useStore()
 
 const typ = computed(() => {
-	if (store.currentNode?.data.branch === 2) {
+	if (store.currentNode && store.currentNode.data.branch == 2) {
 		return 'node'
 	}
 	return 'branch'
 })
-const filetype = ref(false)
+// const filetype = ref(false)
 const sel = ref('Не указано')
 const options = ['Не указано', 'word', 'excel', 'txt', 'pdf', 'zip']
 const shab = ref(false)
 const path = ref('C:/Program Files/Docsvision/Examples/Files/test.docx')
+const more = ref('=')
+const options1 = ['=', '<=', '=>', '>', '<']
 </script>
 
 <template lang="pug">
@@ -33,13 +35,15 @@ template(v-else)
 		q-input(v-model="store.currentNode.data.text" type="text" label="Название").ful
 		.quan
 			q-checkbox(v-model="store.currentNode.data.restrict" dense label="Ограничить количество")
+			q-select(v-model="more" dense v-if="store.currentNode.data.restrict" :options="options1")
 			q-input(v-model="store.currentNode.data.quan" type="number" dense v-if="store.currentNode.data.restrict" min="1")
 			div(v-if="store.currentNode.data.restrict") шт.
 		.quan
 			q-checkbox(v-model="store.currentNode.data.mandatory" dense label="Обязательный узел")
 	.row.items-center
-		q-checkbox(v-model="shab" dense label="Заполнить по шаблону").q-mr-xl
-		q-input(v-model="path" label="Выбрать" style="width: 400px" :disable="!shab")
+		q-checkbox(v-model="shab" dense label="Заполнить при создании").q-mr-xl
+		q-input(v-if="shab" v-model="path" label="Источник" style="width: 300px" :disable="!shab").q-mr-xl 
+		q-btn(v-if="shab" unelevated color="primary" label="Выбрать" size="sm")
 
 </template>
 

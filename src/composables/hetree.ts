@@ -5,10 +5,11 @@ const store = useStore()
 const tree = ref()
 
 const select = (e: Stat) => {
-	tree.value.statsFlat.map((item: any) => (item.data.selected = false))
+	tree.value.statsFlat.map((item: Stat) => (item.data.selected = false))
 	e.data.selected = true
 	store.setCurrentNode(e)
 }
+
 const select1 = (e: Stat) => {
 	tree.value.statsFlat.map((item: any) => (item.data.selected = false))
 	e.data.selected = true

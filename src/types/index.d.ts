@@ -1,13 +1,14 @@
 interface NodeData {
 	id: number
 	text: string
-	selected: boolean
-	branch?: boolean
+	selected?: boolean
+	branch?: number
 	restrict?: boolean
 	quan?: number
 	icon?: string
 	header?: string
 	mandatory?: boolean
+	vid?: string
 }
 
 interface Stat {

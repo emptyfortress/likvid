@@ -18,12 +18,13 @@ const list = ref(lib.list)
 
 const drag = ref(false)
 const filter = ref('')
+
 const filteredList = computed(() => {
-	return list.value.filter((item) => item.name.toLowerCase().includes(filter.value.toLowerCase()))
+	return list.value.filter((item) => item.text.toLowerCase().includes(filter.value.toLowerCase()))
 })
 const ondragstart = (e: any) => {
 	drag.value = true
-	const node = list.value.find((item) => item.name === e.item.innerText)
+	const node = list.value.find((item) => item.text === e.item.innerText)
 	if (node) {
 		store.setDraggedNode(node)
 	}
@@ -64,7 +65,7 @@ component(:is="draggable" :list="filteredList"
 				q-icon(name="mdi-folder-outline" size="20px" color="primary" v-if="element.branch === 1")
 				q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;" v-if="element.branch === 2")
 				span.q-ml-sm
-					component(:is="WordHighlighter" :query="filter") {{ element.name }}
+					component(:is="WordHighlighter" :query="filter" ) {{ element.text }}
 			q-btn(dense flat round icon="mdi-information-outline" size="sm")
 </template>
 
