@@ -85,7 +85,7 @@ export const useStore = defineStore({
 						selected: false,
 						restrict: false,
 						quan: 1,
-						mandatory: false,
+						mandatory: true,
 						branch: 2,
 						vid: 'карточка',
 					},
@@ -118,7 +118,7 @@ export const useStore = defineStore({
 						quan: 1,
 						selected: false,
 						branch: 2,
-						mandatory: false,
+						mandatory: true,
 						vid: 'карточка',
 					},
 					{

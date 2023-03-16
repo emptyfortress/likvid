@@ -24,9 +24,9 @@ q-layout(view="hHh LpR fFf")
 	q-header.head
 		q-toolbar
 			q-btn(dense flat round icon="mdi-menu" @click="toggleLeftDrawer" color="primary")
-			q-toolbar-title
-			q-btn(dense flat round icon="mdi-plus-box-multiple" @click="showDialog" color="primary")
-			q-btn(dense flat round icon="mdi-menu" @click="store.toggleRightDrawer" color="primary")
+			q-toolbar-title Сложные структуры хранения данных
+			// q-btn(dense flat round icon="mdi-plus-box-multiple" @click="showDialog" color="primary")
+			// q-btn(dense flat round icon="mdi-menu" @click="store.toggleRightDrawer" color="primary")
 
 	Drawer(v-model="leftDrawer")
 	RDrawer(v-model="store.rightDrawer")

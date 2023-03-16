@@ -40,7 +40,7 @@ template(v-else)
 			div(v-if="store.currentNode.data.restrict") шт.
 		.quan
 			q-checkbox(v-model="store.currentNode.data.mandatory" dense label="Обязательный узел")
-	.row.items-center
+	.row.items-center.q-mt-md
 		q-checkbox(v-model="shab" dense label="Заполнить при создании").q-mr-xl
 		q-input(v-if="shab" v-model="path" label="Источник" style="width: 300px" :disable="!shab").q-mr-xl 
 		q-btn(v-if="shab" unelevated color="primary" label="Выбрать" size="sm")

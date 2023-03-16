@@ -59,7 +59,7 @@ const addnew = () => {
 	if (shab.value === true) {
 		lib.addItem({
 			id: Date.now(),
-			name: 'Контракт',
+			text: 'Контракт',
 			branch: 0,
 		})
 	}
