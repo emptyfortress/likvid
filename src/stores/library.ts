@@ -4,7 +4,7 @@ export const useLib = defineStore({
 	id: 'lib',
 	state: () => ({
 		list: [
-			{ id: 0, branch: 0, vid: 'шаблон', text: 'Коды полномочий' },
+			// { id: 0, branch: 0, vid: 'шаблон', text: 'Коды полномочий' },
 			{ id: 1, branch: 1, vid: 'организация', text: 'Организация' },
 			{ id: 2, branch: 1, vid: 'филиал', text: 'Филиал' },
 			{ id: 3, branch: 1, vid: 'подразделение', text: 'Подразделение' },
