@@ -46,6 +46,10 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 <style scoped lang="scss">
 @import '@/assets/styles/myvariables.scss';
 
+:deep(.q-drawer) {
+	background: $primary;
+	color: white;
+}
 .mini {
 	position: absolute;
 	bottom: 1rem;
@@ -55,7 +59,7 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 .q-item--active,
 .q-item.q-router-link--active {
 	background: $accent1;
-	color: $primary;
+	color: white;
 }
 .spi {
 	font-size: 0.9rem;
@@ -67,6 +71,6 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 	border-bottom: 1px solid $primary;
 }
 .open {
-	background: $bgDark;
+	background: $accent2;
 }
 </style>

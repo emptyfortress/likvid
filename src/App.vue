@@ -23,10 +23,15 @@ const showDialog = () => {
 q-layout(view="hHh LpR fFf")
 	q-header.head
 		q-toolbar
-			q-btn(dense flat round icon="mdi-menu" @click="toggleLeftDrawer" color="primary")
+			q-btn(dense flat round icon="mdi-menu" @click="toggleLeftDrawer" color="white")
 			q-toolbar-title Сложные структуры хранения данных
-			// q-btn(dense flat round icon="mdi-plus-box-multiple" @click="showDialog" color="primary")
-			// q-btn(dense flat round icon="mdi-menu" @click="store.toggleRightDrawer" color="primary")
+			q-space
+			q-btn(dense flat round icon="mdi-magnify")
+			q-btn(dense round unelevated color="light-blue-2").q-ml-sm
+				q-avatar
+					img(src="@/assets/img/users/user0.svg")
+					.mybadge
+			q-btn(dense flat round icon="mdi-help-circle-outline").q-ml-sm
 
 	Drawer(v-model="leftDrawer")
 	RDrawer(v-model="store.rightDrawer")
@@ -45,9 +50,22 @@ q-layout(view="hHh LpR fFf")
 @import '@/assets/styles/myvariables.scss';
 
 .head {
-	color: $text-bright;
-	background: rgba(0, 0, 0, 0.07);
+	color: white;
+	// background: rgba(0, 0, 0, 0.07);
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
+	height: 64px;
+	line-height: 64px;
+	background: $primary;
+}
+.mybadge {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	left: -3px;
+	bottom: -2px;
+	background: green;
+	border: 1px solid #fff;
 }
 </style>
