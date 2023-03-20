@@ -37,16 +37,16 @@ div
 	q-form(@submit="save")
 		.mygrid
 			.label Номер контракта:
-			q-input(dense v-model="newContract.num" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="newContract.num" )
 
 			.label Исполнитель:
 			.link ООО "Доквижн"
 			.label Заказчик:
-			q-input(dense v-model="newContract.client" lazy-rules :rules="rule")
+			q-input(dense v-model="newContract.client"  )
 			.label Общая стоимость контракта:
-			q-input(dense v-model="newContract.sum" type="number" lazy-rules :rules="rule")
+			q-input(dense v-model="newContract.sum" )
 			.label Сроки исполнения:
-			q-input(dense v-model="newContract.due" type="date" lazy-rules :rules="rule").dat
+			q-input(dense v-model="newContract.due" ).dat
 
 		q-card-actions(align="right")
 			q-btn(flat color="primary" label="Отмена" to="/folders/1" type="reset")
