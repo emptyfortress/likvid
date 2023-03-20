@@ -96,7 +96,7 @@ export const useStore = defineStore({
 						icon: 'mdi-folder-outline',
 						restrict: false,
 						quan: 1,
-						branch: 0,
+						branch: 1,
 						mandatory: true,
 						vid: 'шаблон',
 						children: [

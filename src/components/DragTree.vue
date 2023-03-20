@@ -46,8 +46,8 @@ const treedata = computed(() => {
 })
 
 const isDrop = (e: any) => {
-	if (e.data.branch == 1) return true
-	else return false
+	if (e.data.branch == 2) return false
+	else return true
 }
 
 const dialog = ref(false)
