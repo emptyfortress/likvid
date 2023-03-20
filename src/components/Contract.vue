@@ -37,7 +37,7 @@ q-page(padding)
 	q-splitter(v-model="ratio").q-mt-md
 		template(#before)
 			q-scroll-area.home
-				q-btn(:disable="store.packet[0].children.length > 3" icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
+				q-btn(icon="mdi-plus" round size="md" dark color="primary" @click="add").fab
 
 				component(:is="BaseTree" v-model="store.packet"
 					:indent="30"
