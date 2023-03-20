@@ -95,7 +95,7 @@ const save = () => {
 							q-popup-edit(v-model="node.text" auto-save v-slot="scope")
 								q-input(v-model="scope.value" dense autofocus counter @keyup.enter="scope.set").pop
 
-					q-icon(v-if="node.mandatory" name="mdi-alert").q-mr-md
+					q-icon(v-if="node.mandatory" name="mdi-asterisk").q-mr-md
 					.infi(v-if="node.restrict") {{ node.quan }}
 						q-popup-edit(v-model="node.quan" v-slot="scope" buttons)
 							q-input(v-model.number="scope.value" dense autofocus type="number" @keyup.enter="scope.set" min="1")
@@ -117,8 +117,8 @@ q-dialog(v-model="dialog")
 				q-btn(icon="mdi-close" flat round dense @click="dialog = false")
 			q-card-section
 				q-input(v-model="newName" autofocus lazy-rules :rules="rule").inp
-				br
-				q-checkbox(v-model="shab" dense label="Сохранить как шаблон")
+				// br
+				// q-checkbox(v-model="shab" dense label="Сохранить как шаблон")
 			q-card-section
 				q-card-actions(align="right")
 					q-btn(flat color="primary" label="Отмена" @click="dialog = false")
