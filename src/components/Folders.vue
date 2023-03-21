@@ -39,7 +39,9 @@ q-page.column.justify-between
 	.container
 		.row.items-baseline.justify-between.q-gutter-x-lg
 			.zag {{ item?.title }}
-			q-btn(round color="primary" icon="mdi-plus" size="sm" to="/contract")
+			.q-gutter-x-sm
+				q-btn(flat color="primary" label="Создать по шаблону")
+				q-btn(round color="primary" icon="mdi-plus" size="sm" to="/contract")
 
 		component(:is="Toolbar" total="rows.length")
 		q-table(:columns="columns"
