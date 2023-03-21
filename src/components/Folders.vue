@@ -4,6 +4,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/stores/store'
 import { columns, columns1 } from '@/stores/table'
 import cloneDeepWith from 'lodash.clonedeepwith'
+import Toolbar from '@/components/Toolbar.vue'
 
 const store = useStore()
 const route = useRoute()
@@ -54,6 +55,7 @@ q-page(padding)
 			.zag {{ item?.title }}
 			q-btn(round color="primary" icon="mdi-plus" size="sm" :to="calcTo")
 
+		Toolbar()
 		q-table(v-if="item?.typ == '1'" :columns="columns"
 			flat
 			:rows="rows"
@@ -61,6 +63,7 @@ q-page(padding)
 			:rows-per-page-options=[10,20,50,0]
 			row-key="id"
       selection="single"
+			no-data-label="Данные отсутствуют."
       v-model:selected="selected"
 			).q-mt-md
 			template(v-slot:body-selection)
@@ -97,5 +100,8 @@ q-page(padding)
 }
 .q-tr {
 	cursor: pointer;
+}
+.q-mt-md {
+	margin-top: 0;
 }
 </style>
