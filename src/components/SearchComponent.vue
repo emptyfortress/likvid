@@ -12,13 +12,16 @@ const props = defineProps({
 const store = useStore()
 const scope = ['Везде', 'В текущей папке', 'В моих папках']
 const sel = ref('В текущей папке')
+const clear = () => {
+	store.filter = ''
+}
 </script>
 
 <template lang="pug">
 transition(name="slide-right" mode="out-in")
 	.all(v-if="props.search")
 		q-select(:options="scope" dense dark v-model="sel" hide-detail).where
-		q-input(v-model="store.filter" autofocus dense outlined bg-color="white" clearable).search
+		q-input(v-model="store.filter" autofocus dense outlined bg-color="white" clearable @clear="clear").search
 		q-btn(unelevated color="primary" label="Найти").q-mx-md
 
 </template>

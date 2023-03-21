@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onBeforeUnmount } from 'vue'
+import { ref, onBeforeUnmount, computed } from 'vue'
 import { BaseTree } from '@he-tree/vue'
 import { useStore } from '@/stores/store'
 import { tree, select1, toggle } from '@/composables/hetree'
@@ -70,8 +70,7 @@ q-page(padding)
 					q-fab-action(color="secondary" icon="mdi-folder-outline" @click="addFolder" )
 					q-fab-action(color="secondary" icon="mdi-key-chain-variant" @click="addCode" )
 
-				component(:is="BaseTree" v-model="store.codes"
-					updateBehavior="new"
+				component(:is="BaseTree" v-model="store.filteredCodes"
 					:indent="30"
 					:watermark="false"
 					ref="tree").tree

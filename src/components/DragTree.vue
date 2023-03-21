@@ -118,7 +118,7 @@ q-dialog(v-model="dialog")
 			q-card-section
 				q-input(v-model="newName" autofocus lazy-rules :rules="rule").inp
 				br
-				q-checkbox(v-model="shab" dense label="Сохранить как шаблон")
+				q-checkbox(v-model="shab" dense label="Сохранить в библиотеку")
 			q-card-section
 				q-card-actions(align="right")
 					q-btn(flat color="primary" label="Отмена" @click="dialog = false")

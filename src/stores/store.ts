@@ -390,6 +390,14 @@ export const useStore = defineStore({
 		flatCodes1(state) {
 			return getMembers(state.codes).filter((item) => item.icon === 'keychain')
 		},
+		filteredCodes(state) {
+			if (state.filter == '') {
+				return state.codes
+			}
+			return getMembers(state.codes).filter((item) =>
+				item.text.toLowerCase().includes(state.filter.toLowerCase())
+			)
+		},
 	},
 	actions: {
 		toggleRight() {
