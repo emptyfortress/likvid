@@ -49,6 +49,7 @@
 .slide-bottom-leave-to {
 	transform: translateY(30px);
 	opacity: 0;
+	position: absolute;
 }
 // this is animation for total in grid **********************************
 .sliding-enter-active,
