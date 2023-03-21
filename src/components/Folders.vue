@@ -16,20 +16,12 @@ const item = computed(() => {
 
 const rows = item.value?.children
 
-const calcTo = computed(() => {
-	if (item.value?.typ == '1') {
-		return '/contract'
-	} else if (item.value?.url == '/folders/2') {
-		return '/polnomoch'
-	}
-	return '/'
-})
 const selected = ref([])
 const clear = () => {
 	selected.value = []
 }
 
-const select = (e: any) => {
+const select = () => {
 	router.push('/contract')
 }
 
@@ -47,9 +39,9 @@ q-page.column.justify-between
 	.container
 		.row.items-baseline.justify-between.q-gutter-x-lg
 			.zag {{ item?.title }}
-			q-btn(round color="primary" icon="mdi-plus" size="sm" :to="calcTo")
+			q-btn(round color="primary" icon="mdi-plus" size="sm" to="/contract")
 
-		Toolbar()
+		component(:is="Toolbar" total="rows.length")
 		q-table(:columns="columns"
 			flat
 			color="primary"
@@ -60,6 +52,7 @@ q-page.column.justify-between
 			row-key="id"
       selection="single"
 			no-data-label="Данные отсутствуют."
+			no-results-label="Ничего не найдено."
       v-model:selected="selected"
 			).q-mt-md
 	.total(v-show="selected.length")
@@ -67,6 +60,7 @@ q-page.column.justify-between
 			q-btn(flat round dense icon="mdi-close" @click="clear")
 			.tot {{selected.length}}
 			.arr &rarr;
+			q-btn(unelevated color="primary" label="Открыть" to="/contract")
 			q-btn(unelevated color="primary" label="Создать на основе" to="/contract")
 </template>
 
