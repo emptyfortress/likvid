@@ -11,19 +11,69 @@ const props = defineProps({
 	},
 })
 const fold = ref(true)
+const mini = ref(false)
+const toggleMini = () => {
+	mini.value = !mini.value
+}
+
+const pages1 = [
+	{
+		id: 0,
+		title: 'Главная',
+		icon: 'mdi-home-roof',
+		url: '/',
+	},
+	{
+		id: 1,
+		title: 'Последние карточки',
+		icon: 'mdi-history',
+		url: '/path/history',
+	},
+	{
+		id: 2,
+		title: 'Мои задания',
+		url: '/path/task',
+	},
+	{
+		id: 2,
+		title: 'Мои документы',
+		url: '/path/doc',
+	},
+]
+
+const pages = [
+	{
+		id: 1,
+		title: 'Design mode',
+		icon: 'mdi-ruler-square-compass',
+		url: '/new/0',
+	},
+	{
+		id: 2,
+		title: 'Контракт',
+		icon: 'mdi-ruler-square-compass',
+		url: '/new/1',
+	},
+	{
+		id: 3,
+		title: 'Коды полномочий',
+		icon: 'mdi-ruler-square-compass',
+		url: '/new/2',
+	},
+]
 </script>
 
 <template lang="pug">
-q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="250").rel
+q-drawer(:model-value="props.modelValue" side="left" :mini="mini" :width="250").rel
 	q-list.q-mt-lg
-		q-item(clickable v-ripple v-for="page in store.pages" :to="page.url" :key="page.id")
+		q-item(clickable v-ripple v-for="page in pages" :to="page.url" :key="page.id")
 			q-item-section(avatar)
 				q-icon(:name="page.icon")
 			q-item-section
 				q-item-label {{ page.title }}
 	hr.q-mt-xl
 	q-list
-		q-item(clickable v-ripple v-for="page in store.pages1" :to="page.url" :key="page.id")
+		q-item(clickable v-ripple v-for="page in pages1" :to="page.url" :key="page.id")
 			q-item-section(avatar)
 				q-icon(:name="page.icon")
 			q-item-section
@@ -36,8 +86,8 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 				q-item-section
 					q-item-label {{ page.title }}
 
-	q-btn(round flat dense  @click="store.toggleMini").mini.gt-sm
-		q-icon(name="mdi-backburger" v-if="!store.mini")
+	q-btn(round flat dense  @click="toggleMini").mini.gt-sm
+		q-icon(name="mdi-backburger" v-if="!mini")
 		q-icon(name="mdi-forwardburger" v-else)
 
 

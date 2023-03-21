@@ -40,6 +40,7 @@ interface Code {
 }
 
 interface Contract {
+	id: null | number
 	num: null | number
 	due: null | string
 	sum: null | number

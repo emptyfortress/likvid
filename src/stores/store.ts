@@ -7,7 +7,6 @@ type C = Stat | null
 export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
-		mini: false,
 		rightDrawer: false,
 		treeChanged: false,
 		draggedNode: null as A,
@@ -323,56 +322,11 @@ export const useStore = defineStore({
 				url: '/folders/1',
 				typ: '1',
 				children: [
-					{ num: 0, client: 'oalskljl' },
-					{ num: 1, client: 'laksl' },
+					{ id: 0, client: 'oalskljl' },
+					{ id: 1, client: 'laksl' },
 				],
 			},
 		] as Folder[],
-
-		pages1: [
-			{
-				id: 0,
-				title: 'Главная',
-				icon: 'mdi-home-roof',
-				url: '/',
-			},
-			{
-				id: 1,
-				title: 'Последние карточки',
-				icon: 'mdi-history',
-				url: '/path/history',
-			},
-			{
-				id: 2,
-				title: 'Мои задания',
-				url: '/path/task',
-			},
-			{
-				id: 2,
-				title: 'Мои документы',
-				url: '/path/doc',
-			},
-		],
-		pages: [
-			{
-				id: 1,
-				title: 'Design mode',
-				icon: 'mdi-ruler-square-compass',
-				url: '/new/0',
-			},
-			{
-				id: 2,
-				title: 'Контракт',
-				icon: 'mdi-ruler-square-compass',
-				url: '/new/1',
-			},
-			{
-				id: 3,
-				title: 'Коды полномочий',
-				icon: 'mdi-ruler-square-compass',
-				url: '/new/2',
-			},
-		],
 	}),
 	getters: {
 		currentNode1(state) {
@@ -399,12 +353,6 @@ export const useStore = defineStore({
 		},
 	},
 	actions: {
-		toggleRight() {
-			this.rightDrawer = !this.rightDrawer
-		},
-		toggleMini() {
-			this.mini = !this.mini
-		},
 		setDraggedNode(e: A) {
 			this.draggedNode = e
 		},
@@ -416,18 +364,18 @@ export const useStore = defineStore({
 			this.currentCode = e
 			this.selected1 = e!.data.text
 		},
-		setCodes(payload: any) {
-			this.codes = payload
-		},
-		showRightDrawer() {
-			this.rightDrawer = true
-		},
-		hideRightDrawer() {
-			this.rightDrawer = false
-		},
-		toggleRightDrawer() {
-			this.rightDrawer = !this.rightDrawer
-		},
+		// setCodes(payload: any) {
+		// 	this.codes = payload
+		// },
+		// showRightDrawer() {
+		// 	this.rightDrawer = true
+		// },
+		// hideRightDrawer() {
+		// 	this.rightDrawer = false
+		// },
+		// toggleRightDrawer() {
+		// 	this.rightDrawer = !this.rightDrawer
+		// },
 		addNode() {
 			const change = {
 				id: 9,
