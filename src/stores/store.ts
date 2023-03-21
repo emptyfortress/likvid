@@ -322,6 +322,10 @@ export const useStore = defineStore({
 				title: 'Контракты',
 				url: '/folders/1',
 				typ: '1',
+				children: [
+					{ id: 0, client: 'oalskljl' },
+					{ id: 1, client: 'laksl' },
+				],
 			},
 		] as Folder[],
 

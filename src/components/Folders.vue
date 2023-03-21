@@ -49,23 +49,15 @@ q-page(padding)
 		Toolbar()
 		q-table(:columns="columns"
 			flat
+			color="primary"
 			:rows="rows"
 			rows-per-page-label="Показать на странице"
 			:rows-per-page-options=[10,20,50,0]
 			row-key="id"
-      selection="single"
+      selection="multiple"
 			no-data-label="Данные отсутствуют."
       v-model:selected="selected"
 			).q-mt-md
-			template(v-slot:body-selection)
-			template(v-slot:body="props")
-				q-tr(:props="props" @click="select(props.row)")
-					q-td(auto-width)
-					q-td(key="num" :props="props") {{ props.row.num }}
-					q-td(key="due" :props="props") {{ props.row.due }}
-					q-td(key="client" :props="props") {{ props.row.client }}
-					q-td(key="executor" :props="props") {{ props.row.executor }}
-					q-td(key="sum" :props="props") {{ props.row.sum }}
 
 </template>
 
@@ -78,5 +70,11 @@ q-page(padding)
 }
 .q-mt-md {
 	margin-top: 0;
+}
+:deep(tr.selected) {
+	background: #dbefff;
+}
+:deep(.q-table tbody tr.selected td:after) {
+	background: none;
 }
 </style>
