@@ -21,7 +21,7 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="store.mini" :width="
 				q-icon(:name="page.icon")
 			q-item-section
 				q-item-label {{ page.title }}
-	.spi(v-if="!store.mini") Дерево папок ДВ
+	hr.q-mt-xl
 	q-list
 		q-item(clickable v-ripple v-for="page in store.pages1" :to="page.url" :key="page.id")
 			q-item-section(avatar)

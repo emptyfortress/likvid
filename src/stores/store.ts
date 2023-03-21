@@ -316,17 +316,17 @@ export const useStore = defineStore({
 				url: '/polnomoch',
 				typ: '2',
 			},
-			// {
-			// 	id: 1,
-			// 	icon: 'mdi-folder-outline',
-			// 	title: 'Контракты',
-			// 	url: '/folders/1',
-			// 	typ: '1',
-			// 	children: [
-			// 		{ num: 0, client: 'oalskljl' },
-			// 		{ num: 1, client: 'laksl' },
-			// 	],
-			// },
+			{
+				id: 1,
+				icon: 'mdi-folder-outline',
+				title: 'Контракты',
+				url: '/folders/1',
+				typ: '1',
+				children: [
+					{ num: 0, client: 'oalskljl' },
+					{ num: 1, client: 'laksl' },
+				],
+			},
 		] as Folder[],
 
 		pages1: [
@@ -372,7 +372,6 @@ export const useStore = defineStore({
 				icon: 'mdi-ruler-square-compass',
 				url: '/new/2',
 			},
-			{},
 		],
 	}),
 	getters: {
