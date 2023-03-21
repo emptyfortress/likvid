@@ -117,8 +117,8 @@ q-dialog(v-model="dialog")
 				q-btn(icon="mdi-close" flat round dense @click="dialog = false")
 			q-card-section
 				q-input(v-model="newName" autofocus lazy-rules :rules="rule").inp
-				// br
-				// q-checkbox(v-model="shab" dense label="Сохранить как шаблон")
+				br
+				q-checkbox(v-model="shab" dense label="Сохранить как шаблон")
 			q-card-section
 				q-card-actions(align="right")
 					q-btn(flat color="primary" label="Отмена" @click="dialog = false")
