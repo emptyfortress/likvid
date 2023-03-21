@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import SvgIcon from '@/components/global/SvgIcon.vue'
 
+const props = defineProps({
+	total: {
+		type: Number,
+		default: 0,
+	},
+})
+
 const buttons = [
 	{ id: 0, icon: 'sort' },
 	{ id: 1, icon: 'read' },
@@ -19,7 +26,7 @@ const buttons = [
 			q-btn(flat round icon="mdi-backburger" dense)
 			.q-ml-md
 				span Всего:
-				span.text-bold 26
+				span.text-bold.q-ml-md {{props.total}}
 		div
 			q-btn(flat icon="mdi-table" dense) 
 			q-btn(flat icon="mdi-format-list-bulleted-square" dense) 

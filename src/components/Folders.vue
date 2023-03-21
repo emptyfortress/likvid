@@ -43,7 +43,7 @@ q-page.column.justify-between
 				q-btn(flat color="primary" label="Создать по шаблону")
 				q-btn(round color="primary" icon="mdi-plus" size="sm" to="/contract")
 
-		component(:is="Toolbar" total="rows.length")
+		component(:is="Toolbar" :total="rows?.length")
 		q-table(:columns="columns"
 			flat
 			color="primary"
