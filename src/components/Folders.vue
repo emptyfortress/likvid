@@ -55,6 +55,7 @@ q-page(padding)
 			q-btn(round color="primary" icon="mdi-plus" size="sm" :to="calcTo")
 
 		q-table(v-if="item?.typ == '1'" :columns="columns"
+			flat
 			:rows="rows"
 			rows-per-page-label="Показать на странице"
 			:rows-per-page-options=[10,20,50,0]

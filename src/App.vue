@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import Drawer from '@/components/Drawer.vue'
 import RDrawer from '@/components/RDrawer.vue'
 import AddDialog from '@/components/AddDialog.vue'
+import SearchComponent from '@/components/SearchComponent.vue'
 import { useStore } from '@/stores/store'
 
 const store = useStore()
@@ -17,6 +18,7 @@ const addDialog = ref(false)
 const showDialog = () => {
 	addDialog.value = !addDialog.value
 }
+const showSearch = ref(false)
 </script>
 
 <template lang="pug">
@@ -24,17 +26,18 @@ q-layout(view="hHh LpR fFf")
 	q-header.head
 		q-toolbar
 			q-btn(dense flat round icon="mdi-menu" @click="toggleLeftDrawer" color="white")
-			q-toolbar-title Сложные структуры хранения данных
+			q-toolbar-title Docsvision
 			q-space
-			q-btn(dense flat round icon="mdi-magnify")
-			q-btn(dense round unelevated color="light-blue-2").q-ml-sm
+			SearchComponent(:search="showSearch" )
+			q-btn(dense flat round icon="mdi-magnify" @click="showSearch = !showSearch")
+			q-btn(dense round unelevated color="light-blue-2").q-mx-md
 				q-avatar
 					img(src="@/assets/img/users/user0.svg")
 					.mybadge
-			q-btn(dense flat round icon="mdi-help-circle-outline").q-ml-sm
+			q-btn(dense flat round icon="mdi-help-circle-outline")
 
-	Drawer(v-model="leftDrawer")
-	RDrawer(v-model="store.rightDrawer")
+	Drawer(v-model="leftDrawer" )
+	RDrawer(v-model="store.rightDrawer" )
 
 	q-page-container
 		router-view(v-slot="{ Component, route }")
@@ -68,4 +71,14 @@ q-layout(view="hHh LpR fFf")
 	background: green;
 	border: 1px solid #fff;
 }
+.search {
+	width: 60%;
+}
+// .filt {
+// 	display: flex;
+// 	align-items: center;
+// 	justify-items: flex-end;
+// 	width: 60%;
+// 	background: pink;
+// }
 </style>

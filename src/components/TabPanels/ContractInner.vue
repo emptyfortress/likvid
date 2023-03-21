@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive } from 'vue'
+import { reactive } from 'vue'
 import { useQuasar } from 'quasar'
 import { useStore } from '@/stores/store'
 import { useRouter } from 'vue-router'
@@ -7,10 +7,6 @@ import { useRouter } from 'vue-router'
 const store = useStore()
 const router = useRouter()
 const $q = useQuasar()
-
-const rule = computed(() => {
-	return [(val: any) => (val !== null && val !== '') || 'Обязательное поле']
-})
 
 const newContract: Contract = reactive({
 	num: null,
@@ -50,6 +46,7 @@ div
 
 		q-card-actions(align="right")
 			q-btn(flat color="primary" label="Отмена" to="/folders/1" type="reset")
+			q-btn(unelevated color="primary" type="submit" label="Сохранить как шаблон")
 			q-btn(unelevated color="primary" type="submit" label="Сохранить")
 </template>
 

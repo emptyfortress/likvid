@@ -15,6 +15,7 @@ export const useStore = defineStore({
 		currentCode: null as C,
 		selected: 'Контракт',
 		selected1: 'МинЦифры',
+		filter: '',
 
 		packet: [
 			{
@@ -314,6 +315,13 @@ export const useStore = defineStore({
 				title: 'Коды полномочий',
 				url: '/polnomoch',
 				typ: '2',
+			},
+			{
+				id: 1,
+				icon: 'mdi-folder-outline',
+				title: 'Контракты',
+				url: '/folders/1',
+				typ: '1',
 			},
 		] as Folder[],
 

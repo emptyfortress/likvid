@@ -44,7 +44,9 @@ q-tab-panels(v-model="store.selected"
 			.row.items-center
 				img(:src="`${item.icon}.svg`").im
 				.title {{item.text}}
-			q-btn(unelevated color="primary" label="Скачать") 	
+			.q-gutter-x-sm
+				q-btn(unelevated color="primary" label="Скачать") 	
+				q-btn(unelevated color="primary" label="Загрузить") 	
 		component(:is="Files" :item="item")
 
 </template>
