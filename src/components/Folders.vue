@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useStore } from '@/stores/store'
 import { columns } from '@/stores/table'
-import cloneDeepWith from 'lodash.clonedeepwith'
 import Toolbar from '@/components/Toolbar.vue'
 
 const store = useStore()
 const route = useRoute()
-const router = useRouter()
 
 const item = computed(() => {
 	return store.myfolders.find((item: any) => item.url === route.path)
@@ -19,18 +17,6 @@ const rows = item.value?.children
 const selected = ref([])
 const clear = () => {
 	selected.value = []
-}
-
-const select = () => {
-	router.push('/contract')
-}
-
-function selectCode(tree: any, id: number) {
-	return cloneDeepWith(tree, (node) => {
-		if (node.id === id) {
-			return { ...node, selected: true }
-		}
-	})
 }
 </script>
 
