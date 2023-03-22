@@ -179,7 +179,7 @@ export const useStore = defineStore({
 				id: 0,
 				text: 'ООО "Доксвижн"',
 				header: 'root',
-				selected: false,
+				selected: true,
 				icon: 'NodeFolder',
 				children: [
 					{
