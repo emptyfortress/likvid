@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-// import SvgIcon from '@/components/global/SvgIcon.vue'
 import { useStore } from '@/stores/store'
 import type { QTableProps } from 'quasar'
 
@@ -55,9 +54,8 @@ const columns: QTableProps['columns'] = [
 ]
 
 const rows = computed(() => {
-	if (props.item.id == 10) {
-		return store.codes[1].children
-	} else return store.codes[0].children
+	const index = store.codes.findIndex((item) => item.id === props.item.id)
+	return store.codes[index].children
 })
 </script>
 
@@ -82,7 +80,8 @@ div
 		q-table(:columns="columns"
 			:rows="rows"
 			row-key="id"
-			hide-bottom
+			:rows-per-page-options="[0]"
+			no-data-label="Данные отсутствуют"
 			wrap-cells
 			flat
 			).tab
