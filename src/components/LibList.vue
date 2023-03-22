@@ -36,8 +36,6 @@ const ondragend = () => {
 const calcClass = (e: any) => {
 	if (e.branch === 1) {
 		return 'multi'
-	} else if (e.branch === 0) {
-		return 'templ'
 	}
 	return ''
 }
@@ -61,7 +59,6 @@ component(:is="draggable" :list="filteredList"
 	template(#item="{ element, index }")
 		.tabel(:class="calcClass(element)")
 			div
-				q-icon(name="mdi-ruler-square-compass" size="20px" color="primary" v-if="element.branch === 0")
 				q-icon(name="mdi-folder-outline" size="20px" color="primary" v-if="element.branch === 1")
 				q-icon(name="mdi-square-medium" size="18px" style="vertical-align: top;" v-if="element.branch === 2")
 				span.q-ml-sm
@@ -82,9 +79,6 @@ component(:is="draggable" :list="filteredList"
 	grid-template-columns: 1fr auto;
 	&.multi {
 		background: #dbded3;
-	}
-	&.templ {
-		background: #dce7bd;
 	}
 	.q-icon,
 	.q-btn {

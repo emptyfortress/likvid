@@ -9,11 +9,6 @@ const typ = computed(() => {
 	}
 	return 'branch'
 })
-// const filetype = ref(false)
-const sel = ref('Не указано')
-const options = ['Не указано', 'word', 'excel', 'txt', 'pdf', 'zip']
-const shab = ref(false)
-const path = ref('C:/Program Files/Docsvision/Examples/Files/test.docx')
 const more = ref('=')
 const options1 = ['=', '<=', '=>', '>', '<']
 </script>
@@ -28,9 +23,7 @@ template(v-else)
 			q-radio(disable dense v-model="typ" val="branch" label="Папка").q-mr-lg
 			q-radio(disable dense v-model="typ" val="node" label="Узел")
 		.label Вид карточки:
-		.row.items-center
-			.q-mr-xl {{ store.currentNode.data.vid }}
-			q-select(v-if="store.currentNode.data.vid === 'file'" v-model="sel" dense label="Тип файла" :options="options").typ
+		.q-mr-xl {{ store.currentNode.data.vid }}
 
 		q-input(v-model="store.currentNode.data.text" type="text" label="Название").ful
 		.quan
@@ -41,10 +34,6 @@ template(v-else)
 		.quan
 			q-checkbox(v-model="store.currentNode.data.mandatory" dense label="Обязательный узел")
 				q-icon(name="mdi-exclamation-thick" color="primary").q-ml-sm
-	.row.items-center.q-mt-md
-		q-checkbox(v-model="shab" dense label="Заполнить при создании").q-mr-xl
-		q-input(v-if="shab" v-model="path" label="Источник" style="width: 300px" :disable="!shab").q-mr-xl 
-		q-btn(v-if="shab" unelevated color="primary" label="Выбрать" size="sm")
 
 </template>
 

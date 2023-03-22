@@ -47,7 +47,6 @@ div
 
 		q-card-actions(align="right")
 			q-btn(flat color="primary" label="Отмена" to="/folders/1" type="reset")
-			q-btn(unelevated color="primary" type="submit" label="Сохранить как шаблон")
 			q-btn(unelevated color="primary" type="submit" label="Сохранить")
 </template>
 

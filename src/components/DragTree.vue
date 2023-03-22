@@ -60,7 +60,7 @@ const addnew = () => {
 		lib.addItem({
 			id: Date.now(),
 			text: 'Контракт',
-			branch: 0,
+			branch: 1,
 		})
 	}
 	newName.value = ''
