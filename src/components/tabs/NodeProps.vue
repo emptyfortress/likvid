@@ -20,8 +20,8 @@ template(v-else)
 	.mygr
 		.label Тип:
 		div
-			q-radio(disable dense v-model="typ" val="branch" label="Папка").q-mr-lg
-			q-radio(disable dense v-model="typ" val="node" label="Узел")
+			q-radio(disable dense v-model="typ" val="branch" label="Узел").q-mr-lg
+			q-radio(disable dense v-model="typ" val="node" label="Лист")
 		.label Вид карточки:
 		.q-mr-xl {{ store.currentNode.data.vid }}
 
