@@ -42,7 +42,7 @@ q-page.column.justify-between
 		.row.items-baseline.justify-between.q-gutter-x-lg
 			.zag {{ item?.title }}
 			.q-gutter-x-sm
-				q-btn(flat color="primary" label="Создать по шаблону" @click="setCurrContract")
+				q-btn(:disable="selected.length == 0" flat color="primary" label="Создать по шаблону" @click="setCurrContract")
 				q-btn(round color="primary" icon="mdi-plus" size="sm" @click="newContract")
 
 		component(:is="Toolbar" :total="rows?.length")
