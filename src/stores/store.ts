@@ -13,7 +13,7 @@ export const useStore = defineStore({
 		currentNode: null as C,
 		currentCode: null as C,
 		selected: 'Контракт',
-		selected1: 'МинЦифры',
+		selected1: 'ООО "Доксвижн"',
 		filter: '',
 
 		packet: [
@@ -343,14 +343,14 @@ export const useStore = defineStore({
 		flatCodes1(state) {
 			return getMembers(state.codes).filter((item) => item.icon === 'keychain')
 		},
-		filteredCodes(state) {
-			if (state.filter == '') {
-				return state.codes
-			}
-			return getMembers(state.codes).filter((item) =>
-				item.text.toLowerCase().includes(state.filter.toLowerCase())
-			)
-		},
+		// filteredCodes(state) {
+		// 	if (state.filter == '') {
+		// 		return state.codes
+		// 	}
+		// 	return getMembers(state.codes).filter((item) =>
+		// 		item.text.toLowerCase().includes(state.filter.toLowerCase())
+		// 	)
+		// },
 	},
 	actions: {
 		setDraggedNode(e: A) {
@@ -364,9 +364,12 @@ export const useStore = defineStore({
 			this.currentCode = e
 			this.selected1 = e!.data.text
 		},
-		// setCodes(payload: any) {
-		// 	this.codes = payload
-		// },
+		setCodes(payload: any) {
+			this.codes = payload
+		},
+		addNewCode(node: any) {
+			this.codes[0].children?.push(node)
+		},
 		// showRightDrawer() {
 		// 	this.rightDrawer = true
 		// },

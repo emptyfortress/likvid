@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+// import SvgIcon from '@/components/global/SvgIcon.vue'
+import { useStore } from '@/stores/store'
+import type { QTableProps } from 'quasar'
+
 interface Item {
 	id: number
 	text: string
@@ -12,7 +17,48 @@ const props = defineProps<{
 	item: Item
 }>()
 
-// const store = useStore()
+const store = useStore()
+
+const columns: QTableProps['columns'] = [
+	{
+		name: 'code',
+		required: true,
+		label: 'Код',
+		field: 'code',
+		sortable: true,
+		align: 'left',
+	},
+	{
+		name: 'name',
+		required: true,
+		label: 'Название',
+		field: 'name',
+		sortable: true,
+		align: 'left',
+	},
+	{
+		name: 'descr',
+		required: true,
+		label: 'Описание',
+		field: 'descr',
+		sortable: true,
+		align: 'left',
+	},
+	{
+		name: 'doveritel',
+		required: true,
+		label: 'Доверитель',
+		field: 'doveritel',
+		sortable: true,
+		align: 'left',
+	},
+]
+
+const rows = computed(() => {
+	if (props.item.id == 10) {
+		return store.codes[1].children
+	} else return store.codes[0].children
+})
 </script>
 
 <template lang="pug">
@@ -33,6 +79,22 @@ div
 		.val {{props.item.text}}
 		.label Дата обновления:
 		.val 22.07.2022
+		q-table(:columns="columns"
+			:rows="rows"
+			row-key="id"
+			hide-bottom
+			wrap-cells
+			flat
+			).tab
+			template(v-slot:body="props")
+				q-tr(:props="props")
+						
+					q-td(:props="props" key="code")
+						// component(:is="SvgIcon" name="keychain" size="18px")
+						span {{ props.row.code }}
+					q-td(:props="props" key="name") {{ props.row.name }}
+					q-td(:props="props" key="descr") {{ props.row.descr }}
+					q-td(:props="props" key="doveritel") {{ props.row.doveritel }}
 
 </template>
 
@@ -57,6 +119,10 @@ div
 	.fil {
 		grid-column: 1/-1;
 	}
+}
+.tab {
+	grid-column: 1/-1;
+	margin-top: 5rem;
 }
 .label {
 	text-align: right;

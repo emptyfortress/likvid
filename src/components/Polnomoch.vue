@@ -7,9 +7,10 @@ import PropertyView1 from '@/components/PropertyView1.vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
 import CreateCode from '@/components/CreateCode.vue'
 import CreateFolder from '@/components/CreateFolder.vue'
+import { getMembers } from '@/utils/utils'
 
 const store = useStore()
-const ratio = ref(38)
+const ratio = ref(35)
 const dialog = ref(false)
 const dialog1 = ref(false)
 
@@ -57,6 +58,15 @@ const remove = (e: Stat) => {
 onBeforeUnmount(() => {
 	tree.value.statsFlat.map((item: Stat) => (item.data.selected = false))
 })
+
+const filteredCodes = computed(() => {
+	if (store.filter == '') {
+		return store.codes
+	}
+	return getMembers(store.codes).filter((item: any) =>
+		item.text.toLowerCase().includes(store.filter.toLowerCase())
+	)
+})
 </script>
 
 <template lang="pug">
@@ -70,7 +80,7 @@ q-page(padding)
 					q-fab-action(color="secondary" icon="mdi-folder-outline" @click="addFolder" )
 					q-fab-action(color="secondary" icon="mdi-key-chain-variant" @click="addCode" )
 
-				component(:is="BaseTree" v-model="store.filteredCodes"
+				component(:is="BaseTree" v-model="filteredCodes"
 					:indent="30"
 					:watermark="false"
 					ref="tree").tree
