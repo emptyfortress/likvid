@@ -55,9 +55,6 @@ const addFolder = () => {
 const remove = (e: Stat) => {
 	tree.value.remove(e)
 }
-// onBeforeUnmount(() => {
-// 	tree.value.statsFlat.map((item: Stat) => (item.data.selected = false))
-// })
 
 const filteredCodes = computed(() => {
 	if (store.filter == '') {

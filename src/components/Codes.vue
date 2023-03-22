@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useStore } from '@/stores/store'
 import type { QTableProps } from 'quasar'
+import Toolbar from '@/components/Toolbar.vue'
 
 interface Item {
 	id: number
@@ -77,6 +78,8 @@ div
 		.val {{props.item.text}}
 		.label Дата обновления:
 		.val 22.07.2022
+
+		component(:is="Toolbar" :total="rows?.length").tab
 		q-table(:columns="columns"
 			:rows="rows"
 			row-key="id"
@@ -84,13 +87,10 @@ div
 			no-data-label="Данные отсутствуют"
 			wrap-cells
 			flat
-			).tab
+			).tab1
 			template(v-slot:body="props")
 				q-tr(:props="props")
-						
-					q-td(:props="props" key="code")
-						// component(:is="SvgIcon" name="keychain" size="18px")
-						span {{ props.row.code }}
+					q-td(:props="props" key="code") {{ props.row.code }}
 					q-td(:props="props" key="name") {{ props.row.name }}
 					q-td(:props="props" key="descr") {{ props.row.descr }}
 					q-td(:props="props" key="doveritel") {{ props.row.doveritel }}
@@ -119,8 +119,11 @@ div
 		grid-column: 1/-1;
 	}
 }
-.tab {
+.tab,
+.tab1 {
 	grid-column: 1/-1;
+}
+.tab {
 	margin-top: 5rem;
 }
 .label {
