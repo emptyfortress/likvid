@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from '@/stores/store'
 import { columns } from '@/stores/table'
 import Toolbar from '@/components/Toolbar.vue'
 
 const store = useStore()
 const route = useRoute()
+const router = useRouter()
 
 const item = computed(() => {
 	return store.myfolders.find((item: any) => item.url === route.path)
@@ -18,6 +19,21 @@ const selected = ref([])
 const clear = () => {
 	selected.value = []
 }
+const setCurrContract = () => {
+	store.setCurrContract(selected.value[0])
+	router.push('/contract')
+}
+const newContract = () => {
+	store.setCurrContract({
+		id: null,
+		num: null,
+		due: null,
+		sum: null,
+		executor: null,
+		client: null,
+	})
+	router.push('/contract')
+}
 </script>
 
 <template lang="pug">
@@ -26,8 +42,8 @@ q-page.column.justify-between
 		.row.items-baseline.justify-between.q-gutter-x-lg
 			.zag {{ item?.title }}
 			.q-gutter-x-sm
-				q-btn(flat color="primary" label="Создать по шаблону")
-				q-btn(round color="primary" icon="mdi-plus" size="sm" to="/contract")
+				q-btn(flat color="primary" label="Создать по шаблону" @click="setCurrContract")
+				q-btn(round color="primary" icon="mdi-plus" size="sm" @click="newContract")
 
 		component(:is="Toolbar" :total="rows?.length")
 		q-table(:columns="columns"
@@ -48,8 +64,8 @@ q-page.column.justify-between
 			q-btn(flat round dense icon="mdi-close" @click="clear")
 			.tot {{selected.length}}
 			.arr &rarr;
-			q-btn(unelevated color="primary" label="Открыть" to="/contract")
-			q-btn(unelevated color="primary" label="Создать на основе" to="/contract")
+			q-btn(unelevated color="primary" label="Открыть" @click="setCurrContract")
+			q-btn(unelevated color="primary" label="Создать на основе" @click="setCurrContract")
 </template>
 
 <style scoped lang="scss">

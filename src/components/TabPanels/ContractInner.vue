@@ -9,12 +9,12 @@ const router = useRouter()
 const $q = useQuasar()
 
 const newContract: Contract = reactive({
-	id: null,
-	num: null,
-	due: null,
-	client: null,
+	id: store.currContract.id,
+	num: store.currContract.num,
+	due: store.currContract.due,
+	client: store.currContract.client,
 	executor: 'ООО "Доксвижн"',
-	sum: null,
+	sum: store.currContract.sum,
 })
 
 const save = () => {

@@ -15,6 +15,7 @@ export const useStore = defineStore({
 		selected: 'Контракт',
 		selected1: 'ООО "Доксвижн"',
 		filter: '',
+		currContract: {} as Contract,
 
 		packet: [
 			{
@@ -370,15 +371,9 @@ export const useStore = defineStore({
 		addNewCode(node: any) {
 			this.codes[0].children?.push(node)
 		},
-		// showRightDrawer() {
-		// 	this.rightDrawer = true
-		// },
-		// hideRightDrawer() {
-		// 	this.rightDrawer = false
-		// },
-		// toggleRightDrawer() {
-		// 	this.rightDrawer = !this.rightDrawer
-		// },
+		setCurrContract(e: Contract) {
+			this.currContract = e
+		},
 		addNode() {
 			const change = {
 				id: 9,

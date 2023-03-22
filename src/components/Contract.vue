@@ -57,10 +57,6 @@ q-page(padding)
 			q-scroll-area.home
 				component(:is="PropertyView" @remove="remove")
 
-			// q-card-actions(align="right")
-			// 	q-btn(flat color="primary" label="Отмена" to="/folders/1") 
-			// 	q-btn(unelevated color="primary" label="Сохранить") 
-
 </template>
 
 <style scoped lang="scss">
